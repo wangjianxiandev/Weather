@@ -1,0 +1,39 @@
+ext {
+
+    android = [
+            compileSdkVersion: 29,
+            buildToolsVersion: "29.0.3",
+            minSdkVersion    : 28,
+            targetSdkVersion : 29,
+            versionCode      : 1,
+            versionName      : "1.0",
+    ]
+
+    appId = [
+            "app": "com.wjx.android.weather",
+    ]
+
+    coroutines_version ='1.3.2'
+    retrofit_version = '2.9.0'
+    androidx_lifecycle_version = '2.2.0'
+    loadSir_version = '1.3.6'
+
+    dependencies = [
+            "appcompat"                  : "androidx.appcompat:appcompat:1.1.0",
+            "recyclerview"               : "com.android.support:recyclerview-v7:29.0.0",
+            "constraint"                 : "androidx.constraintlayout:constraintlayout:1.1.3",
+            "kotlin"                     : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
+            "design"                     : "com.android.support:design:29.0.0",
+            "androidx"                   : "androidx.core:core-ktx:1.2.0",
+            "androidx-lifecycle"         : "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidx_lifecycle_version",
+            "coroutines"                 : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version",
+            "retrofit"                   : "com.squareup.retrofit2:retrofit:$retrofit_version",
+            "retrofit-converter-gson"    : "com.squareup.retrofit2:converter-gson:${retrofit_version}",
+            "retrofit-adapter-rxjava2"   : "com.squareup.retrofit2:adapter-rxjava2:${retrofit_version}",
+            "loadSir"                    : "com.kingja.loadsir:loadsir:$loadSir_version"
+    ]
+
+    processor = [
+
+    ]
+}

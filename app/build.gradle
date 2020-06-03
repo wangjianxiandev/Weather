@@ -1,0 +1,40 @@
+apply plugin: 'com.android.application'
+apply plugin: 'kotlin-android'
+apply plugin: 'kotlin-android-extensions'
+apply plugin: 'kotlin-kapt'
+
+def rootAndroidId = rootProject.ext.android
+def appId = rootProject.ext.appId
+def support = rootProject.ext.dependencies
+
+android {
+    compileSdkVersion rootAndroidId.compileSdkVersion
+    buildToolsVersion rootAndroidId.buildToolsVersion
+    defaultConfig {
+        applicationId appId.app
+        minSdkVersion rootAndroidId.minSdkVersion
+        targetSdkVersion rootAndroidId.targetSdkVersion
+        versionCode rootAndroidId.versionCode
+        versionName rootAndroidId.versionName
+        testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
+    }
+    dataBinding {
+        enabled = true
+    }
+}
+
+kapt {
+    useBuildCache = true
+    javacOptions {
+        option("-Xmaxerrs", 500)
+    }
+}
+
+dependencies {
+    implementation fileTree(dir: "libs", include: ["*.jar"])
+    implementation support.appcompat
+    support.each { k, v -> implementation v }
+    testImplementation 'junit:junit:4.12'
+    androidTestImplementation 'androidx.test.ext:junit:1.1.1'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+}
