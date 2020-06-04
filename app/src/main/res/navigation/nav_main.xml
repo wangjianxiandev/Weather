@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/nav_main"
+    app:startDestination="@id/choosePlaceFragment">
+
+    <fragment
+        android:id="@+id/homeFragment"
+        android:name="com.wjx.android.weather.module.home.HomeFragment"
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_choosePlaceFragment"
+            app:destination="@id/choosePlaceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/choosePlaceFragment"
+        android:name="com.wjx.android.weather.module.place.view.ChoosePlaceFragment"
+        android:label="choose_place_fragment"
+        tools:layout="@layout/choose_place_fragment" >
+        <action
+            android:id="@+id/action_choosePlaceFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+    </fragment>
+</navigation>

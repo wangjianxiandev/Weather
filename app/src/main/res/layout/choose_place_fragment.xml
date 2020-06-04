@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".module.place.view.ChoosePlaceFragment">
+
+    <include layout="@layout/fragment_list" />
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/fab_add"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="@dimen/dp_10"
+        android:layout_marginBottom="@dimen/dp_72"
+        android:src="@drawable/ic_add"
+        android:theme="@style/AppTheme.NoActionBar"
+        android:visibility="visible"
+        app:backgroundTint="@color/always_white_text"
+        app:elevation="@dimen/dp_10"
+        app:fabSize="auto"
+        app:tint="@color/dark" />
+</androidx.coordinatorlayout.widget.CoordinatorLayout>

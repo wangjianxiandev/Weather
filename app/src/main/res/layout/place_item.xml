@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/safe_padding"
+    android:layout_marginTop="@dimen/safe_padding"
+    android:layout_marginEnd="@dimen/safe_padding"
+    android:layout_marginBottom="@dimen/safe_padding"
+    android:clickable="true"
+    android:foreground="?android:attr/selectableItemBackground"
+
+    app:cardCornerRadius="@dimen/card_radius"
+    app:cardElevation="@dimen/safe_padding">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/todo_card"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bluebackground"
+        android:padding="@dimen/marginstart">
+
+        <ImageView
+            android:id="@+id/location_tag"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/ic_location"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/location_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/safe_padding"
+            android:text="金州"
+            android:textColor="@color/always_white_text"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="@id/location_tag"
+            app:layout_constraintStart_toEndOf="@id/location_tag"
+            app:layout_constraintTop_toTopOf="@id/location_tag" />
+
+        <TextView
+            android:id="@+id/location_temperature"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="15dp"
+            android:text="20 C"
+            android:textColor="@color/always_white_text"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@id/location_tag"
+            app:layout_constraintTop_toBottomOf="@id/location_tag" />
+
+        <ImageView
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="30dp"
+            android:src="@drawable/ic_clear_day"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@id/location_name"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</androidx.cardview.widget.CardView>
+

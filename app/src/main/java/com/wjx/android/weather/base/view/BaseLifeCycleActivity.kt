@@ -22,13 +22,13 @@ abstract class BaseLifeCycleActivity<VM : BaseViewModel<*>> : BaseActivity() {
     protected lateinit var mViewModel: VM
 
     override fun initView() {
-        showLoading()
+//        showLoading()
         mViewModel = ViewModelProvider(this).get(Utils.getClass(this))
         mViewModel.loadState.observe(this, observer)
         initDataObserver()
     }
 
-    abstract fun initDataObserver()
+    open fun initDataObserver(){}
 
 
     open fun showLoading() {

@@ -2,6 +2,14 @@
     <string name="app_name">Weather</string>
     <string name="exit_app">再按一次退出程序</string>
 
+    <!--主页-->
+    <string name="next_15_days_label">15日天气</string>
+    <string name="current_weather">当日天气</string>
+    <string name="humidity_label">湿度</string>
+    <string name="wind_label">风力</string>
+    <string name="next_4_days_hourly">接下来4天</string>
+
+
     <!--feed back-->
     <string name="error_message">发生了一些错误</string>
     <string name="empty_message">没有数据哎~</string>

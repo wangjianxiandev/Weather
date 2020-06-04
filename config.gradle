@@ -2,8 +2,8 @@ ext {
 
     android = [
             compileSdkVersion: 29,
-            buildToolsVersion: "29.0.3",
-            minSdkVersion    : 28,
+            buildToolsVersion: "29.0.2",
+            minSdkVersion    : 26,
             targetSdkVersion : 29,
             versionCode      : 1,
             versionName      : "1.0",
@@ -17,6 +17,9 @@ ext {
     retrofit_version = '2.9.0'
     androidx_lifecycle_version = '2.2.0'
     loadSir_version = '1.3.6'
+    materialsearchview_version = '1.4.0'
+    lottie_version = '3.4.0'
+    adapter_helper_version = "2.9.30"
 
     dependencies = [
             "appcompat"                  : "androidx.appcompat:appcompat:1.1.0",
@@ -24,13 +27,17 @@ ext {
             "constraint"                 : "androidx.constraintlayout:constraintlayout:1.1.3",
             "kotlin"                     : "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version",
             "design"                     : "com.android.support:design:29.0.0",
+            "material_design"            : "com.google.android.material:material:1.1.0-alpha08",
             "androidx"                   : "androidx.core:core-ktx:1.2.0",
             "androidx-lifecycle"         : "androidx.lifecycle:lifecycle-viewmodel-ktx:$androidx_lifecycle_version",
             "coroutines"                 : "org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutines_version",
             "retrofit"                   : "com.squareup.retrofit2:retrofit:$retrofit_version",
             "retrofit-converter-gson"    : "com.squareup.retrofit2:converter-gson:${retrofit_version}",
             "retrofit-adapter-rxjava2"   : "com.squareup.retrofit2:adapter-rxjava2:${retrofit_version}",
-            "loadSir"                    : "com.kingja.loadsir:loadsir:$loadSir_version"
+            "adapter_helper"             : "com.github.CymChad:BaseRecyclerViewAdapterHelper:$adapter_helper_version",
+            "loadSir"                    : "com.kingja.loadsir:loadsir:$loadSir_version",
+            "materialsearchview"         : "com.miguelcatalan:materialsearchview:$materialsearchview_version",
+            "lottie"                     : "com.airbnb.android:lottie:$lottie_version"
     ]
 
     processor = [
