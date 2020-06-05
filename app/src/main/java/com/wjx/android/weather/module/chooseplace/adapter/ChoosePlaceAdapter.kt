@@ -1,10 +1,8 @@
-package com.wjx.android.weather.module.place.adapter
+package com.wjx.android.weather.module.chooseplace.adapter
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.wjx.android.weather.R
-import com.wjx.android.weather.module.place.model.Place
-import com.wjx.android.weather.module.place.model.PlaceResponse
 
 /**
  * Created with Android Studio.

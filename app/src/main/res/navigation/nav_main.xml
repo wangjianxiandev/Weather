@@ -15,11 +15,23 @@
     </fragment>
     <fragment
         android:id="@+id/choosePlaceFragment"
-        android:name="com.wjx.android.weather.module.place.view.ChoosePlaceFragment"
+        android:name="com.wjx.android.weather.module.chooseplace.view.ChoosePlaceFragment"
         android:label="choose_place_fragment"
         tools:layout="@layout/choose_place_fragment" >
         <action
             android:id="@+id/action_choosePlaceFragment_to_homeFragment"
             app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_choosePlaceFragment_to_searchPlaceFragment"
+            app:destination="@id/searchPlaceFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/searchPlaceFragment"
+        android:name="com.wjx.android.weather.module.searchplace.SearchPlaceFragment"
+        android:label="search_place_fragment"
+        tools:layout="@layout/search_place_fragment" >
+        <action
+            android:id="@+id/action_searchPlaceFragment_to_choosePlaceFragment"
+            app:destination="@id/choosePlaceFragment" />
     </fragment>
 </navigation>

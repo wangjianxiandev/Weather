@@ -5,6 +5,7 @@
     android:layoutDirection="locale">
 
     <androidx.appcompat.widget.Toolbar
+        android:id="@+id/home_toolbar"
         android:layout_width="match_parent"
         android:layout_height="?attr/actionBarSize"
         android:gravity="center">
@@ -19,6 +20,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:text="WJX"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title" />
         </LinearLayout>
     </androidx.appcompat.widget.Toolbar>

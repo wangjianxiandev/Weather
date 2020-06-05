@@ -8,10 +8,15 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.core.content.ContextCompat
 import androidx.core.graphics.ColorUtils
+import androidx.databinding.DataBindingUtil
+import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.ViewModelProvider
 import com.kingja.loadsir.core.LoadService
 import com.kingja.loadsir.core.LoadSir
 import com.wjx.android.weather.R
+import com.wjx.android.weather.base.viewmodel.BaseViewModel
+import com.wjx.android.weather.common.Utils
 
 /**
  * Created with Android Studio.
@@ -19,7 +24,10 @@ import com.wjx.android.weather.R
  * @author: Wangjianxian
  * @CreateDate: 2020/6/3 22:47
  */
-abstract class BaseFragment : Fragment() {
+abstract class BaseFragment<VM : BaseViewModel<*>, DB : ViewDataBinding> : Fragment() {
+    protected lateinit var mViewModel: VM
+
+    protected lateinit var mDataBinding: DB
 
     protected lateinit var loadService: LoadService<*>
 
@@ -36,8 +44,10 @@ abstract class BaseFragment : Fragment() {
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        val rootView = inflater.inflate(getLayoutId(), null)
-        loadService = LoadSir.getDefault().register(rootView) { reLoad() }
+        mViewModel = ViewModelProvider(this).get(Utils.getClass(this))
+        mDataBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
+        mDataBinding.lifecycleOwner = this
+        loadService = LoadSir.getDefault().register(mDataBinding.root) { reLoad() }
         return loadService.loadLayout
     }
 

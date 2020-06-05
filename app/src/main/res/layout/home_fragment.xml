@@ -1,38 +1,45 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.swiperefreshlayout.widget.SwipeRefreshLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/swipe_container"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layoutDirection="locale">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <LinearLayout
+    <data>
+
+    </data>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipe_container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layoutDirection="locale">
 
-        <include layout="@layout/layout_home_toolbar" />
-
-        <androidx.coordinatorlayout.widget.CoordinatorLayout
-            android:id="@+id/coordinator_layout"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-            <include layout="@layout/layout_container" />
+            <include layout="@layout/layout_home_toolbar" />
 
-<!--            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton-->
-<!--                android:id="@+id/next_days_button"-->
-<!--                android:layout_width="wrap_content"-->
-<!--                android:layout_height="wrap_content"-->
-<!--                android:gravity="center"-->
-<!--                android:text="@string/next_15_days_label"-->
-<!--                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"-->
-<!--                android:textColor="@android:color/white"-->
-<!--                android:textStyle="bold"-->
-<!--                app:backgroundTint="@color/material_blue"-->
-<!--                app:layout_anchor="@id/bottombar"-->
-<!--                app:strokeColor="@android:color/white" />-->
-        </androidx.coordinatorlayout.widget.CoordinatorLayout>
-    </LinearLayout>
+            <androidx.coordinatorlayout.widget.CoordinatorLayout
+                android:id="@+id/coordinator_layout"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
 
-</androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+                <include layout="@layout/layout_container" />
+
+                <!--            <com.google.android.material.floatingactionbutton.ExtendedFloatingActionButton-->
+                <!--                android:id="@+id/next_days_button"-->
+                <!--                android:layout_width="wrap_content"-->
+                <!--                android:layout_height="wrap_content"-->
+                <!--                android:gravity="center"-->
+                <!--                android:text="@string/next_15_days_label"-->
+                <!--                android:textAppearance="@style/TextAppearance.MaterialComponents.Body1"-->
+                <!--                android:textColor="@android:color/white"-->
+                <!--                android:textStyle="bold"-->
+                <!--                app:backgroundTint="@color/material_blue"-->
+                <!--                app:layout_anchor="@id/bottombar"-->
+                <!--                app:strokeColor="@android:color/white" />-->
+            </androidx.coordinatorlayout.widget.CoordinatorLayout>
+        </LinearLayout>
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+</layout>

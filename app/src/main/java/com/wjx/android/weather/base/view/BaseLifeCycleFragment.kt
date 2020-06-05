@@ -2,14 +2,13 @@ package com.wjx.android.weather.base.view
 
 import android.text.TextUtils
 import android.widget.Toast
+import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.kingja.loadsir.callback.SuccessCallback
 import com.wjx.android.wanandroidmvvm.common.callback.EmptyCallBack
 import com.wjx.android.wanandroidmvvm.common.callback.ErrorCallBack
 import com.wjx.android.wanandroidmvvm.common.callback.LoadingCallBack
 import com.wjx.android.weather.base.viewmodel.BaseViewModel
-import com.wjx.android.weather.common.Utils
 import com.wjx.android.weather.common.state.State
 import com.wjx.android.weather.common.state.StateType
 
@@ -19,20 +18,16 @@ import com.wjx.android.weather.common.state.StateType
  * @author: Wangjianxian
  * @CreateDate: 2020/6/3 23:19
  */
-abstract class BaseLifeCycleFragment<VM : BaseViewModel<*>> : BaseFragment() {
-    protected lateinit var mViewModel: VM
+abstract class BaseLifeCycleFragment<VM : BaseViewModel<*>, DB : ViewDataBinding> :
+    BaseFragment<VM, DB>() {
+
     override fun initView() {
 //        showLoading()
-
-        mViewModel = ViewModelProvider(this).get(Utils.getClass(this))
-
         mViewModel.loadState.observe(this, observer)
-
         initDataObserver()
-
     }
 
-    abstract fun initDataObserver()
+    open fun initDataObserver() {}
 
     open fun showLoading() {
         loadService.showCallback(LoadingCallBack::class.java)
