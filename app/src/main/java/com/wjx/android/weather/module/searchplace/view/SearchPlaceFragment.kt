@@ -47,11 +47,8 @@ class SearchPlaceFragment :
             detail_title.text = "搜索城市"
             detail_start.visibility = View.VISIBLE
             detail_end.visibility = View.GONE
-            detail_end.setOnClickListener {
-                Navigation.findNavController(it).navigate(R.id.searchPlaceFragment)
-            }
             detail_start.setOnClickListener {
-                Navigation.findNavController(it).navigate(R.id.choosePlaceFragment)
+                Navigation.findNavController(it).navigateUp()
             }
         }
     }
