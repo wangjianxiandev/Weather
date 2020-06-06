@@ -27,7 +27,7 @@
     </fragment>
     <fragment
         android:id="@+id/searchPlaceFragment"
-        android:name="com.wjx.android.weather.module.searchplace.SearchPlaceFragment"
+        android:name="com.wjx.android.weather.module.searchplace.view.SearchPlaceFragment"
         android:label="search_place_fragment"
         tools:layout="@layout/search_place_fragment" >
         <action

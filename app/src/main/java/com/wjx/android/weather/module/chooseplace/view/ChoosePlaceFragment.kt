@@ -35,7 +35,6 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
 
     override fun initView() {
         super.initView()
-        showSuccess()
         initAdapter()
         initHeaderView()
         initFab()
@@ -48,7 +47,7 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
             detail_start.visibility = View.VISIBLE
             detail_end.visibility = View.VISIBLE
             detail_end.setOnClickListener {
-                Navigation.findNavController(it).navigate(R.id.homeFragment)
+                Navigation.findNavController(it).navigate(R.id.searchPlaceFragment)
             }
             detail_start.setOnClickListener { }
         }

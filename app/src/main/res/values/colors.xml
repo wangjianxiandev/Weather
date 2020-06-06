@@ -8,6 +8,7 @@
     <color name="material_blue">#6452f0</color>
     <color name="grey_10">#e6e6e6</color>
     <color name="green_success">#155724</color>
+    <color name="light_green">#FF08B32F</color>
     <color name="colorPrimaryNight">#263238</color>
     <color name="colorPrimaryDarkNight">#141d26</color>
     <color name="scrim">#99323232</color>

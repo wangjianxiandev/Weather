@@ -23,6 +23,7 @@ abstract class BaseLifeCycleFragment<VM : BaseViewModel<*>, DB : ViewDataBinding
 
     override fun initView() {
 //        showLoading()
+        showSuccess()
         mViewModel.loadState.observe(this, observer)
         initDataObserver()
     }

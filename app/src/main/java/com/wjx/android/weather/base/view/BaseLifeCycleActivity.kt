@@ -21,6 +21,7 @@ abstract class BaseLifeCycleActivity<VM : BaseViewModel<*>, DB : ViewDataBinding
     BaseActivity<VM, DB>() {
 
     override fun initView() {
+        showSuccess()
         mViewModel.loadState.observe(this, observer)
         initDataObserver()
     }

@@ -1,4 +1,4 @@
-package com.wjx.android.weather.module.chooseplace.repository
+package com.wjx.android.weather.module.searchplace.repository
 
 import androidx.lifecycle.MutableLiveData
 import com.wjx.android.weather.base.repository.ApiRepository
@@ -8,8 +8,8 @@ import com.wjx.android.weather.common.state.State
  * Created with Android Studio.
  * Description:
  * @author: Wangjianxian
- * @CreateDate: 2020/6/4 20:22
+ * @CreateDate: 2020/6/6 10:43
  */
-class ChoosePlaceRepository(var loadState: MutableLiveData<State>) : ApiRepository() {
+class SearchPlaceRepository(var loadState: MutableLiveData<State>) : ApiRepository() {
 
 }
