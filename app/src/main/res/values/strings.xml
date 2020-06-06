@@ -7,7 +7,7 @@
     <string name="current_weather">当日天气</string>
     <string name="humidity_label">湿度</string>
     <string name="wind_label">风力</string>
-    <string name="next_4_days_hourly">接下来4天</string>
+    <string name="next_5_days_hourly">接下来5天</string>
     <string name="city">管理城市</string>
     <string name="more">更多</string>
 
