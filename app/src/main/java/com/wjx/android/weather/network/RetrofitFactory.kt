@@ -2,6 +2,7 @@ package com.wjx.android.weather.network
 
 import com.wjx.android.weather.common.Constant
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 /**
@@ -21,6 +22,7 @@ class RetrofitFactory private constructor() {
         retrofit = Retrofit.Builder()
             .baseUrl(Constant.BASE_URL)
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create())
             .build()
     }
 

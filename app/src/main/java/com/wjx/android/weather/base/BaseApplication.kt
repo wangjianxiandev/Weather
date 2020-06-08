@@ -10,7 +10,7 @@ import com.wjx.android.wanandroidmvvm.common.callback.*
  * @author: Wangjianxian
  * @CreateDate: 2020/6/3 21:57
  */
-class BaseApplication  : Application() {
+open class BaseApplication  : Application() {
     companion object {
         lateinit var instance : BaseApplication
     }
