@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.wjx.android.weather.R
 import com.wjx.android.weather.base.view.BaseLifeCycleFragment
 import com.wjx.android.weather.databinding.SearchPlaceFragmentBinding
-import com.wjx.android.weather.module.chooseplace.model.Place
+import com.wjx.android.weather.model.Place
 import com.wjx.android.weather.module.searchplace.adapter.SearchPlaceAdapter
 import com.wjx.android.weather.module.searchplace.viewmodel.SearchPlaceViewModel
 import kotlinx.android.synthetic.main.custom_bar.view.*
@@ -35,6 +35,12 @@ class SearchPlaceFragment :
             LinearLayoutManager(requireContext(), RecyclerView.VERTICAL, false)
         place_recycle.visibility = View.VISIBLE
         place_recycle.adapter = mAdapter
+        mAdapter.setOnItemClickListener { adapter, view, position ->
+            val place = mAdapter.getItem(position)
+            place?.let {
+                mViewModel.insertPlace(place)
+            }
+        }
     }
 
     private fun initHeaderView() {

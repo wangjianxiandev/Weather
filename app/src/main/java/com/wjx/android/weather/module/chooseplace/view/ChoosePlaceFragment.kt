@@ -1,13 +1,13 @@
 package com.wjx.android.weather.module.chooseplace.view
 
-import android.util.Log
 import android.view.View
-import androidx.navigation.NavController
+import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.wjx.android.weather.R
 import com.wjx.android.weather.base.view.BaseLifeCycleFragment
 import com.wjx.android.weather.databinding.FragmentListBinding
+import com.wjx.android.weather.model.Place
 import com.wjx.android.weather.module.chooseplace.viewmodel.ChoosePlaceViewModel
 import com.wjx.android.weather.module.chooseplace.adapter.ChoosePlaceAdapter
 import kotlinx.android.synthetic.main.custom_bar.view.*
@@ -19,21 +19,28 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
 
     private lateinit var mHeaderView: View
 
-    private val mPlaceList = arrayListOf(
-        "a", "c", "b", "f"
-    )
 
     override fun initDataObserver() {
+        mViewModel.mPlaceData.observe(this, Observer { response ->
+            response?.let {
+                setPlaceList(response)
+            }
+        })
     }
 
     override fun getLayoutId() = R.layout.fragment_list
-    
+
 
     override fun initView() {
         super.initView()
         initAdapter()
         initHeaderView()
         initFab()
+    }
+
+    override fun initData() {
+        super.initData()
+        mViewModel.queryAllPlace()
     }
 
     private fun initHeaderView() {
@@ -43,7 +50,8 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
             detail_start.visibility = View.VISIBLE
             detail_end.visibility = View.VISIBLE
             detail_end.setOnClickListener {
-                Navigation.findNavController(it).navigate(R.id.action_choosePlaceFragment_to_searchPlaceFragment)
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_choosePlaceFragment_to_searchPlaceFragment)
             }
             detail_start.setOnClickListener {
                 Navigation.findNavController(it).navigateUp()
@@ -53,11 +61,18 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
     }
 
     private fun initAdapter() {
-        mAdapter = ChoosePlaceAdapter(R.layout.place_item, mPlaceList)
+        mAdapter = ChoosePlaceAdapter(R.layout.place_item, null)
         mRvArticle?.layoutManager =
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         mRvArticle.adapter = mAdapter
-        mAdapter.setEnableLoadMore(true)
+        mAdapter.setOnItemLongClickListener { adapter, view, position ->
+            val place = mAdapter.getItem(position)
+            place?.let {
+                mViewModel.deletePlace(place)
+                mAdapter.notifyDataSetChanged()
+            }
+            true
+        }
     }
 
     private fun initFab() {
@@ -65,20 +80,7 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
         fad_add?.visibility = View.VISIBLE
     }
 
-    private fun setPlaceList(placeList: List<String>) {
-        if (placeList.isEmpty()) {
-            mAdapter.loadMoreEnd()
-            return
-        }
-
-        if (mSrlRefresh.isRefreshing) {
-            mSrlRefresh.isRefreshing = false
-            mAdapter.setNewData(placeList)
-            mAdapter.loadMoreComplete()
-            return
-        }
-
-        mAdapter.addData(placeList)
-        mAdapter.loadMoreComplete()
+    private fun setPlaceList(placeList: List<Place>) {
+        mAdapter.setNewData(placeList)
     }
 }

@@ -3,8 +3,7 @@ package com.wjx.android.weather.module.searchplace.adapter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder
 import com.wjx.android.weather.R
-import com.wjx.android.weather.module.chooseplace.model.Place
-import kotlinx.android.synthetic.main.search_result_item.view.*
+import com.wjx.android.weather.model.Place
 
 /**
  * Created with Android Studio.

@@ -1,4 +1,4 @@
-package com.wjx.android.weather.module.chooseplace.model
+package com.wjx.android.weather.model
 
 /**
  * Created with Android Studio.

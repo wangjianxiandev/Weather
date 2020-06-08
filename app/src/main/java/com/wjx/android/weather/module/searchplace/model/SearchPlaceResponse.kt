@@ -1,6 +1,6 @@
 package com.wjx.android.weather.module.searchplace.model
 
-import com.wjx.android.weather.module.chooseplace.model.Place
+import com.wjx.android.weather.model.Place
 
 /**
  * Created with Android Studio.

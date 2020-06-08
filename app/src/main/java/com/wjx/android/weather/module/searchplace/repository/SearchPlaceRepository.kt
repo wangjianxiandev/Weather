@@ -2,8 +2,10 @@ package com.wjx.android.weather.module.searchplace.repository
 
 import androidx.lifecycle.MutableLiveData
 import com.wjx.android.weather.base.repository.ApiRepository
+import com.wjx.android.weather.common.RoomHelper
 import com.wjx.android.weather.common.state.State
 import com.wjx.android.weather.common.state.StateType
+import com.wjx.android.weather.model.Place
 import com.wjx.android.weather.module.searchplace.model.SearchPlaceResponse
 
 /**
@@ -16,4 +18,6 @@ class SearchPlaceRepository(var loadState: MutableLiveData<State>) : ApiReposito
     suspend fun searchPlaces(query : String) : SearchPlaceResponse {
         return apiService.searchPlaces(query)
     }
+
+    suspend fun insertPlaces(place: Place) = RoomHelper.insertPlace(place)
 }
