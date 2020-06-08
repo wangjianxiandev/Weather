@@ -5,7 +5,7 @@ import com.wjx.android.weather.base.BaseApplication
 import com.wjx.android.weather.common.state.State
 import com.wjx.android.weather.common.state.StateType
 import com.wjx.android.weather.model.Place
-import com.wjx.android.weather.module.chooseplace.model.database.PlaceDataBase
+import com.wjx.android.weather.module.addedplace.model.database.PlaceDataBase
 
 /**
  * Created with Android Studio.
@@ -27,6 +27,11 @@ object RoomHelper {
         if (response!!.isEmpty()) {
             loadState.postValue(State(StateType.SUCCESS))
         }
+        return response
+    }
+
+    suspend fun queryFirstPlace(loadState: MutableLiveData<State>) : Place? {
+        val response = placeDao?.queryFirstPlace()
         return response
     }
 

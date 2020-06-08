@@ -4,6 +4,7 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wjx.android.weather.R
@@ -26,8 +27,22 @@ class HomeFragment : BaseLifeCycleFragment<HomeViewModel, HomeFragmentBinding>()
     override fun initView() {
         super.initView()
         setHasOptionsMenu(true)
-        initToolbar()
+        initToolbar("")
         initAdapter()
+    }
+
+    override fun initData() {
+        super.initData()
+        mViewModel.queryFirstPlace()
+    }
+
+    override fun initDataObserver() {
+        super.initDataObserver()
+        mViewModel.mFirstPlaceData.observe(this, Observer { response ->
+            response?.let {
+                initToolbar(it.name)
+            }
+        })
     }
 
     override fun getLayoutId() = R.layout.home_fragment
@@ -50,8 +65,8 @@ class HomeFragment : BaseLifeCycleFragment<HomeViewModel, HomeFragmentBinding>()
         return super.onOptionsItemSelected(item)
     }
 
-    private fun initToolbar() {
-        home_bar.home_title.text = "北京"
+    private fun initToolbar(title : String) {
+        home_bar.home_title.text = title
         home_bar.setTitle("")
         (requireActivity() as AppCompatActivity).setSupportActionBar(home_bar)
     }

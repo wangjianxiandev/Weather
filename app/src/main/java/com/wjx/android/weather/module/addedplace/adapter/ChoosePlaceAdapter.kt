@@ -1,4 +1,4 @@
-package com.wjx.android.weather.module.chooseplace.adapter
+package com.wjx.android.weather.module.addedplace.adapter
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.BaseViewHolder

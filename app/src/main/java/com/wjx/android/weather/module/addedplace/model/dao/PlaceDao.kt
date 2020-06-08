@@ -1,8 +1,7 @@
-package com.wjx.android.weather.module.chooseplace.model.dao
+package com.wjx.android.weather.module.addedplace.model.dao
 
 import androidx.room.*
 import com.wjx.android.weather.model.Place
-import kotlinx.android.synthetic.main.search_result_item.view.*
 
 /**
  * Created with Android Studio.
@@ -23,6 +22,10 @@ interface PlaceDao {
     @Transaction
     @Query("SELECT * FROM place WHERE name = (:name)")
     suspend fun queryPlaceByName(name : String) : Place?
+
+    @Transaction
+    @Query("SELECT * FROM place order by primaryKey desc")
+    suspend fun queryFirstPlace() : Place?
 
     @Transaction
     @Delete(entity = Place::class)

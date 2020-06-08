@@ -1,4 +1,4 @@
-package com.wjx.android.weather.module.chooseplace.repository
+package com.wjx.android.weather.module.addedplace.repository
 
 import androidx.lifecycle.MutableLiveData
 import com.wjx.android.weather.base.repository.ApiRepository

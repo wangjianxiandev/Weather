@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/choosePlaceFragment"
-        android:name="com.wjx.android.weather.module.chooseplace.view.ChoosePlaceFragment"
+        android:name="com.wjx.android.weather.module.addedplace.view.ChoosePlaceFragment"
         android:label="choose_place_fragment"
         tools:layout="@layout/choose_place_fragment"
         >

@@ -1,4 +1,4 @@
-package com.wjx.android.weather.module.chooseplace.model.database
+package com.wjx.android.weather.module.addedplace.model.database
 
 import android.content.Context
 import androidx.room.Database
@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.wjx.android.weather.model.LocationTypeConverter
 import com.wjx.android.weather.model.Place
-import com.wjx.android.weather.module.chooseplace.model.dao.PlaceDao
+import com.wjx.android.weather.module.addedplace.model.dao.PlaceDao
 
 /**
  * Created with Android Studio.
@@ -19,7 +19,6 @@ import com.wjx.android.weather.module.chooseplace.model.dao.PlaceDao
 @TypeConverters(LocationTypeConverter::class)
 abstract class PlaceDataBase : RoomDatabase() {
     abstract fun placeDao(): PlaceDao
-
     companion object {
         private var INSTANCE: PlaceDataBase? = null
         fun getInstance(context: Context): PlaceDataBase? {
@@ -29,7 +28,7 @@ abstract class PlaceDataBase : RoomDatabase() {
                         INSTANCE = Room.databaseBuilder(
                             context,
                             PlaceDataBase::class.java,
-                            "database_wanandroid"
+                            "database_weather"
                         ).build()
                     }
                 }
