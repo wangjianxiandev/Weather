@@ -14,13 +14,13 @@
         android:inAnimation="@anim/slide_in_bottom"
         android:orientation="horizontal"
         android:outAnimation="@anim/slide_out_top"
-        android:padding="@dimen/spacing_middle">
+        android:paddingBottom="@dimen/spacing_large">
 
         <TextView
             android:id="@+id/humidity_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="start"
             android:text="@string/humidity_label"
             android:textColor="@color/always_white_text"
             android:textSize="20dp" />
@@ -29,7 +29,7 @@
             android:id="@+id/visible_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="start"
             android:text="@string/humidity_label"
             android:textColor="@color/always_white_text"
             android:textSize="20dp" />
@@ -43,13 +43,13 @@
         android:inAnimation="@anim/slide_in_bottom"
         android:orientation="horizontal"
         android:outAnimation="@anim/slide_out_top"
-        android:padding="@dimen/spacing_middle">
+        android:paddingTop="@dimen/spacing_large">
 
         <TextView
             android:id="@+id/wind_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="start"
             android:text="@string/wind_label"
             android:textColor="@color/always_white_text"
             android:textSize="20dp" />
@@ -58,7 +58,7 @@
             android:id="@+id/index_text_view"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="center"
+            android:layout_gravity="start"
             android:text="@string/wind_label"
             android:textColor="@color/always_white_text"
             android:textSize="20dp" />

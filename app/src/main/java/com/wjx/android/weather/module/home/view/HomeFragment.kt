@@ -1,7 +1,6 @@
 package com.wjx.android.weather.module.home.view
 
 import android.annotation.SuppressLint
-import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -9,7 +8,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.vectordrawable.graphics.drawable.VectorDrawableCompat
 import com.wjx.android.weather.R
 import com.wjx.android.weather.base.view.BaseLifeCycleFragment
 import com.wjx.android.weather.common.Utils
@@ -22,6 +20,7 @@ import com.wjx.android.weather.module.home.viewmodel.HomeViewModel
 import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.android.synthetic.main.home_fragment.view.*
 import kotlinx.android.synthetic.main.layout_container.*
+import kotlinx.android.synthetic.main.layout_current_place_detail.*
 import kotlinx.android.synthetic.main.layout_flipper_detail.*
 import kotlinx.android.synthetic.main.life_index.*
 
@@ -40,16 +39,6 @@ class HomeFragment : BaseLifeCycleFragment<HomeViewModel, HomeFragmentBinding>()
     override fun initData() {
         super.initData()
         mViewModel.queryFirstPlace()
-//        handleBundle()
-    }
-
-    private fun handleBundle() {
-        val lng = arguments?.getString("lng")
-        val lat = arguments?.getString("lat")
-        val name = arguments?.getString("placeName")
-        mViewModel.loadRealtimeWeather(lng, lat)
-        mViewModel.loadDailyWeather(lng, lat)
-        initToolbar(name)
     }
 
     override fun initDataObserver() {

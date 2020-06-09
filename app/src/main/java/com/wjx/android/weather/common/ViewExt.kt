@@ -15,6 +15,6 @@ fun BaseQuickAdapter<*, *>.setAdapterAnimion(mode: Int) {
         this.animationEnable = false
     } else {
         this.animationEnable = true
-        this.setAnimationWithDefault(BaseQuickAdapter.AnimationType.values()[2])
+        this.setAnimationWithDefault(BaseQuickAdapter.AnimationType.values()[mode - 1])
     }
 }

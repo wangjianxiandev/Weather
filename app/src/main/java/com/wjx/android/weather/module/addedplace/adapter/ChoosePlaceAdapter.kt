@@ -18,7 +18,7 @@ class ChoosePlaceAdapter(layout: Int, listData: MutableList<Place>?) :
     ) {
 
     init {
-        setAdapterAnimion(4)
+        setAdapterAnimion(2)
     }
 
     override fun convert(holder: BaseViewHolder, item: Place) {
@@ -27,6 +27,11 @@ class ChoosePlaceAdapter(layout: Int, listData: MutableList<Place>?) :
                 holder.setText(R.id.location_name, item.name)
             }
         }
+    }
+
+    override fun onViewAttachedToWindow(holder: BaseViewHolder) {
+        super.onViewAttachedToWindow(holder)
+        setAdapterAnimion(2)
     }
 
 }
