@@ -5,11 +5,15 @@ import android.text.TextUtils
 import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
+import androidx.lifecycle.ViewModelProvider
 import com.kingja.loadsir.callback.SuccessCallback
 import com.wjx.android.wanandroidmvvm.common.callback.*
 import com.wjx.android.weather.base.viewmodel.BaseViewModel
+import com.wjx.android.weather.common.Utils
+import com.wjx.android.weather.common.getAppViewModel
 import com.wjx.android.weather.common.state.State
 import com.wjx.android.weather.common.state.StateType
+import com.wjx.android.weather.module.main.AppViewModel
 
 /**
  * Created with Android Studio.
@@ -19,6 +23,8 @@ import com.wjx.android.weather.common.state.StateType
  */
 abstract class BaseLifeCycleActivity<VM : BaseViewModel<*>, DB : ViewDataBinding> :
     BaseActivity<VM, DB>() {
+
+    val appViewModel: AppViewModel by lazy { getAppViewModel() }
 
     override fun initView() {
         showSuccess()

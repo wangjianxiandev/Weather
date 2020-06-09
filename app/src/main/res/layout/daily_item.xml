@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_width="80dp"
+    android:layout_width="100dp"
     android:layout_height="120dp"
     android:layout_marginEnd="@dimen/spacing_middle"
     android:layoutDirection="locale"
@@ -28,8 +28,8 @@
             android:gravity="center"
             android:orientation="vertical">
 
-            <androidx.appcompat.widget.AppCompatTextView
-                android:id="@+id/time"
+            <TextView
+                android:id="@+id/date"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -46,7 +46,7 @@
                 android:id="@+id/weather"
                 android:layout_width="48dp"
                 android:layout_height="48dp"
-                android:src="@drawable/ic_cloudy_weather"/>
+                android:src="@drawable/vector_drawable_ic_cloudy"/>
 
             <View
                 android:layout_width="0dp"
@@ -58,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:gravity="center"
                 android:text="20"
+                android:textSize="15dp"
                 android:textColor="@color/always_white_text"
                 android:textAppearance="@style/TextAppearance.AppCompat.Title"/>
 

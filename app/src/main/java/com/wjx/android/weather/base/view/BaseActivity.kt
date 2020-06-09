@@ -23,7 +23,6 @@ import com.wjx.android.weather.common.Utils
  * @CreateDate: 2020/6/3 21:58
  */
 abstract class BaseActivity<VM : BaseViewModel<*>, DB : ViewDataBinding> : AppCompatActivity() {
-    private var mExitTime: Long = 0
 
     protected lateinit var mViewModel: VM
     protected lateinit var mDataBinding: DB
@@ -49,17 +48,6 @@ abstract class BaseActivity<VM : BaseViewModel<*>, DB : ViewDataBinding> : AppCo
     val loadService: LoadService<*> by lazy {
         LoadSir.getDefault().register(this) {
             reLoad()
-        }
-    }
-
-    override fun onBackPressed() {
-        val time = System.currentTimeMillis()
-
-        if (time - mExitTime > 2000) {
-            Utils.showToast(this, getString(R.string.exit_app))
-            mExitTime = time
-        } else {
-            AppManager.instance.exitApp(this)
         }
     }
 

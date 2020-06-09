@@ -17,7 +17,7 @@ interface PlaceDao {
 
     @Transaction
     @Query("SELECT * FROM place")
-    suspend fun queryAllPlace() : List<Place>
+    suspend fun queryAllPlace() : MutableList<Place>
 
     @Transaction
     @Query("SELECT * FROM place WHERE name = (:name)")

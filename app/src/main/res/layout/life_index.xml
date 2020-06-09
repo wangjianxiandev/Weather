@@ -17,7 +17,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginTop="30dp">
+        android:layout_marginTop="40dp">
 
         <RelativeLayout
             android:layout_width="0dp"
@@ -45,7 +45,7 @@
                     android:layout_height="wrap_content"
                     android:text="感冒"
                     android:textColor="@color/always_white_text"
-                    android:textSize="18sp" />
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/coldRiskText"
@@ -53,7 +53,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:textColor="@color/always_white_text"
-                    android:textSize="18sp" />
+                    android:textSize="18dp" />
             </LinearLayout>
         </RelativeLayout>
 
@@ -83,7 +83,7 @@
                     android:layout_height="wrap_content"
                     android:text="穿衣"
                     android:textColor="@color/always_white_text"
-                    android:textSize="18sp" />
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/dressingText"
@@ -91,7 +91,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:textColor="@color/always_white_text"
-                    android:textSize="18sp" />
+                    android:textSize="18dp" />
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>
@@ -99,7 +99,7 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="20dp">
+        android:layout_marginTop="30dp">
 
         <RelativeLayout
             android:layout_width="0dp"
@@ -127,7 +127,7 @@
                     android:layout_height="wrap_content"
                     android:text="实时紫外线"
                     android:textColor="@color/always_white_text"
-                    android:textSize="18sp" />
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/ultravioletText"
@@ -135,7 +135,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:textColor="@color/always_white_text"
-                    android:textSize="18sp" />
+                    android:textSize="18dp" />
             </LinearLayout>
         </RelativeLayout>
 
@@ -165,7 +165,7 @@
                     android:layout_height="wrap_content"
                     android:text="洗车"
                     android:textColor="@color/always_white_text"
-                    android:textSize="18sp" />
+                    android:textSize="18dp" />
 
                 <TextView
                     android:id="@+id/carWashingText"
@@ -173,7 +173,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
                     android:textColor="@color/always_white_text"
-                    android:textSize="18sp" />
+                    android:textSize="18dp" />
             </LinearLayout>
         </RelativeLayout>
     </LinearLayout>

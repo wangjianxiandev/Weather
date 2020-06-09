@@ -64,66 +64,9 @@
                             android:layout_marginTop="@dimen/dp_40"
                             android:orientation="horizontal">
 
-                            <LinearLayout
-                                android:layout_width="0dp"
-                                android:layout_height="match_parent"
-                                android:layout_weight="1"
-                                android:gravity="center"
-                                android:orientation="vertical">
+                            <include layout="@layout/layout_flipper_detail" />
 
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:padding="@dimen/spacing_middle">
-
-                                    <androidx.appcompat.widget.AppCompatTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center"
-                                        android:text="@string/humidity_label"
-                                        android:textColor="@android:color/white"
-                                        android:textStyle="bold" />
-
-                                    <View
-                                        android:layout_width="@dimen/spacing_medium"
-                                        android:layout_height="0dp" />
-
-                                    <TextSwitcher
-                                        android:id="@+id/humidity_text_view"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center" />
-                                </LinearLayout>
-
-                                <LinearLayout
-                                    android:layout_width="match_parent"
-                                    android:layout_height="wrap_content"
-                                    android:orientation="horizontal"
-                                    android:padding="@dimen/spacing_middle">
-
-                                    <androidx.appcompat.widget.AppCompatTextView
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:gravity="center"
-                                        android:text="@string/wind_label"
-                                        android:textColor="@android:color/white"
-                                        android:textStyle="bold" />
-
-                                    <View
-                                        android:layout_width="@dimen/spacing_medium"
-                                        android:layout_height="0dp" />
-
-                                    <TextSwitcher
-                                        android:id="@+id/wind_text_view"
-                                        android:layout_width="wrap_content"
-                                        android:layout_height="wrap_content"
-                                        android:layout_gravity="center" />
-                                </LinearLayout>
-                            </LinearLayout>
-
-
-                            <com.airbnb.lottie.LottieAnimationView
+                            <ImageView
                                 android:id="@+id/animation_view"
                                 android:layout_width="0dp"
                                 android:layout_height="match_parent"
@@ -162,10 +105,11 @@
                     android:layout_marginStart="@dimen/spacing_mlarge"
                     android:orientation="vertical">
 
-                    <androidx.appcompat.widget.AppCompatTextView
+                    <TextView
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="@string/next_5_days_hourly"
+                        android:text="@string/next_5_days_daily"
+                        android:layout_gravity="center_horizontal"
                         android:textAppearance="@style/TextAppearance.AppCompat.Title" />
 
                     <View

@@ -54,7 +54,7 @@
             android:layout_width="40dp"
             android:layout_height="40dp"
             android:layout_marginStart="@dimen/safe_padding"
-            android:src="@drawable/ic_clear_day"
+            android:src="@drawable/vector_drawable_ic_clear_day"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toEndOf="@id/location_name"

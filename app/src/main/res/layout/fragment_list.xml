@@ -19,7 +19,8 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/mRvArticle"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+                android:layout_height="wrap_content"
+                android:layoutAnimation="@anim/layout_animation_fall_down" />
         </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
     </LinearLayout>
 </layout>

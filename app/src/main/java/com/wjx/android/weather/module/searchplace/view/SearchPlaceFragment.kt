@@ -87,8 +87,9 @@ class SearchPlaceFragment :
         })
     }
 
-    private fun setPlaceList(placeList: List<Place>) {
-        mAdapter.setNewData(placeList)
-        mAdapter.loadMoreComplete()
+    private fun setPlaceList(placeList: MutableList<Place>) {
+        mAdapter.setNewInstance(placeList)
     }
+
+
 }

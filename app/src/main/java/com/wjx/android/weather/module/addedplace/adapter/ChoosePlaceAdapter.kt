@@ -1,8 +1,9 @@
 package com.wjx.android.weather.module.addedplace.adapter
 
 import com.chad.library.adapter.base.BaseQuickAdapter
-import com.chad.library.adapter.base.BaseViewHolder
+import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.wjx.android.weather.R
+import com.wjx.android.weather.common.setAdapterAnimion
 import com.wjx.android.weather.model.Place
 
 /**
@@ -15,8 +16,13 @@ class ChoosePlaceAdapter(layout: Int, listData: MutableList<Place>?) :
     BaseQuickAdapter<Place, BaseViewHolder>(
         layout, listData
     ) {
-    override fun convert(helper: BaseViewHolder?, item: Place?) {
-        helper?.let { holder ->
+
+    init {
+        setAdapterAnimion(4)
+    }
+
+    override fun convert(holder: BaseViewHolder, item: Place) {
+        holder?.let { holder ->
             item?.let {
                 holder.setText(R.id.location_name, item.name)
             }

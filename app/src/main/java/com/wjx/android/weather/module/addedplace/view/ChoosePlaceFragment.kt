@@ -1,6 +1,8 @@
 package com.wjx.android.weather.module.addedplace.view
 
+import android.os.Bundle
 import android.view.View
+import androidx.activity.OnBackPressedCallback
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -35,7 +37,6 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
         super.initView()
         initAdapter()
         initHeaderView()
-        initFab()
     }
 
     override fun initData() {
@@ -73,14 +74,19 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
             }
             true
         }
+        mAdapter.setOnItemClickListener { adapter, view, position ->
+            var bundle = Bundle()
+            appViewModel.changeCurrentPlace(mAdapter.getItem(position))
+            bundle.putString("lng", mViewModel.mPlaceData.value?.get(position)?.location?.lng)
+            bundle.putString("lat", mViewModel.mPlaceData.value?.get(position)?.location?.lat)
+            bundle.putString("placeName", mAdapter.getItem(position).name)
+//            Navigation.findNavController(view)
+//                .navigate(R.id.action_choosePlaceFragment_to_homeFragment, bundle)
+            Navigation.findNavController(view).navigateUp()
+        }
     }
 
-    private fun initFab() {
-        var fad_add = view?.findViewById<View>(R.id.fab_add)
-        fad_add?.visibility = View.VISIBLE
-    }
-
-    private fun setPlaceList(placeList: List<Place>) {
-        mAdapter.setNewData(placeList)
+    private fun setPlaceList(placeList: MutableList<Place>) {
+        mAdapter.setNewInstance(placeList)
     }
 }

@@ -13,7 +13,7 @@ import kotlinx.coroutines.withContext
 class ChoosePlaceViewModel(application: Application) :
     BaseViewModel<ChoosePlaceRepository>(application) {
 
-    var mPlaceData: MutableLiveData<List<Place>> = MutableLiveData()
+    var mPlaceData: MutableLiveData<MutableList<Place>> = MutableLiveData()
 
     fun queryAllPlace() {
         viewModelScope.launch {

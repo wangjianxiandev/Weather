@@ -1,0 +1,23 @@
+package com.wjx.android.weather.module.home.repository
+
+import androidx.lifecycle.MutableLiveData
+import com.wjx.android.weather.base.repository.ApiRepository
+import com.wjx.android.weather.common.RoomHelper
+import com.wjx.android.weather.common.state.State
+import retrofit2.http.Path
+
+/**
+ * Created with Android Studio.
+ * Description:
+ * @author: Wangjianxian
+ * @CreateDate: 2020/6/9 0:27
+ */
+class HomeRepository(var loadState: MutableLiveData<State>) : ApiRepository() {
+    suspend fun queryFirstPlace() = RoomHelper.queryFirstPlace(loadState)
+    suspend fun loadRealtimeWeather(lng: String?, lat: String?) =
+        apiService.loadRealtimeWeather(lng, lat)
+
+    suspend fun loadDailyWeather(lng: String?, lat: String?) = apiService.loadDailyWeather(lng, lat)
+
+    suspend fun loadHourlyWeather(lng: String, lat: String) = apiService.loadHourlyWeather(lng, lat)
+}
