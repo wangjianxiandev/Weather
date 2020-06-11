@@ -9,7 +9,7 @@ import com.chad.library.adapter.base.BaseQuickAdapter
  * @CreateDate: 2020/6/9 21:50
  */
 //设置适配器的列表动画
-fun BaseQuickAdapter<*, *>.setAdapterAnimion(mode: Int) {
+fun BaseQuickAdapter<*, *>.setAdapterAnimation(mode: Int) {
     //等于0，关闭列表动画 否则开启
     if (mode == 0) {
         this.animationEnable = false

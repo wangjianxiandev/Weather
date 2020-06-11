@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.MutableLiveData
 import com.wjx.android.weather.base.repository.BaseRepository
-import com.wjx.android.weather.common.Utils
+import com.wjx.android.weather.common.util.CommonUtil
 import com.wjx.android.weather.common.state.State
 
 /**
@@ -21,7 +21,7 @@ open class BaseViewModel<T : BaseRepository>(application: Application) : Android
     }
 
     val mRepository : T by lazy {
-        (Utils.getClass<T>(this))
+        (CommonUtil.getClass<T>(this))
             .getDeclaredConstructor(MutableLiveData::class.java)
             .newInstance(loadState)
     }

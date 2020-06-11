@@ -1,6 +1,5 @@
 package com.wjx.android.weather.base.view
 
-import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -16,7 +15,7 @@ import com.kingja.loadsir.core.LoadService
 import com.kingja.loadsir.core.LoadSir
 import com.wjx.android.weather.R
 import com.wjx.android.weather.base.viewmodel.BaseViewModel
-import com.wjx.android.weather.common.Utils
+import com.wjx.android.weather.common.util.CommonUtil
 
 /**
  * Created with Android Studio.
@@ -44,7 +43,7 @@ abstract class BaseFragment<VM : BaseViewModel<*>, DB : ViewDataBinding> : Fragm
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mViewModel = ViewModelProvider(this).get(Utils.getClass(this))
+        mViewModel = ViewModelProvider(this).get(CommonUtil.getClass(this))
         mDataBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
         mDataBinding.lifecycleOwner = this
         loadService = LoadSir.getDefault().register(mDataBinding.root) { reLoad() }

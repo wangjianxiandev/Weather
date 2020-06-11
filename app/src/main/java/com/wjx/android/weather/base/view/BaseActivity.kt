@@ -14,7 +14,7 @@ import com.kingja.loadsir.core.LoadSir
 import com.wjx.android.weather.R
 import com.wjx.android.weather.base.viewmodel.BaseViewModel
 import com.wjx.android.weather.common.AppManager
-import com.wjx.android.weather.common.Utils
+import com.wjx.android.weather.common.util.CommonUtil
 
 /**
  * Created with Android Studio.
@@ -40,7 +40,7 @@ abstract class BaseActivity<VM : BaseViewModel<*>, DB : ViewDataBinding> : AppCo
         mDataBinding = DataBindingUtil.setContentView(this, getLayoutId())
         mDataBinding.lifecycleOwner = this
         AppManager.instance.addActivity(this)
-        mViewModel = ViewModelProvider(this).get(Utils.getClass(this))
+        mViewModel = ViewModelProvider(this).get(CommonUtil.getClass(this))
         initView()
         initData()
     }

@@ -1,4 +1,4 @@
-package com.wjx.android.weather.common
+package com.wjx.android.weather.common.util
 
 import android.content.Context
 import android.widget.Toast
@@ -10,7 +10,7 @@ import java.lang.reflect.ParameterizedType
  * @author: Wangjianxian
  * @CreateDate: 2020/6/3 22:45
  */
-object Utils {
+object CommonUtil {
     fun showToast(context: Context, string : String) {
         Toast.makeText(context, string , Toast.LENGTH_SHORT).show()
     }

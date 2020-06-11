@@ -9,8 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wjx.android.weather.R
 import com.wjx.android.weather.base.view.BaseLifeCycleFragment
-import com.wjx.android.weather.common.KeyBoardUtil
-import com.wjx.android.weather.common.KeyBoardUtil.hideKeyboard
+import com.wjx.android.weather.common.util.KeyBoardUtil.hideKeyboard
 import com.wjx.android.weather.databinding.SearchPlaceFragmentBinding
 import com.wjx.android.weather.model.Place
 import com.wjx.android.weather.module.searchplace.adapter.SearchPlaceAdapter

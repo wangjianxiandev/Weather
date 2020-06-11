@@ -3,7 +3,7 @@ package com.wjx.android.weather.module.addedplace.adapter
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.wjx.android.weather.R
-import com.wjx.android.weather.common.setAdapterAnimion
+import com.wjx.android.weather.common.setAdapterAnimation
 import com.wjx.android.weather.model.Place
 
 /**
@@ -18,7 +18,7 @@ class ChoosePlaceAdapter(layout: Int, listData: MutableList<Place>?) :
     ) {
 
     init {
-        setAdapterAnimion(2)
+        setAdapterAnimation(2)
     }
 
     override fun convert(holder: BaseViewHolder, item: Place) {
@@ -31,7 +31,7 @@ class ChoosePlaceAdapter(layout: Int, listData: MutableList<Place>?) :
 
     override fun onViewAttachedToWindow(holder: BaseViewHolder) {
         super.onViewAttachedToWindow(holder)
-        setAdapterAnimion(2)
+        setAdapterAnimation(2)
     }
 
 }

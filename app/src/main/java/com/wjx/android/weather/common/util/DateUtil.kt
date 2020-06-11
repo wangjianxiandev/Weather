@@ -1,4 +1,4 @@
-package com.wjx.android.weather.common
+package com.wjx.android.weather.common.util
 
 import java.util.*
 

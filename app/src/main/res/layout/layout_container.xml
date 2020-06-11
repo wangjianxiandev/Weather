@@ -45,7 +45,7 @@
                     android:id="@+id/hourly"
                     style="@style/Widget.MaterialComponents.CardView"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/card_view_height"
+                    android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/spacing_mlarge"
                     android:layout_marginTop="@dimen/dp_10"
                     android:layout_marginEnd="@dimen/spacing_mlarge"
@@ -53,6 +53,14 @@
                     app:cardCornerRadius="30dp"
                     app:cardElevation="@dimen/dp_10">
 
+                    <me.zhouzhuo.zzweatherview.ZzWeatherView
+                        android:id="@+id/weather_view"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="#333"
+                        android:scrollbarSize="4dp"
+                        android:scrollbarThumbHorizontal="@drawable/scroll_bar_thumb"
+                        android:scrollbarTrackHorizontal="@drawable/scroll_bar_thumb" />
                 </androidx.cardview.widget.CardView>
 
                 <View

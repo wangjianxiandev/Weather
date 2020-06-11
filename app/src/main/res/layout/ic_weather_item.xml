@@ -1,0 +1,115 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/click_bg"
+    android:orientation="horizontal">
+
+    <View
+        android:id="@+id/line_one"
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:background="#eee" />
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center_horizontal"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/tv_week"
+            android:layout_width="match_parent"
+            android:layout_height="60px"
+            android:layout_marginTop="20px"
+            android:gravity="center"
+            android:text="昨天"
+            android:textColor="#fff"
+            android:textSize="38px" />
+
+        <TextView
+            android:id="@+id/tv_date"
+            android:layout_width="match_parent"
+            android:layout_height="60px"
+            android:gravity="center"
+            android:text="12/07"
+            android:textColor="#fff"
+            android:textSize="38px" />
+
+        <TextView
+            android:id="@+id/tv_day_weather"
+            android:layout_width="match_parent"
+            android:layout_height="60px"
+            android:gravity="center"
+            android:text="晴"
+            android:textColor="#fff"
+            android:textSize="38px" />
+
+        <ImageView
+            android:id="@+id/iv_day_weather"
+            android:layout_width="80px"
+            android:layout_height="80px"
+            android:layout_marginTop="10px"
+            android:src="@drawable/big_level_shape" />
+
+        <me.zhouzhuo.zzweatherview.TemperatureView
+            android:id="@+id/ttv_day"
+            android:layout_width="match_parent"
+            android:layout_height="300px"
+            android:layout_marginTop="10px" />
+
+        <ImageView
+            android:id="@+id/iv_night_weather"
+            android:layout_width="80px"
+            android:layout_height="80px"
+            android:layout_marginBottom="10px"
+            android:src="@drawable/big_level_shape" />
+
+        <TextView
+            android:id="@+id/tv_night_weather"
+            android:layout_width="match_parent"
+            android:layout_height="60px"
+            android:gravity="center"
+            android:text="晴"
+            android:textColor="#fff"
+            android:textSize="38px" />
+
+        <TextView
+            android:id="@+id/tv_wind_ori"
+            android:layout_width="match_parent"
+            android:layout_height="60px"
+            android:gravity="center"
+            android:text="西南风"
+            android:textColor="#fff"
+            android:textSize="30px" />
+
+        <TextView
+            android:id="@+id/tv_wind_level"
+            android:layout_width="match_parent"
+            android:layout_height="60px"
+            android:gravity="center"
+            android:text="3级"
+            android:textColor="#fff"
+            android:textSize="38px" />
+
+        <TextView
+            android:id="@+id/tv_air_level"
+            android:layout_width="60px"
+            android:layout_height="38px"
+            android:layout_marginTop="20px"
+            android:layout_marginBottom="20px"
+            android:background="@drawable/good_level_shape"
+            android:gravity="center"
+            android:text="良"
+            android:textColor="#fff"
+            android:textSize="24px" />
+    </LinearLayout>
+
+    <View
+        android:id="@+id/line_two"
+        android:layout_width="1px"
+        android:layout_height="match_parent"
+        android:background="#eee" />
+</LinearLayout>
