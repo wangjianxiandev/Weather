@@ -14,4 +14,5 @@ object Constant {
     const val LNG_KEY = "lng"
     const val LAT_KEY = "lat"
     const val PLACE_NAME = "name"
+    const val POSITION = "position"
 }

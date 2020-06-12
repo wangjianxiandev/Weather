@@ -43,7 +43,8 @@ ext {
             "lottie"                     : "com.airbnb.android:lottie:$lottie_version",
             "room_runtime"               : "androidx.room:room-runtime:$room_version",
             "room_ktx"                   : "androidx.room:room-ktx:$room_version",
-            "map"                        : "com.amap.api:location:latest.integration"
+            "map"                        : "com.amap.api:location:latest.integration",
+            "viewpager_indicator"        : "com.github.zhpanvip:viewpagerindicator:1.0.4"
     ]
 
     processor = [

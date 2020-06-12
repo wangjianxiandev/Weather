@@ -12,8 +12,9 @@ import retrofit2.http.Path
  * @author: Wangjianxian
  * @CreateDate: 2020/6/9 0:27
  */
-class HomeRepository(var loadState: MutableLiveData<State>) : ApiRepository() {
+class HomeDetailRepository(var loadState: MutableLiveData<State>) : ApiRepository() {
     suspend fun queryFirstPlace() = RoomHelper.queryFirstPlace(loadState)
+    suspend fun queryAllPlace() = RoomHelper.queryAllPlace(loadState)
     suspend fun loadRealtimeWeather(lng: String?, lat: String?) =
         apiService.loadRealtimeWeather(lng, lat)
 

@@ -13,7 +13,7 @@ import com.wjx.android.weather.model.DailyResponse
  * @author: Wangjianxian
  * @CreateDate: 2020/6/6 17:03
  */
-class DailyAdapter(layout: Int, listData: MutableList<DailyResponse.DailyData>?) :
+class HomeDailyAdapter(layout: Int, listData: MutableList<DailyResponse.DailyData>?) :
     BaseQuickAdapter<DailyResponse.DailyData, BaseViewHolder>(
         layout, listData
     ) {

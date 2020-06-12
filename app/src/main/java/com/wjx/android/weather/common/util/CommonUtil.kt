@@ -2,6 +2,8 @@ package com.wjx.android.weather.common.util
 
 import android.content.Context
 import android.widget.Toast
+import androidx.core.content.ContextCompat
+import com.wjx.android.weather.R
 import java.lang.reflect.ParameterizedType
 
 /**
@@ -11,8 +13,8 @@ import java.lang.reflect.ParameterizedType
  * @CreateDate: 2020/6/3 22:45
  */
 object CommonUtil {
-    fun showToast(context: Context, string : String) {
-        Toast.makeText(context, string , Toast.LENGTH_SHORT).show()
+    fun showToast(context: Context, string: String) {
+        Toast.makeText(context, string, Toast.LENGTH_SHORT).show()
     }
 
     fun <T> getClass(t: Any): Class<T> {
@@ -20,5 +22,9 @@ object CommonUtil {
         return (t.javaClass.genericSuperclass as ParameterizedType)
             .actualTypeArguments[0]
                 as Class<T>
+    }
+
+    fun getColor(context: Context, color: Int): Int {
+        return ContextCompat.getColor(context, color)
     }
 }

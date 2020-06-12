@@ -8,21 +8,31 @@ import com.wjx.android.weather.common.initiateRequest
 import com.wjx.android.weather.model.DailyResponse
 import com.wjx.android.weather.model.Place
 import com.wjx.android.weather.model.RealTimeResponse
-import com.wjx.android.weather.module.home.repository.HomeRepository
+import com.wjx.android.weather.module.home.repository.HomeDetailRepository
 
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class HomeViewModel(application: Application) : BaseViewModel<HomeRepository>(application) {
+class HomeDetailViewModel(application: Application) :
+    BaseViewModel<HomeDetailRepository>(application) {
 
     val mFirstPlaceData: MutableLiveData<Place> = MutableLiveData()
+    val mPlaceData: MutableLiveData<MutableList<Place>> = MutableLiveData()
     val mRealTimeData: MutableLiveData<RealTimeResponse> = MutableLiveData()
     val mDailyData: MutableLiveData<DailyResponse> = MutableLiveData()
     fun queryFirstPlace() {
         viewModelScope.launch {
             mFirstPlaceData.value = withContext(Dispatchers.IO) {
                 mRepository.queryFirstPlace()
+            }
+        }
+    }
+
+    fun queryAllPlace() {
+        viewModelScope.launch {
+            mPlaceData.value = withContext(Dispatchers.IO) {
+                mRepository.queryAllPlace()
             }
         }
     }

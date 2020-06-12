@@ -8,6 +8,8 @@ import androidx.navigation.Navigation
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.wjx.android.weather.R
 import com.wjx.android.weather.base.view.BaseLifeCycleFragment
+import com.wjx.android.weather.common.Constant
+import com.wjx.android.weather.common.util.SPreference
 import com.wjx.android.weather.databinding.FragmentListBinding
 import com.wjx.android.weather.model.Place
 import com.wjx.android.weather.module.addedplace.viewmodel.ChoosePlaceViewModel
@@ -21,6 +23,7 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
 
     private lateinit var mHeaderView: View
 
+    private var mPosition: Int by SPreference(Constant.POSITION, 0)
 
     override fun initDataObserver() {
         mViewModel.mPlaceData.observe(this, Observer { response ->
@@ -75,13 +78,8 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
             true
         }
         mAdapter.setOnItemClickListener { adapter, view, position ->
-            var bundle = Bundle()
             appViewModel.changeCurrentPlace(mAdapter.getItem(position))
-            bundle.putString("lng", mViewModel.mPlaceData.value?.get(position)?.location?.lng)
-            bundle.putString("lat", mViewModel.mPlaceData.value?.get(position)?.location?.lat)
-            bundle.putString("placeName", mAdapter.getItem(position).name)
-//            Navigation.findNavController(view)
-//                .navigate(R.id.action_choosePlaceFragment_to_homeFragment, bundle)
+            mPosition = position
             Navigation.findNavController(view).navigateUp()
         }
     }
