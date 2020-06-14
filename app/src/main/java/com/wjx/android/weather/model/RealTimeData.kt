@@ -6,7 +6,7 @@ package com.wjx.android.weather.model
  * @author: Wangjianxian
  * @CreateDate: 2020/6/9 11:15
  */
-data class RealTimeResponse(
+data class RealTimeData(
     val api_status: String,
     val api_version: String,
     val lang: String,
@@ -35,7 +35,7 @@ data class RealTimeResponse(
         val pressure: Double,
         val skycon: String,
         val status: String,
-        val temperature: Double,
+        var temperature: Double,
         val visibility: Double,
         val wind: Wind
     )

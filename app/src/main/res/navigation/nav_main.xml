@@ -15,8 +15,7 @@
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"
-            app:popExitAnim="@anim/slide_out_right"
-            app:popUpToInclusive="true" />
+            app:popExitAnim="@anim/slide_out_right" />
         <argument
             android:name="lng"
             app:argType="string" />
@@ -26,10 +25,17 @@
         <argument
             android:name="placeName"
             app:argType="string" />
+        <action
+            android:id="@+id/action_homeFragment_to_searchPlaceFragment"
+            app:destination="@id/searchPlaceFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right" />
     </fragment>
     <fragment
         android:id="@+id/choosePlaceFragment"
-        android:name="com.wjx.android.weather.module.addedplace.view.ChoosePlaceFragment"
+        android:name="com.wjx.android.weather.module.chooseplace.view.ChoosePlaceFragment"
         android:label="choose_place_fragment"
         tools:layout="@layout/choose_place_fragment"
         >
@@ -56,6 +62,13 @@
         <action
             android:id="@+id/action_searchPlaceFragment_to_choosePlaceFragment"
             app:destination="@id/choosePlaceFragment"
+            app:enterAnim="@anim/slide_in_right"
+            app:exitAnim="@anim/slide_out_left"
+            app:popEnterAnim="@anim/slide_in_left"
+            app:popExitAnim="@anim/slide_out_right"/>
+        <action
+            android:id="@+id/action_searchPlaceFragment_to_homeFragment"
+            app:destination="@id/homeFragment"
             app:enterAnim="@anim/slide_in_right"
             app:exitAnim="@anim/slide_out_left"
             app:popEnterAnim="@anim/slide_in_left"

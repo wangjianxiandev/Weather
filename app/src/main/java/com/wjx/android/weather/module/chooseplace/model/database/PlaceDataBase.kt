@@ -1,4 +1,4 @@
-package com.wjx.android.weather.module.addedplace.model.database
+package com.wjx.android.weather.module.chooseplace.model.database
 
 import android.content.Context
 import androidx.room.Database
@@ -7,7 +7,7 @@ import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.wjx.android.weather.model.LocationTypeConverter
 import com.wjx.android.weather.model.Place
-import com.wjx.android.weather.module.addedplace.model.dao.PlaceDao
+import com.wjx.android.weather.module.chooseplace.model.dao.PlaceDao
 
 /**
  * Created with Android Studio.

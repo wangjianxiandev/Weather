@@ -6,7 +6,7 @@ package com.wjx.android.weather.model
  * @author: Wangjianxian
  * @CreateDate: 2020/6/9 14:28
  */
-data class HourlyResponse(
+data class HourlyData(
     val api_status: String,
     val api_version: String,
     val lang: String,

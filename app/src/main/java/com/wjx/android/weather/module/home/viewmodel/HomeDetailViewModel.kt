@@ -5,9 +5,10 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.wjx.android.weather.base.viewmodel.BaseViewModel
 import com.wjx.android.weather.common.initiateRequest
-import com.wjx.android.weather.model.DailyResponse
+import com.wjx.android.weather.model.Daily
+import com.wjx.android.weather.model.HourlyData
 import com.wjx.android.weather.model.Place
-import com.wjx.android.weather.model.RealTimeResponse
+import com.wjx.android.weather.model.RealTimeData
 import com.wjx.android.weather.module.home.repository.HomeDetailRepository
 
 import kotlinx.coroutines.Dispatchers
@@ -19,8 +20,10 @@ class HomeDetailViewModel(application: Application) :
 
     val mFirstPlaceData: MutableLiveData<Place> = MutableLiveData()
     val mPlaceData: MutableLiveData<MutableList<Place>> = MutableLiveData()
-    val mRealTimeData: MutableLiveData<RealTimeResponse> = MutableLiveData()
-    val mDailyData: MutableLiveData<DailyResponse> = MutableLiveData()
+    val mRealTimeDataData: MutableLiveData<RealTimeData> = MutableLiveData()
+    val mDailyData: MutableLiveData<Daily> = MutableLiveData()
+    val mHourlyData: MutableLiveData<HourlyData> = MutableLiveData()
+
     fun queryFirstPlace() {
         viewModelScope.launch {
             mFirstPlaceData.value = withContext(Dispatchers.IO) {
@@ -39,7 +42,7 @@ class HomeDetailViewModel(application: Application) :
 
     fun loadRealtimeWeather(lng: String?, lat: String?) {
         initiateRequest(
-            { mRealTimeData.value = mRepository.loadRealtimeWeather(lng, lat) },
+            { mRealTimeDataData.value = mRepository.loadRealtimeWeather(lng, lat) },
             loadState
         )
     }
@@ -47,6 +50,12 @@ class HomeDetailViewModel(application: Application) :
     fun loadDailyWeather(lng: String?, lat: String?) {
         initiateRequest({
             mDailyData.value = mRepository.loadDailyWeather(lng, lat)
+        }, loadState)
+    }
+
+    fun loadHourlyWeather(lng: String?, lat: String?) {
+        initiateRequest({
+            mHourlyData.value = mRepository.loadHourlyWeather(lng, lat)
         }, loadState)
     }
 }

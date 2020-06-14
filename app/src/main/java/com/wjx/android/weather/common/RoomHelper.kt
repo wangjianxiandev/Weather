@@ -1,11 +1,12 @@
 package com.wjx.android.weather.common
 
+import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.wjx.android.weather.base.BaseApplication
 import com.wjx.android.weather.common.state.State
 import com.wjx.android.weather.common.state.StateType
 import com.wjx.android.weather.model.Place
-import com.wjx.android.weather.module.addedplace.model.database.PlaceDataBase
+import com.wjx.android.weather.module.chooseplace.model.database.PlaceDataBase
 
 /**
  * Created with Android Studio.
@@ -38,9 +39,10 @@ object RoomHelper {
     suspend fun insertPlace(place: Place) {
         placeDao?.let {
             it.queryPlaceByName(place.name)?.let {
-                var i = placeDao!!.deleteArticle(place)
+                var i = placeDao!!.deleteArticle(it)
+                Log.d("insert" ,i.toString())
             }
-            it.insertPlace(place.apply { primaryKey = 0 })
+            it.insertPlace(place)
         }
     }
 

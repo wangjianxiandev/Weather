@@ -8,9 +8,7 @@ import androidx.navigation.Navigation
 import androidx.viewpager.widget.ViewPager
 import com.wjx.android.weather.R
 import com.wjx.android.weather.base.view.BaseLifeCycleFragment
-import com.wjx.android.weather.common.Constant
 import com.wjx.android.weather.common.util.CommonUtil
-import com.wjx.android.weather.common.util.SPreference
 import com.wjx.android.weather.databinding.HomeFragmentBinding
 import com.wjx.android.weather.model.Place
 import com.wjx.android.weather.module.home.adapter.HomeDetailAdapter
@@ -20,20 +18,22 @@ import com.zhpan.indicator.enums.IndicatorStyle
 import kotlinx.android.synthetic.main.home_detail_fragment.*
 import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.android.synthetic.main.home_fragment.view.*
+import kotlinx.android.synthetic.main.layout_toolbar.*
 
 class HomeFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragmentBinding>() {
     override fun getLayoutId(): Int = R.layout.home_fragment
-
-    private var mPosition: Int by SPreference(Constant.POSITION, 0)
 
     private val mPlaceNameList = arrayListOf<String>()
 
     override fun initView() {
         super.initView()
-        if (mPosition != 0) {
-            home_viewpager.setCurrentItem(mPosition, false)
-        }
+        initToolbar()
         setHasOptionsMenu(true)
+    }
+
+    private fun initToolbar() {
+        home_bar.title = ""
+        (requireActivity() as AppCompatActivity).setSupportActionBar(home_bar)
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
@@ -43,7 +43,7 @@ class HomeFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragmentBind
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
         when (item.itemId) {
             R.id.action_city -> {
-                Navigation.findNavController(home_container)
+                Navigation.findNavController(home_bar)
                     .navigate(R.id.action_homeFragment_to_choosePlaceFragment)
             }
             R.id.action_more -> {
@@ -53,28 +53,16 @@ class HomeFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragmentBind
         return super.onOptionsItemSelected(item)
     }
 
-    private fun initToolbar(title: String?) {
-        home_bar.home_title.text = title
-        home_bar.setTitle("")
-        (requireActivity() as AppCompatActivity).setSupportActionBar(home_bar)
-    }
-
     override fun initData() {
         super.initData()
-        mViewModel.queryAllPlace()
+        appViewModel.queryAllPlace()
     }
 
     override fun initDataObserver() {
         super.initDataObserver()
-
-        mViewModel.mPlaceData.observe(this, Observer { response ->
+        appViewModel.mPlaceData.observe(this, Observer { response ->
             response?.let {
                 initHomeDetailFragment(it)
-                changeTitle(mPosition)
-                if (mPlaceNameList.isEmpty()) {
-                    Navigation.findNavController(home_normal_view)
-                        .navigate(R.id.action_homeFragment_to_choosePlaceFragment)
-                }
             }
         })
     }
@@ -92,7 +80,9 @@ class HomeFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragmentBind
                 )
             )
         }
+        mPlaceNameList.clear()
         mPlaceNameList.addAll(tabs)
+        home_bar.home_title.text = mPlaceNameList[0]
         home_viewpager.adapter = HomeDetailAdapter(childFragmentManager, tabs, fragments)
         //设置监听
         home_viewpager.addOnPageChangeListener(TitlePageChangeListener())

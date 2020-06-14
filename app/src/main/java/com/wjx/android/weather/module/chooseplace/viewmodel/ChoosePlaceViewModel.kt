@@ -1,11 +1,11 @@
-package com.wjx.android.weather.module.addedplace.viewmodel
+package com.wjx.android.weather.module.chooseplace.viewmodel
 
 import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.wjx.android.weather.base.viewmodel.BaseViewModel
 import com.wjx.android.weather.model.Place
-import com.wjx.android.weather.module.addedplace.repository.ChoosePlaceRepository
+import com.wjx.android.weather.module.chooseplace.repository.ChoosePlaceRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
@@ -13,7 +13,7 @@ import kotlinx.coroutines.withContext
 class ChoosePlaceViewModel(application: Application) :
     BaseViewModel<ChoosePlaceRepository>(application) {
 
-    var mPlaceData: MutableLiveData<MutableList<Place>> = MutableLiveData()
+    val mPlaceData: MutableLiveData<MutableList<Place>> = MutableLiveData()
 
     fun queryAllPlace() {
         viewModelScope.launch {

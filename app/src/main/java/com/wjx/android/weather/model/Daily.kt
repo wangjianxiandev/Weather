@@ -8,7 +8,7 @@ import java.util.*
  * @author: Wangjianxian
  * @CreateDate: 2020/6/9 11:20
  */
-data class DailyResponse(
+data class Daily(
     val api_status: String,
     val api_version: String,
     val lang: String,

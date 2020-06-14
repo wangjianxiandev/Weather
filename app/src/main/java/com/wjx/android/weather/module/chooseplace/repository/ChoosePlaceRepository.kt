@@ -1,4 +1,4 @@
-package com.wjx.android.weather.module.addedplace.repository
+package com.wjx.android.weather.module.chooseplace.repository
 
 import androidx.lifecycle.MutableLiveData
 import com.wjx.android.weather.base.repository.ApiRepository
@@ -16,4 +16,7 @@ class ChoosePlaceRepository(var loadState: MutableLiveData<State>) : ApiReposito
     suspend fun queryAllPlace() = RoomHelper.queryAllPlace(loadState)
     suspend fun deletePlace(place: Place) = RoomHelper.deletePlace(place)
     suspend fun deleteAll() = RoomHelper.deleteAll()
+    suspend fun loadRealtimeWeather(lng: String?, lat: String?) =
+        apiService.loadRealtimeWeather(lng, lat)
+
 }

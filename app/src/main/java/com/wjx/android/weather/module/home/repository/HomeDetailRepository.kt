@@ -20,5 +20,5 @@ class HomeDetailRepository(var loadState: MutableLiveData<State>) : ApiRepositor
 
     suspend fun loadDailyWeather(lng: String?, lat: String?) = apiService.loadDailyWeather(lng, lat)
 
-    suspend fun loadHourlyWeather(lng: String, lat: String) = apiService.loadHourlyWeather(lng, lat)
+    suspend fun loadHourlyWeather(lng: String?, lat: String?) = apiService.loadHourlyWeather(lng, lat)
 }

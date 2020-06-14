@@ -5,7 +5,7 @@ import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.wjx.android.weather.R
 import com.wjx.android.weather.common.util.DateUtil
 import com.wjx.android.weather.common.util.getSky
-import com.wjx.android.weather.model.DailyResponse
+import com.wjx.android.weather.model.Daily
 
 /**
  * Created with Android Studio.
@@ -13,12 +13,12 @@ import com.wjx.android.weather.model.DailyResponse
  * @author: Wangjianxian
  * @CreateDate: 2020/6/6 17:03
  */
-class HomeDailyAdapter(layout: Int, listData: MutableList<DailyResponse.DailyData>?) :
-    BaseQuickAdapter<DailyResponse.DailyData, BaseViewHolder>(
+class HomeDailyAdapter(layout: Int, listData: MutableList<Daily.DailyData>?) :
+    BaseQuickAdapter<Daily.DailyData, BaseViewHolder>(
         layout, listData
     ) {
 
-    override fun convert(holder: BaseViewHolder, item: DailyResponse.DailyData) {
+    override fun convert(holder: BaseViewHolder, item: Daily.DailyData) {
         holder?.let { holder ->
             item?.let {
                 holder.setText(R.id.date, DateUtil.getTodayInWeek(item.date))

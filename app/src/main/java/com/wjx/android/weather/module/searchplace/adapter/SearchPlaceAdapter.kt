@@ -22,5 +22,4 @@ class SearchPlaceAdapter(layout: Int, listData: MutableList<Place>?) :
             }
         }
     }
-
 }

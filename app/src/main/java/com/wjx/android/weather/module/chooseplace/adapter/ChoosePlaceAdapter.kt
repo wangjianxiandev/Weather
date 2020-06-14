@@ -1,9 +1,11 @@
-package com.wjx.android.weather.module.addedplace.adapter
+package com.wjx.android.weather.module.chooseplace.adapter
 
 import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.wjx.android.weather.R
 import com.wjx.android.weather.common.setAdapterAnimation
+import com.wjx.android.weather.common.util.getSky
+import com.wjx.android.weather.model.AddedPlace
 import com.wjx.android.weather.model.Place
 
 /**
@@ -25,6 +27,14 @@ class ChoosePlaceAdapter(layout: Int, listData: MutableList<Place>?) :
         holder?.let { holder ->
             item?.let {
                 holder.setText(R.id.location_name, item.name)
+//                holder.setText(
+//                    R.id.location_temperature,
+//                    "${item.realTimeData.result.realtime.temperature.toInt()} ℃"
+//                )
+//                holder.setImageResource(
+//                    R.id.location_img,
+//                    getSky(item.realTimeData.result.realtime.skycon).icon
+//                )
             }
         }
     }

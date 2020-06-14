@@ -1,4 +1,4 @@
-package com.wjx.android.weather.module.addedplace.model.dao
+package com.wjx.android.weather.module.chooseplace.model.dao
 
 import androidx.room.*
 import com.wjx.android.weather.model.Place
