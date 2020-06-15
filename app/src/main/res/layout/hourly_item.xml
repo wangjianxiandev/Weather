@@ -4,33 +4,21 @@
     android:layout_height="wrap_content"
     android:background="@drawable/hourly_bg"
     android:orientation="horizontal">
-
     <View
         android:id="@+id/line_one"
         android:layout_width="1px"
         android:layout_height="match_parent"
-        android:background="#eee" />
+        android:background="#eee"/>
 
     <LinearLayout
         android:layout_width="0dp"
-        android:layout_height="wrap_content"
         android:layout_weight="1"
+        android:layout_height="wrap_content"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
-
         <TextView
-            android:id="@+id/tv_week"
-            android:layout_width="match_parent"
-            android:layout_height="60px"
-            android:layout_marginTop="20px"
-            android:gravity="center"
-            android:text="昨天"
-            android:textColor="#fff"
-            android:textSize="38px" />
-
-        <TextView
-            android:id="@+id/tv_date"
+            android:id="@+id/hourly_time"
             android:layout_width="match_parent"
             android:layout_height="60px"
             android:gravity="center"
@@ -39,7 +27,7 @@
             android:textSize="38px" />
 
         <TextView
-            android:id="@+id/tv_day_weather"
+            android:id="@+id/hourly_weather"
             android:layout_width="match_parent"
             android:layout_height="60px"
             android:gravity="center"
@@ -48,36 +36,20 @@
             android:textSize="38px" />
 
         <ImageView
-            android:id="@+id/iv_day_weather"
+            android:id="@+id/hourly_weather_img"
             android:layout_width="80px"
             android:layout_height="80px"
             android:layout_marginTop="10px"
             android:src="@drawable/big_level_shape" />
 
-        <me.zhouzhuo.zzweatherview.TemperatureView
-            android:id="@+id/ttv_day"
+        <com.wjx.android.weather.common.custom.TemperatureView
+            android:id="@+id/hourly_temp"
+            android:layout_marginTop="10px"
             android:layout_width="match_parent"
-            android:layout_height="300px"
-            android:layout_marginTop="10px" />
-
-        <ImageView
-            android:id="@+id/iv_night_weather"
-            android:layout_width="80px"
-            android:layout_height="80px"
-            android:layout_marginBottom="10px"
-            android:src="@drawable/big_level_shape" />
+            android:layout_height="300px" />
 
         <TextView
-            android:id="@+id/tv_night_weather"
-            android:layout_width="match_parent"
-            android:layout_height="60px"
-            android:gravity="center"
-            android:text="晴"
-            android:textColor="#fff"
-            android:textSize="38px" />
-
-        <TextView
-            android:id="@+id/tv_wind_ori"
+            android:id="@+id/hourly_wind_ori"
             android:layout_width="match_parent"
             android:layout_height="60px"
             android:gravity="center"
@@ -86,7 +58,7 @@
             android:textSize="30px" />
 
         <TextView
-            android:id="@+id/tv_wind_level"
+            android:id="@+id/hourly_wind_level"
             android:layout_width="match_parent"
             android:layout_height="60px"
             android:gravity="center"
@@ -95,21 +67,20 @@
             android:textSize="38px" />
 
         <TextView
-            android:id="@+id/tv_air_level"
+            android:id="@+id/hourly_air_level"
             android:layout_width="60px"
             android:layout_height="38px"
             android:layout_marginTop="20px"
-            android:layout_marginBottom="20px"
             android:background="@drawable/good_level_shape"
             android:gravity="center"
             android:text="良"
+            android:layout_marginBottom="20px"
             android:textColor="#fff"
             android:textSize="24px" />
     </LinearLayout>
-
     <View
         android:id="@+id/line_two"
         android:layout_width="1px"
         android:layout_height="match_parent"
-        android:background="#eee" />
+        android:background="#eee"/>
 </LinearLayout>

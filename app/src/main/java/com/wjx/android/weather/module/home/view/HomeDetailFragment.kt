@@ -2,6 +2,7 @@ package com.wjx.android.weather.module.home.view
 
 import android.annotation.SuppressLint
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -11,7 +12,7 @@ import com.wjx.android.weather.common.Constant
 import com.wjx.android.weather.common.util.getSky
 import com.wjx.android.weather.databinding.HomeFragmentBinding
 import com.wjx.android.weather.model.Daily
-import com.wjx.android.weather.model.HourlyData
+import com.wjx.android.weather.model.HourlyWeather
 import com.wjx.android.weather.model.RealTimeData
 import com.wjx.android.weather.module.home.adapter.HomeDailyAdapter
 import com.wjx.android.weather.module.home.viewmodel.HomeDetailViewModel
@@ -28,6 +29,7 @@ class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragme
     private val mLng: String by lazy { arguments?.getString(Constant.LNG_KEY) ?: "" }
 
     private val mLat: String by lazy { arguments?.getString(Constant.LAT_KEY) ?: "" }
+    var list = ArrayList<HourlyWeather>()
 
     companion object {
         fun newInstance(placeName: String, lng: String, lat: String): Fragment {
@@ -47,11 +49,9 @@ class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragme
         super.initView()
         setHasOptionsMenu(true)
         initAdapter()
-        initHourlyView()
     }
 
     override fun initData() {
-        super.initData()
         mViewModel.loadRealtimeWeather(mLng, mLat)
         mViewModel.loadDailyWeather(mLng, mLat)
         mViewModel.loadHourlyWeather(mLng, mLat)
@@ -59,14 +59,6 @@ class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragme
 
     override fun initDataObserver() {
         super.initDataObserver()
-
-//        appViewModel.currentPlace.observe(this, Observer { it ->
-//            it?.let {
-//                mViewModel.loadRealtimeWeather(it.location.lng, it.location.lat)
-//                mViewModel.loadDailyWeather(it.location.lng, it.location.lat)
-//            }
-//        })
-
         mViewModel.mRealTimeDataData.observe(this, Observer { response ->
             response?.let {
                 initCurrentData(it.result.realtime)
@@ -93,7 +85,19 @@ class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragme
 
         mViewModel.mHourlyData.observe(this, Observer { response ->
             response?.let {
-
+                Log.d("wjxHour2", it.toString())
+                for(i in 0 until it.result.hourly.temperature.size) {
+                    list.add(HourlyWeather(
+                        it.result.hourly.temperature[i].value,
+                        "wjx",
+                        "8:00",
+                        getSky(it.result.hourly.skycon[i].value).icon,
+                        it.result.hourly.wind[i].direction,
+                        it.result.hourly.wind[i].speed
+                    ))
+                }
+                Log.d("WjxHour", list.toString())
+                initHourlyView(list)
             }
         })
     }
@@ -135,15 +139,21 @@ class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragme
         carWashingText.text = lifeIndex.carWashing[0].desc
     }
 
-    private fun initHourlyView() {
-        home_hourly_scroll_view.setHourlyView(home_hourly_view)
-    }
+    private fun initHourlyView(list : ArrayList<HourlyWeather>) {
+        //填充天气数据
+        weather_view.setList(list)
 
-    private fun generateData(hourlyData: HourlyData) {
-//        val list: MutableList<> = arrayListOf()
-        for(i in 0 until hourlyData.result.hourly.temperature.size) {
-
+        //设置线宽
+        weather_view.setLineWidth(6f)
+        //设置一屏幕显示几列(最少3列)
+        try {
+            weather_view.setColumnNumber(5)
+        } catch (e: Exception) {
+            e.printStackTrace()
         }
 
+        //设置线条的颜色
+        weather_view.setLineColor(0xFFFFFF)
+        //点击某一列
     }
 }

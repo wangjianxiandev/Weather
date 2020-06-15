@@ -1,0 +1,217 @@
+package com.wjx.android.weather.common.custom
+
+import android.content.Context
+import android.graphics.Canvas
+import android.graphics.Paint
+import android.graphics.Path
+import android.util.AttributeSet
+import android.view.View
+import android.view.View.OnClickListener
+import android.view.ViewGroup
+import android.view.WindowManager
+import android.widget.HorizontalScrollView
+import android.widget.LinearLayout
+import com.wjx.android.weather.R
+import com.wjx.android.weather.common.util.getSky
+import com.wjx.android.weather.model.HourlyWeather
+import java.util.*
+
+/**
+ * Created with Android Studio.
+ * Description:
+ * @author: Wangjianxian
+ * @CreateDate: 2020/6/15 8:27
+ */
+class WeatherView :
+    HorizontalScrollView {
+    private var mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
+    private var mPath = Path()
+
+    private lateinit var mHourlyWeatherList: ArrayList<HourlyWeather>
+
+    private var mLineWidth = 6f
+
+    private var mLineColor = 0xff23acb3
+
+    private var mColumnNumber = 6
+
+    private lateinit var onWeatherItemClickListener: OnWeatherItemClickListener
+
+    constructor(mContext: Context) : super(mContext,null)
+
+    constructor(mContext: Context, attrs: AttributeSet) : super(mContext, attrs,0)
+
+    constructor(mContext: Context, attrs: AttributeSet,defStyleAttr:Int) : super(mContext, attrs,defStyleAttr) {
+        init(mContext, attrs)
+    }
+
+    private fun init(context: Context, attributeSet: AttributeSet) {
+        mPaint.setColor(mLineColor)
+        mPaint.strokeWidth = mLineWidth
+        mPaint.style = Paint.Style.STROKE
+    }
+
+
+    override fun onDraw(canvas: Canvas?) {
+        super.onDraw(canvas)
+        if (childCount > 0) {
+            var root = getChildAt(0) as ViewGroup
+            if (root.childCount > 0) {
+                val intensity = 0.16f
+                var hourlyWeatherItem = root.getChildAt(0) as HourlyWeatherItem
+                val dX: Float = hourlyWeatherItem.getTempX()
+                val dY: Float = hourlyWeatherItem.getTempY()
+                val temperatureView =
+                    hourlyWeatherItem.findViewById<View>(R.id.hourly_temp) as TemperatureView
+                temperatureView.setRadius(10F)
+                val x = dX + temperatureView.getXPoint()
+                val y = dY + temperatureView.getYPoint()
+                mPath.reset()
+                mPath.moveTo(x, y)
+                //折线
+
+                //折线
+                for (i in 0 until root.childCount - 1) {
+                    val child: HourlyWeatherItem = root.getChildAt(i) as HourlyWeatherItem
+                    val child1: HourlyWeatherItem = root.getChildAt(i + 1) as HourlyWeatherItem
+                    val dayX = child.getTempX() + child.getWidth() * i
+                    val dayY = child.getTempY()
+                    val dayX1 = child1.getTempX() + child1.getWidth() * (i + 1)
+                    val dayY1 = child1.getTempY()
+                    val tempV = child.findViewById<View>(R.id.hourly_temp) as TemperatureView
+                    val tempV1 = child1.findViewById<View>(R.id.hourly_temp) as TemperatureView
+                    tempV.setRadius(10F)
+                    tempV1.setRadius(10F)
+                    val x1 = dayX + tempV.getXPoint()
+                    val y1 = dayY + tempV.getYPoint()
+                    val x11 = dayX1 + tempV1.getXPoint()
+                    val y11 = dayY1 + tempV1.getYPoint()
+                    canvas!!.drawLine(
+                        x1,
+                        y1,
+                        x11,
+                        y11,
+                        mPaint
+                    )
+                }
+            }
+        }
+    }
+
+    fun setLineWidth(lineWidth: Float) {
+        mLineWidth = lineWidth
+        mPaint.strokeWidth = lineWidth
+        invalidate()
+    }
+
+    fun setLineColor(color: Long) {
+        mLineColor = color
+        mPaint.setColor(mLineColor)
+        invalidate()
+    }
+
+    fun setOnWeatherItemClickListener(weatherItemClickListener: OnWeatherItemClickListener) {
+        onWeatherItemClickListener = weatherItemClickListener
+    }
+
+    private fun getScreenWidth(): Int {
+        val wm = context
+            .getSystemService(Context.WINDOW_SERVICE) as WindowManager
+        return wm.defaultDisplay.width
+    }
+
+    private class TempComparator : Comparator<HourlyWeather> {
+        override fun compare(o1: HourlyWeather, o2: HourlyWeather): Int {
+            return if (o1.temp === o2.temp) {
+                0
+            } else if (o1.temp > o2.temp) {
+                1
+            } else {
+                -1
+            }
+        }
+    }
+
+    private fun getMaxTemp(list: ArrayList<HourlyWeather>?): Double {
+        return (if (list != null) {
+            Collections.max<HourlyWeather>(
+                list, TempComparator()
+            ).temp
+        } else 0.0)
+    }
+
+    private fun getMinTemp(list: ArrayList<HourlyWeather>?): Double {
+        return (if (list != null) {
+            Collections.min<HourlyWeather>(
+                list, TempComparator()
+            ).temp
+        } else 0.0)
+    }
+
+    @Throws(Exception::class)
+    fun setColumnNumber(num: Int) {
+        if (num > 2) {
+            this.mColumnNumber = num
+            setList(this.mHourlyWeatherList)
+        } else {
+            throw Exception("ColumnNumber should lager than 2")
+        }
+    }
+
+    fun setList(list: ArrayList<HourlyWeather>) {
+        this.mHourlyWeatherList = list
+        var screenWidth = getScreenWidth()
+        var max = getMaxTemp(list).toInt()
+        var min = getMinTemp(list).toInt()
+        removeAllViews()
+        val llRoot = LinearLayout(context)
+        llRoot.layoutParams = ViewGroup.LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT
+        )
+        llRoot.orientation = LinearLayout.HORIZONTAL
+        for (i in 0 until list.size) {
+            val model: HourlyWeather = list[i]
+            val itemView = HourlyWeatherItem(context)
+            itemView.setMaxTemp(max)
+            itemView.setMinTemp(min)
+            itemView.setTime(model.time)
+            itemView.setTemp(model.temp)
+            itemView.setWeather(model.weather)
+            if (model.weatherImg === 0) {
+                if (model.weather != null) {
+                    itemView.setImg(getSky(model.weather).icon)
+                }
+            } else {
+                itemView.setImg(getSky(model.weather).icon)
+            }
+            itemView.setWindOri(model.windOri)
+            itemView.setWindLevel(model.windLevel)
+//            itemView.(model.getAirLevel())
+            itemView.setLayoutParams(
+                LinearLayout.LayoutParams(
+                    screenWidth / mColumnNumber,
+                    ViewGroup.LayoutParams.WRAP_CONTENT
+                )
+            )
+            itemView.setClickable(true)
+            itemView.setOnClickListener(OnClickListener {
+                if (onWeatherItemClickListener != null) {
+                    onWeatherItemClickListener.onItemClick(itemView, i, list[i])
+                }
+            })
+            llRoot.addView(itemView)
+        }
+        addView(llRoot)
+        invalidate()
+    }
+
+    open interface OnWeatherItemClickListener {
+        fun onItemClick(
+            itemView: HourlyWeatherItem?,
+            position: Int,
+            hourlyWeather: HourlyWeather?
+        )
+    }
+
+}

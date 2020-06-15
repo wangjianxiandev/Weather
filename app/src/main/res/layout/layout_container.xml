@@ -53,18 +53,14 @@
                     app:cardCornerRadius="30dp"
                     app:cardElevation="@dimen/dp_10">
 
-                    <com.wjx.android.weather.common.custom.IndexHorizontalScrollView
-                        android:id="@+id/home_hourly_scroll_view"
+                    <com.wjx.android.weather.common.custom.WeatherView
+                        android:id="@+id/weather_view"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:background="#66050505"
-                        android:fadeScrollbars="false">
-
-                        <com.wjx.android.weather.common.custom.HourlyView
-                            android:id="@+id/home_hourly_view"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent" />
-                    </com.wjx.android.weather.common.custom.IndexHorizontalScrollView>
+                        android:layout_height="wrap_content"
+                        android:background="#333"
+                        android:scrollbarSize="4dp"
+                        android:scrollbarThumbHorizontal="@drawable/scroll_bar_thumb"
+                        android:scrollbarTrackHorizontal="@drawable/scroll_bar_thumb" />
                 </androidx.cardview.widget.CardView>
 
                 <View
