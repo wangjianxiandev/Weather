@@ -15,7 +15,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_gravity="fill_vertical"
-            android:layout_marginBottom="80dp">
+            android:fillViewport="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -45,10 +45,11 @@
                     android:id="@+id/hourly"
                     style="@style/Widget.MaterialComponents.CardView"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/card_view_height"
+                    android:layout_height="300dp"
                     android:layout_marginStart="@dimen/spacing_mlarge"
                     android:layout_marginTop="@dimen/dp_10"
                     android:layout_marginEnd="@dimen/spacing_mlarge"
+                    android:layout_gravity="center"
                     app:cardBackgroundColor="@color/material_blue"
                     app:cardCornerRadius="30dp"
                     app:cardElevation="@dimen/dp_10">
@@ -56,8 +57,7 @@
                     <com.wjx.android.weather.common.custom.WeatherView
                         android:id="@+id/weather_view"
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:background="#333"
+                        android:layout_height="match_parent"
                         android:scrollbarSize="4dp"
                         android:scrollbarThumbHorizontal="@drawable/scroll_bar_thumb"
                         android:scrollbarTrackHorizontal="@drawable/scroll_bar_thumb" />

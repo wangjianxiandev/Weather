@@ -62,6 +62,9 @@ class HomeFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragmentBind
         super.initDataObserver()
         appViewModel.mPlaceData.observe(this, Observer { response ->
             response?.let {
+                if(response.isEmpty()) {
+                    Navigation.findNavController(home_normal_view).navigate(R.id.action_homeFragment_to_choosePlaceFragment)
+                }
                 initHomeDetailFragment(it)
             }
         })
@@ -82,7 +85,9 @@ class HomeFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragmentBind
         }
         mPlaceNameList.clear()
         mPlaceNameList.addAll(tabs)
-        home_bar.home_title.text = mPlaceNameList[0]
+        if (mPlaceNameList.isNotEmpty()) {
+            home_bar.home_title.text = mPlaceNameList[0]
+        }
         home_viewpager.adapter = HomeDetailAdapter(childFragmentManager, tabs, fragments)
         //设置监听
         home_viewpager.addOnPageChangeListener(TitlePageChangeListener())

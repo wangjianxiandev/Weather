@@ -8,10 +8,11 @@ package com.wjx.android.weather.model
  */
 data class HourlyWeather(
     val temp: Double,
+    val skycon : Skycon,
     val weather: String,
     val time: String,
     val weatherImg: Int,
-    val windOri: Double,
-    val windLevel: Double
-//    val airLevel: String
+    val windOri: String,
+    val windLevel: String,
+    val airLevel: String
 )

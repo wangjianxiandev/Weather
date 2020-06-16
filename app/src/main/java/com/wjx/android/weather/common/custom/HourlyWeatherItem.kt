@@ -57,44 +57,17 @@ class HourlyWeatherItem(context: Context) :
         mWeather?.text = weather
     }
 
-    fun setWindOri(windOri: Double) {
-        mWindOri?.text = windOri.toString()
+    fun setWindOri(windOri: String) {
+        mWindOri?.text = windOri
     }
 
-    fun setWindLevel(windLevel: Double) {
-        mWIndLevel?.text = windLevel.toString()
+    fun setWindLevel(windLevel: String) {
+        mWIndLevel?.text = windLevel
     }
 
-//    fun setAirLevel(airLevel: AirLevel?) {
-//        if (tvAirLevel != null) {
-//            when (airLevel) {
-//                EXCELLENT -> {
-//                    tvAirLevel.setBackgroundResource(R.drawable.best_level_shape)
-//                    tvAirLevel.setText("优")
-//                }
-//                GOOD -> {
-//                    tvAirLevel.setBackgroundResource(R.drawable.good_level_shape)
-//                    tvAirLevel.setText("良好")
-//                }
-//                LIGHT -> {
-//                    tvAirLevel.setText("轻度")
-//                    tvAirLevel.setBackgroundResource(R.drawable.small_level_shape)
-//                }
-//                MIDDLE -> {
-//                    tvAirLevel.setBackgroundResource(R.drawable.mid_level_shape)
-//                    tvAirLevel.setText("中度")
-//                }
-//                HIGH -> {
-//                    tvAirLevel.setBackgroundResource(R.drawable.big_level_shape)
-//                    tvAirLevel.setText("重度")
-//                }
-//                POISONOUS -> {
-//                    tvAirLevel.setBackgroundResource(R.drawable.poison_level_shape)
-//                    tvAirLevel.setText("有毒")
-//                }
-//            }
-//        }
-//    }
+    fun setAirLevel(airLevel: String) {
+        mAirLevel?.text = airLevel
+    }
 
     fun setTemp(temp: Double) {
         mTemperatureView?.setTemp(temp)

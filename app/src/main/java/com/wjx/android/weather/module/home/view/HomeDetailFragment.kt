@@ -3,13 +3,19 @@ package com.wjx.android.weather.module.home.view
 import android.annotation.SuppressLint
 import android.os.Bundle
 import android.util.Log
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.wjx.android.weather.R
 import com.wjx.android.weather.base.view.BaseLifeCycleFragment
 import com.wjx.android.weather.common.Constant
+import com.wjx.android.weather.common.custom.HourlyWeatherItem
+import com.wjx.android.weather.common.custom.WeatherView
+import com.wjx.android.weather.common.util.getAirLevel
 import com.wjx.android.weather.common.util.getSky
+import com.wjx.android.weather.common.util.getWindOri
+import com.wjx.android.weather.common.util.getWindSpeed
 import com.wjx.android.weather.databinding.HomeFragmentBinding
 import com.wjx.android.weather.model.Daily
 import com.wjx.android.weather.model.HourlyWeather
@@ -86,15 +92,19 @@ class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragme
         mViewModel.mHourlyData.observe(this, Observer { response ->
             response?.let {
                 Log.d("wjxHour2", it.toString())
-                for(i in 0 until it.result.hourly.temperature.size) {
-                    list.add(HourlyWeather(
-                        it.result.hourly.temperature[i].value,
-                        "wjx",
-                        "8:00",
-                        getSky(it.result.hourly.skycon[i].value).icon,
-                        it.result.hourly.wind[i].direction,
-                        it.result.hourly.wind[i].speed
-                    ))
+                for (i in 0 until it.result.hourly.temperature.size) {
+                    list.add(
+                        HourlyWeather(
+                            it.result.hourly.temperature[i].value,
+                            it.result.hourly.skycon[i],
+                            getSky(it.result.hourly.skycon[i].value).info,
+                            it.result.hourly.temperature[i].datetime.substring(11, 16),
+                            getSky(it.result.hourly.skycon[i].value).icon,
+                            getWindOri(it.result.hourly.wind[i].direction).ori,
+                            getWindSpeed(it.result.hourly.wind[i].speed).speed,
+                            getAirLevel(it.result.hourly.air_quality.aqi[i].value.chn).airLevel
+                        )
+                    )
                 }
                 Log.d("WjxHour", list.toString())
                 initHourlyView(list)
@@ -127,7 +137,6 @@ class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragme
     }
 
 
-
     private fun initDailyData(dailyData: MutableList<Daily.DailyData>) {
         mAdapterHome.setNewInstance(dailyData)
     }
@@ -139,21 +148,23 @@ class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragme
         carWashingText.text = lifeIndex.carWashing[0].desc
     }
 
-    private fun initHourlyView(list : ArrayList<HourlyWeather>) {
-        //填充天气数据
+    private fun initHourlyView(list: ArrayList<HourlyWeather>) {
         weather_view.setList(list)
-
-        //设置线宽
         weather_view.setLineWidth(6f)
-        //设置一屏幕显示几列(最少3列)
         try {
             weather_view.setColumnNumber(5)
         } catch (e: Exception) {
             e.printStackTrace()
         }
-
-        //设置线条的颜色
-        weather_view.setLineColor(0xFFFFFF)
-        //点击某一列
+        weather_view.setOnWeatherItemClickListener(object : WeatherView.OnWeatherItemClickListener {
+            override fun onItemClick(
+                itemView: HourlyWeatherItem?,
+                position: Int,
+                weatherModel: HourlyWeather?
+            ) {
+                Toast.makeText(requireContext(), position.toString() + "", Toast.LENGTH_SHORT)
+                    .show()
+            }
+        })
     }
 }

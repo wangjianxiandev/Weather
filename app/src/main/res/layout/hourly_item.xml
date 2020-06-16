@@ -1,34 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:background="@drawable/hourly_bg"
-    android:orientation="horizontal">
-    <View
-        android:id="@+id/line_one"
-        android:layout_width="1px"
-        android:layout_height="match_parent"
-        android:background="#eee"/>
+    android:layout_width="wrap_content"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    android:padding="@dimen/safe_padding">
 
     <LinearLayout
-        android:layout_width="0dp"
-        android:layout_weight="1"
-        android:layout_height="wrap_content"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
         android:gravity="center_horizontal"
         android:orientation="vertical">
 
         <TextView
             android:id="@+id/hourly_time"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="60px"
             android:gravity="center"
-            android:text="12/07"
+            android:text="12:07"
             android:textColor="#fff"
             android:textSize="38px" />
 
         <TextView
             android:id="@+id/hourly_weather"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="60px"
             android:gravity="center"
             android:text="晴"
@@ -44,23 +38,26 @@
 
         <com.wjx.android.weather.common.custom.TemperatureView
             android:id="@+id/hourly_temp"
-            android:layout_marginTop="10px"
             android:layout_width="match_parent"
-            android:layout_height="300px" />
+            android:layout_height="110dp"
+            android:layout_marginTop="10dp" />
 
         <TextView
             android:id="@+id/hourly_wind_ori"
-            android:layout_width="match_parent"
-            android:layout_height="60px"
+            android:layout_width="wrap_content"
+            android:layout_height="80px"
+            android:layout_marginTop="20dp"
             android:gravity="center"
+            android:singleLine="true"
             android:text="西南风"
             android:textColor="#fff"
-            android:textSize="30px" />
+            android:textSize="38px" />
 
         <TextView
             android:id="@+id/hourly_wind_level"
             android:layout_width="match_parent"
             android:layout_height="60px"
+            android:layout_marginBottom="@dimen/safe_padding"
             android:gravity="center"
             android:text="3级"
             android:textColor="#fff"
@@ -70,17 +67,11 @@
             android:id="@+id/hourly_air_level"
             android:layout_width="60px"
             android:layout_height="38px"
-            android:layout_marginTop="20px"
+            android:layout_marginBottom="@dimen/safe_padding"
             android:background="@drawable/good_level_shape"
             android:gravity="center"
             android:text="良"
-            android:layout_marginBottom="20px"
             android:textColor="#fff"
             android:textSize="24px" />
     </LinearLayout>
-    <View
-        android:id="@+id/line_two"
-        android:layout_width="1px"
-        android:layout_height="match_parent"
-        android:background="#eee"/>
 </LinearLayout>

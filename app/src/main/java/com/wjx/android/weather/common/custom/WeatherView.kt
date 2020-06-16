@@ -24,31 +24,40 @@ import java.util.*
  */
 class WeatherView :
     HorizontalScrollView {
-    private var mPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-    private var mPath = Path()
+    private lateinit var mPaint: Paint
+    private lateinit var mPath: Path
 
     private lateinit var mHourlyWeatherList: ArrayList<HourlyWeather>
 
     private var mLineWidth = 6f
 
-    private var mLineColor = 0xff23acb3
+    private var mLineColor = R.color.always_white_text
 
     private var mColumnNumber = 6
 
     private lateinit var onWeatherItemClickListener: OnWeatherItemClickListener
 
-    constructor(mContext: Context) : super(mContext,null)
+    constructor(mContext: Context) : super(mContext, null)
 
-    constructor(mContext: Context, attrs: AttributeSet) : super(mContext, attrs,0)
+    constructor(mContext: Context, attrs: AttributeSet) : super(mContext, attrs, 0) {
+        init(mContext, attrs)
+    }
 
-    constructor(mContext: Context, attrs: AttributeSet,defStyleAttr:Int) : super(mContext, attrs,defStyleAttr) {
+    constructor(mContext: Context, attrs: AttributeSet, defStyleAttr: Int) : super(
+        mContext,
+        attrs,
+        defStyleAttr
+    ) {
         init(mContext, attrs)
     }
 
     private fun init(context: Context, attributeSet: AttributeSet) {
-        mPaint.setColor(mLineColor)
+        mPaint = Paint()
+        mPaint.setColor(context.getColor(mLineColor))
+        mPaint.isAntiAlias = true
         mPaint.strokeWidth = mLineWidth
         mPaint.style = Paint.Style.STROKE
+        mPath = Path()
     }
 
 
@@ -57,7 +66,6 @@ class WeatherView :
         if (childCount > 0) {
             var root = getChildAt(0) as ViewGroup
             if (root.childCount > 0) {
-                val intensity = 0.16f
                 var hourlyWeatherItem = root.getChildAt(0) as HourlyWeatherItem
                 val dX: Float = hourlyWeatherItem.getTempX()
                 val dY: Float = hourlyWeatherItem.getTempY()
@@ -68,7 +76,6 @@ class WeatherView :
                 val y = dY + temperatureView.getYPoint()
                 mPath.reset()
                 mPath.moveTo(x, y)
-                //折线
 
                 //折线
                 for (i in 0 until root.childCount - 1) {
@@ -104,10 +111,9 @@ class WeatherView :
         invalidate()
     }
 
-    fun setLineColor(color: Long) {
+    fun setLineColor(color: Int) {
         mLineColor = color
         mPaint.setColor(mLineColor)
-        invalidate()
     }
 
     fun setOnWeatherItemClickListener(weatherItemClickListener: OnWeatherItemClickListener) {
@@ -167,7 +173,7 @@ class WeatherView :
         val llRoot = LinearLayout(context)
         llRoot.layoutParams = ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.WRAP_CONTENT
+            ViewGroup.LayoutParams.MATCH_PARENT
         )
         llRoot.orientation = LinearLayout.HORIZONTAL
         for (i in 0 until list.size) {
@@ -178,20 +184,14 @@ class WeatherView :
             itemView.setTime(model.time)
             itemView.setTemp(model.temp)
             itemView.setWeather(model.weather)
-            if (model.weatherImg === 0) {
-                if (model.weather != null) {
-                    itemView.setImg(getSky(model.weather).icon)
-                }
-            } else {
-                itemView.setImg(getSky(model.weather).icon)
-            }
+            itemView.setImg(getSky(model.skycon.value).icon)
             itemView.setWindOri(model.windOri)
             itemView.setWindLevel(model.windLevel)
-//            itemView.(model.getAirLevel())
+            itemView.setAirLevel(model.airLevel)
             itemView.setLayoutParams(
                 LinearLayout.LayoutParams(
                     screenWidth / mColumnNumber,
-                    ViewGroup.LayoutParams.WRAP_CONTENT
+                    ViewGroup.LayoutParams.MATCH_PARENT
                 )
             )
             itemView.setClickable(true)

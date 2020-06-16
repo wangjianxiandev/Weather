@@ -18,9 +18,7 @@ class TemperatureView(context: Context, attributeSet: AttributeSet) : View(conte
     private var mMinTemp = 0
     private var mTemp = 0.0
     private lateinit var mPointPaint: Paint
-    private lateinit var mLinePaint: Paint
     private lateinit var mTextPaint: Paint
-    private var mLineColor = 0
     private var mPointColor = 0
     private var mTextColor = 0
     private var mRadius = 6F
@@ -34,14 +32,10 @@ class TemperatureView(context: Context, attributeSet: AttributeSet) : View(conte
     }
 
     private fun init() {
-        mLineColor = -0x6c5ede
         mTextColor = -0x1
         mPointColor = -0x1
         mPointPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-        mLinePaint = Paint()
         mTextPaint = Paint(Paint.ANTI_ALIAS_FLAG)
-
-        mLinePaint.color = mLineColor
         mPointPaint.color = mPointColor
         mTextPaint.color = mTextColor
         mTextPaint.textSize = mTextSize.toFloat()
