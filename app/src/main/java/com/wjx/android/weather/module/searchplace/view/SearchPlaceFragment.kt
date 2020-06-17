@@ -11,6 +11,7 @@ import com.wjx.android.weather.R
 import com.wjx.android.weather.base.view.BaseLifeCycleFragment
 import com.wjx.android.weather.common.util.KeyBoardUtil.hideKeyboard
 import com.wjx.android.weather.databinding.SearchPlaceFragmentBinding
+import com.wjx.android.weather.model.ChoosePlaceData
 import com.wjx.android.weather.model.Place
 import com.wjx.android.weather.module.searchplace.adapter.SearchPlaceAdapter
 import com.wjx.android.weather.module.searchplace.viewmodel.SearchPlaceViewModel
@@ -21,6 +22,8 @@ class SearchPlaceFragment :
     BaseLifeCycleFragment<SearchPlaceViewModel, SearchPlaceFragmentBinding>() {
 
     private lateinit var mAdapter: SearchPlaceAdapter
+
+    private lateinit var mPlace: Place
 
     override fun getLayoutId() = R.layout.search_place_fragment
 
@@ -40,9 +43,10 @@ class SearchPlaceFragment :
         mAdapter.setOnItemClickListener { adapter, view, position ->
             val place = mAdapter.getItem(position)
             place?.let {
+                mPlace = place
+                mViewModel.loadRealtimeWeather(place.location.lng, place.location.lat)
                 mViewModel.insertPlace(place)
                 hideKeyboard()
-                Navigation.findNavController(view).navigateUp()
             }
         }
     }
@@ -83,6 +87,18 @@ class SearchPlaceFragment :
         mViewModel.mSearchPlacesData.observe(this, Observer {
             it?.let {
                 setPlaceList(it.places)
+            }
+        })
+
+        mViewModel.mRealTimeData.observe(this, Observer {
+            it?.let {
+                mViewModel.insertChoosePlace(
+                    ChoosePlaceData(
+                        0, mPlace.name, it.result.realtime.temperature.toInt(),
+                        it.result.realtime.skycon
+                    )
+                )
+                Navigation.findNavController(search_place).navigateUp()
             }
         })
     }

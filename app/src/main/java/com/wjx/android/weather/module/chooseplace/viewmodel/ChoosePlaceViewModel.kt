@@ -4,7 +4,11 @@ import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.wjx.android.weather.base.viewmodel.BaseViewModel
+import com.wjx.android.weather.common.RoomHelper
+import com.wjx.android.weather.common.initiateRequest
+import com.wjx.android.weather.model.ChoosePlaceData
 import com.wjx.android.weather.model.Place
+import com.wjx.android.weather.model.RealTime
 import com.wjx.android.weather.module.chooseplace.repository.ChoosePlaceRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -14,6 +18,8 @@ class ChoosePlaceViewModel(application: Application) :
     BaseViewModel<ChoosePlaceRepository>(application) {
 
     val mPlaceData: MutableLiveData<MutableList<Place>> = MutableLiveData()
+    val mRealTimeData: MutableLiveData<RealTime> = MutableLiveData()
+    val mChoosePlaceData : MutableLiveData<MutableList<ChoosePlaceData>> = MutableLiveData()
 
     fun queryAllPlace() {
         viewModelScope.launch {
@@ -23,11 +29,28 @@ class ChoosePlaceViewModel(application: Application) :
         }
     }
 
-    fun deletePlace(place: Place) {
+    fun queryAllChoosePlace() {
+        viewModelScope.launch {
+            mChoosePlaceData.value = withContext(Dispatchers.IO) {
+                mRepository.queryAllChoosePlace()
+            }
+        }
+    }
+
+    fun deleteChoosePlace(choosePlaceData: ChoosePlaceData) {
         viewModelScope.launch {
             withContext(Dispatchers.IO) {
-                mRepository.deletePlace(place)
-                queryAllPlace()
+                mRepository.deleteChoosePlace(choosePlaceData)
+                queryAllChoosePlace()
+            }
+        }
+    }
+
+    fun deletePlace(name : String) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                mRepository.deletePlace(RoomHelper.queryPlaceByName(name))
+                queryAllChoosePlace()
             }
         }
     }
@@ -39,5 +62,12 @@ class ChoosePlaceViewModel(application: Application) :
                 queryAllPlace()
             }
         }
+    }
+
+    fun loadRealtimeWeather(lng: String?, lat: String?) {
+        initiateRequest(
+            { mRealTimeData.value = mRepository.loadRealtimeWeather(lng, lat) },
+            loadState
+        )
     }
 }

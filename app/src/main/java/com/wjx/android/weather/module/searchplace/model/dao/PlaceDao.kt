@@ -1,4 +1,4 @@
-package com.wjx.android.weather.module.chooseplace.model.dao
+package com.wjx.android.weather.module.searchplace.model.dao
 
 import androidx.room.*
 import com.wjx.android.weather.model.Place
@@ -29,7 +29,7 @@ interface PlaceDao {
 
     @Transaction
     @Delete(entity = Place::class)
-    suspend fun deleteArticle(place: Place) : Int
+    suspend fun deletePlace(place: Place) : Int
 
     @Transaction
     @Query("DELETE FROM place")

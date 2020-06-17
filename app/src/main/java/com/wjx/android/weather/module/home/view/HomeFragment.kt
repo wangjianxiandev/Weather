@@ -78,7 +78,8 @@ class HomeFragment : BaseLifeCycleFragment<HomeViewModel, HomeFragmentBinding>()
                 HomeDetailFragment.newInstance(
                     data.name,
                     data.location.lng,
-                    data.location.lat
+                    data.location.lat,
+                    data.primaryKey
                 )
             )
         }

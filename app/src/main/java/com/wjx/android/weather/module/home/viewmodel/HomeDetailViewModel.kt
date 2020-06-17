@@ -5,10 +5,7 @@ import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.wjx.android.weather.base.viewmodel.BaseViewModel
 import com.wjx.android.weather.common.initiateRequest
-import com.wjx.android.weather.model.Daily
-import com.wjx.android.weather.model.HourlyData
-import com.wjx.android.weather.model.Place
-import com.wjx.android.weather.model.RealTime
+import com.wjx.android.weather.model.*
 import com.wjx.android.weather.module.home.repository.HomeDetailRepository
 
 import kotlinx.coroutines.Dispatchers
@@ -38,5 +35,13 @@ class HomeDetailViewModel(application: Application) :
         initiateRequest({
             mHourlyData.value = mRepository.loadHourlyWeather(lng, lat)
         }, loadState)
+    }
+
+    fun updateChoosePlace(temperature: Int, skycon: String, name: String) {
+        viewModelScope.launch {
+            withContext(Dispatchers.IO) {
+                mRepository.updateChoosePlace(temperature, skycon, name)
+            }
+        }
     }
 }

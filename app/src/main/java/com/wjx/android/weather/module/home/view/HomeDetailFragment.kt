@@ -19,6 +19,7 @@ import com.wjx.android.weather.common.util.getSky
 import com.wjx.android.weather.common.util.getWindOri
 import com.wjx.android.weather.common.util.getWindSpeed
 import com.wjx.android.weather.databinding.HomeFragmentBinding
+import com.wjx.android.weather.model.ChoosePlaceData
 import com.wjx.android.weather.model.Daily
 import com.wjx.android.weather.model.HourlyWeather
 import com.wjx.android.weather.model.RealTime
@@ -39,14 +40,19 @@ class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragme
     private val mLng: String by lazy { arguments?.getString(Constant.LNG_KEY) ?: "" }
 
     private val mLat: String by lazy { arguments?.getString(Constant.LAT_KEY) ?: "" }
+
+    private val mPlaceName: String by lazy { arguments?.getString(Constant.PLACE_NAME) ?: "" }
+
+    private val mPrimaryKey: Int by lazy { arguments?.getInt(Constant.PLACE_PRIMARY_KEY) ?: 0 }
     var list = ArrayList<HourlyWeather>()
 
     companion object {
-        fun newInstance(placeName: String, lng: String, lat: String): Fragment {
+        fun newInstance(placeName: String, lng: String, lat: String, placeKey: Int): Fragment {
             val bundle = Bundle()
             bundle.putString(Constant.LNG_KEY, lng)
             bundle.putString(Constant.LAT_KEY, lat)
             bundle.putString(Constant.PLACE_NAME, placeName)
+            bundle.putInt(Constant.PLACE_PRIMARY_KEY, placeKey)
             val fragment = HomeDetailFragment()
             fragment.arguments = bundle
             return fragment
@@ -90,6 +96,12 @@ class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragme
         mViewModel.mRealTimeData.observe(this, Observer { response ->
             response?.let {
                 initCurrentData(it.result.realtime)
+                Log.d("WJXKey", mPrimaryKey.toString())
+                mViewModel.updateChoosePlace(
+                    it.result.realtime.temperature.toInt(),
+                    it.result.realtime.skycon,
+                    mPlaceName
+                )
             }
         })
 

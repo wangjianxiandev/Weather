@@ -12,12 +12,15 @@ import com.wjx.android.weather.base.view.BaseLifeCycleFragment
 import com.wjx.android.weather.common.Constant
 import com.wjx.android.weather.common.util.SPreference
 import com.wjx.android.weather.databinding.FragmentListBinding
+import com.wjx.android.weather.model.ChoosePlaceData
 import com.wjx.android.weather.model.Place
+import com.wjx.android.weather.model.RealTime
 import com.wjx.android.weather.module.chooseplace.viewmodel.ChoosePlaceViewModel
 import com.wjx.android.weather.module.chooseplace.adapter.ChoosePlaceAdapter
 import kotlinx.android.synthetic.main.custom_bar.view.*
 import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.home_detail_fragment.*
+import okhttp3.Response
 
 class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, FragmentListBinding>() {
 
@@ -25,7 +28,13 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
 
     private lateinit var mHeaderView: View
 
-    private var mPosition: Int by SPreference(Constant.POSITION, 0)
+    private var mRealTimeDataList = arrayListOf<RealTime>()
+
+    private var mChoosePlaceList = arrayListOf<ChoosePlaceData>()
+
+    private var mPlaceList = arrayListOf<Place>()
+
+    private var mPlaceSize: Int = 0
 
     override fun getLayoutId() = R.layout.fragment_list
 
@@ -54,11 +63,15 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
         if (mSrlRefresh.isRefreshing) {
             mSrlRefresh.isRefreshing = false
         }
-        mViewModel.queryAllPlace()
+//        mChoosePlaceList.clear()
+//        mRealTimeDataList.clear()
+//        mPlaceList.clear()
+//        mViewModel.queryAllPlace()
+        mViewModel.queryAllChoosePlace()
     }
 
     override fun initDataObserver() {
-        mViewModel.mPlaceData.observe(this, Observer { response ->
+        mViewModel.mChoosePlaceData.observe(this, Observer { response ->
             response?.let {
                 setPlaceList(response)
             }
@@ -91,10 +104,12 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
             mAdapter.getViewByPosition(position + 1, R.id.location_delete)?.visibility =
                 View.VISIBLE
             mAdapter.getViewByPosition(position + 1, R.id.location_card)
-                ?.setBackgroundColor(ContextCompat.getColor(
-                    requireContext(),
-                    R.color.grey_80
-                ))
+                ?.setBackgroundColor(
+                    ContextCompat.getColor(
+                        requireContext(),
+                        R.color.grey_80
+                    )
+                )
             mAdapter.getViewByPosition(position + 1, R.id.location_delete)?.setOnClickListener {
                 val place = mAdapter.getItem(position)
                 place?.let {
@@ -103,7 +118,10 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
                         message(R.string.delete_city)
                         cornerRadius(8.0f)
                         negativeButton(R.string.cancel) {
-                            mAdapter.getViewByPosition(position + 1, R.id.location_delete)?.visibility =
+                            mAdapter.getViewByPosition(
+                                position + 1,
+                                R.id.location_delete
+                            )?.visibility =
                                 View.GONE
                             mAdapter.getViewByPosition(position + 1, R.id.location_card)
                                 ?.setBackgroundColor(
@@ -114,8 +132,9 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
                                 )
                         }
                         positiveButton(R.string.delete) {
-                            mViewModel.deletePlace(place)
-                            mAdapter.notifyDataSetChanged()
+                            mViewModel.deletePlace(place.name)
+                            mViewModel.deleteChoosePlace(place)
+                            mAdapter.removeAt(position)
                         }
                     }
                 }
@@ -130,7 +149,7 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
         }
     }
 
-    private fun setPlaceList(addedPlaceList: MutableList<Place>) {
+    private fun setPlaceList(addedPlaceList: MutableList<ChoosePlaceData>) {
         mAdapter.setNewInstance(addedPlaceList)
     }
 }

@@ -5,8 +5,11 @@ import androidx.lifecycle.MutableLiveData
 import com.wjx.android.weather.base.BaseApplication
 import com.wjx.android.weather.common.state.State
 import com.wjx.android.weather.common.state.StateType
+import com.wjx.android.weather.model.ChoosePlaceData
 import com.wjx.android.weather.model.Place
-import com.wjx.android.weather.module.chooseplace.model.database.PlaceDataBase
+import com.wjx.android.weather.model.Temperature
+import com.wjx.android.weather.module.chooseplace.model.database.ChoosePlaceDataBase
+import com.wjx.android.weather.module.searchplace.model.database.PlaceDataBase
 
 /**
  * Created with Android Studio.
@@ -31,26 +34,62 @@ object RoomHelper {
         return response
     }
 
-    suspend fun queryFirstPlace(loadState: MutableLiveData<State>): Place? {
-        val response = placeDao?.queryFirstPlace()
+    suspend fun queryPlaceByName(name: String): Place? {
+        val response = placeDao?.queryPlaceByName(name)
         return response
     }
 
     suspend fun insertPlace(place: Place) {
         placeDao?.let {
             it.queryPlaceByName(place.name)?.let {
-                var i = placeDao!!.deleteArticle(it)
-                Log.d("insert" ,i.toString())
+                var i = placeDao!!.deletePlace(it)
+                Log.d("insert", i.toString())
             }
             it.insertPlace(place)
         }
     }
 
-    suspend fun deletePlace(place: Place) {
-        placeDao?.deleteArticle(place)
+    suspend fun deletePlace(place: Place?) {
+        placeDao?.deletePlace(place!!)
     }
 
     suspend fun deleteAll() {
         placeDao?.deleteAll()
+    }
+
+    private val choosePlaceDataBase by lazy {
+        ChoosePlaceDataBase.getInstance(BaseApplication.instance)
+    }
+
+    private val choosePlaceDao by lazy {
+        choosePlaceDataBase?.choosePlaceDao()
+    }
+
+    suspend fun queryAllChoosePlace(loadState: MutableLiveData<State>): MutableList<ChoosePlaceData> {
+        val response = choosePlaceDao?.queryAllPlace()?.toMutableList()
+        if (response!!.isEmpty()) {
+            loadState.postValue(State(StateType.SUCCESS))
+        }
+        return response
+    }
+
+    suspend fun insertChoosePlace(choosePlaceData: ChoosePlaceData) {
+        choosePlaceDao?.let {
+            it.queryChoosePlaceByName(choosePlaceData.name)?.let {
+                var i = choosePlaceDao!!.deleteChoosePlace(it)
+                Log.d("insert", i.toString())
+            }
+            it.insertPlace(choosePlaceData)
+        }
+    }
+
+    suspend fun updateChoosePlace(temperature: Int, skycon: String, name: String) {
+        choosePlaceDao?.let {
+            it.updateChoosePlace(temperature, skycon, name)
+        }
+    }
+
+    suspend fun deleteChoosePlace(choosePlaceData: ChoosePlaceData) {
+        choosePlaceDao?.deleteChoosePlace(choosePlaceData)
     }
 }
