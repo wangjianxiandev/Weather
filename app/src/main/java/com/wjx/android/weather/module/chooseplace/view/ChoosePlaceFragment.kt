@@ -73,7 +73,7 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
             detail_end.visibility = View.VISIBLE
             detail_end.setOnClickListener {
                 Navigation.findNavController(it)
-                    .navigate(R.id.action_choosePlaceFragment_to_searchPlaceFragment)
+                    .navigate(R.id.searchPlaceFragment)
             }
             detail_start.setOnClickListener {
                 Navigation.findNavController(it).navigateUp()

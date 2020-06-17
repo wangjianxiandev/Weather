@@ -12,13 +12,13 @@ import com.wjx.android.weather.common.util.CommonUtil
 import com.wjx.android.weather.databinding.HomeFragmentBinding
 import com.wjx.android.weather.model.Place
 import com.wjx.android.weather.module.home.adapter.HomeDetailAdapter
-import com.wjx.android.weather.module.home.viewmodel.HomeDetailViewModel
+import com.wjx.android.weather.module.home.viewmodel.HomeViewModel
 import com.zhpan.indicator.enums.IndicatorSlideMode
 import com.zhpan.indicator.enums.IndicatorStyle
 import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.android.synthetic.main.home_fragment.view.*
 
-class HomeFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragmentBinding>() {
+class HomeFragment : BaseLifeCycleFragment<HomeViewModel, HomeFragmentBinding>() {
     override fun getLayoutId(): Int = R.layout.home_fragment
 
     private val mPlaceNameList = arrayListOf<String>()
@@ -53,15 +53,16 @@ class HomeFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragmentBind
 
     override fun initData() {
         showSuccess()
-        appViewModel.queryAllPlace()
+        mViewModel.queryAllPlace()
     }
 
     override fun initDataObserver() {
         super.initDataObserver()
-        appViewModel.mPlaceData.observe(this, Observer { response ->
+        mViewModel.mPlaceData.observe(this, Observer { response ->
             response?.let {
-                if(response.isEmpty()) {
-                    Navigation.findNavController(home_normal_view).navigate(R.id.action_homeFragment_to_choosePlaceFragment)
+                if(response.size == 0) {
+                    CommonUtil.showToast(requireContext(), "请添加城市")
+                    Navigation.findNavController(home_normal_view).navigate(R.id.choosePlaceFragment)
                 }
                 initHomeDetailFragment(it)
             }

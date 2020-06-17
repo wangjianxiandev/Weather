@@ -17,28 +17,9 @@ import kotlinx.coroutines.withContext
 
 class HomeDetailViewModel(application: Application) :
     BaseViewModel<HomeDetailRepository>(application) {
-
-    val mFirstPlaceData: MutableLiveData<Place> = MutableLiveData()
-    val mPlaceData: MutableLiveData<MutableList<Place>> = MutableLiveData()
     val mRealTimeData: MutableLiveData<RealTime> = MutableLiveData()
     val mDailyData: MutableLiveData<Daily> = MutableLiveData()
     val mHourlyData: MutableLiveData<HourlyData> = MutableLiveData()
-
-    fun queryFirstPlace() {
-        viewModelScope.launch {
-            mFirstPlaceData.value = withContext(Dispatchers.IO) {
-                mRepository.queryFirstPlace()
-            }
-        }
-    }
-
-    fun queryAllPlace() {
-        viewModelScope.launch {
-            mPlaceData.value = withContext(Dispatchers.IO) {
-                mRepository.queryAllPlace()
-            }
-        }
-    }
 
     fun loadRealtimeWeather(lng: String?, lat: String?) {
         initiateRequest(
