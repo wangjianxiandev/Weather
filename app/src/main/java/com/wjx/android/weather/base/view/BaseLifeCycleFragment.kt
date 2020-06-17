@@ -3,6 +3,7 @@ package com.wjx.android.weather.base.view
 import android.text.TextUtils
 import android.widget.Toast
 import androidx.databinding.ViewDataBinding
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.kingja.loadsir.callback.SuccessCallback
@@ -28,12 +29,8 @@ abstract class BaseLifeCycleFragment<VM : BaseViewModel<*>, DB : ViewDataBinding
 
     override fun initView() {
         showLoading()
-        showSuccess()
         mViewModel.loadState.observe(this, observer)
-        initDataObserver()
     }
-
-    open fun initDataObserver() {}
 
     open fun showLoading() {
         loadService.showCallback(LoadingCallBack::class.java)

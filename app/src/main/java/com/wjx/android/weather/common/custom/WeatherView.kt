@@ -1,5 +1,6 @@
 package com.wjx.android.weather.common.custom
 
+import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
@@ -67,39 +68,40 @@ class WeatherView :
             var root = getChildAt(0) as ViewGroup
             if (root.childCount > 0) {
                 var hourlyWeatherItem = root.getChildAt(0) as HourlyWeatherItem
-                val dX: Float = hourlyWeatherItem.getTempX()
-                val dY: Float = hourlyWeatherItem.getTempY()
+                val dX: Int = hourlyWeatherItem.getTempX().toInt()
+                val dY: Int = hourlyWeatherItem.getTempY().toInt()
                 val temperatureView =
                     hourlyWeatherItem.findViewById<View>(R.id.hourly_temp) as TemperatureView
                 temperatureView.setRadius(10F)
                 val x = dX + temperatureView.getXPoint()
                 val y = dY + temperatureView.getYPoint()
                 mPath.reset()
-                mPath.moveTo(x, y)
+                mPath.moveTo(x.toFloat(), y.toFloat())
 
                 //折线
                 for (i in 0 until root.childCount - 1) {
                     val child: HourlyWeatherItem = root.getChildAt(i) as HourlyWeatherItem
                     val child1: HourlyWeatherItem = root.getChildAt(i + 1) as HourlyWeatherItem
-                    val dayX = child.getTempX() + child.getWidth() * i
-                    val dayY = child.getTempY()
-                    val dayX1 = child1.getTempX() + child1.getWidth() * (i + 1)
-                    val dayY1 = child1.getTempY()
+                    val dayX = (child.getTempX() + child.getWidth() * i).toInt()
+                    val dayY = child.getTempY().toInt()
+                    val dayX1 = (child1.getTempX() + child1.getWidth() * (i + 1)).toInt()
+                    val dayY1 = child1.getTempY().toInt()
                     val tempV = child.findViewById<View>(R.id.hourly_temp) as TemperatureView
                     val tempV1 = child1.findViewById<View>(R.id.hourly_temp) as TemperatureView
                     tempV.setRadius(10F)
                     tempV1.setRadius(10F)
-                    val x1 = dayX + tempV.getXPoint()
-                    val y1 = dayY + tempV.getYPoint()
-                    val x11 = dayX1 + tempV1.getXPoint()
-                    val y11 = dayY1 + tempV1.getYPoint()
+                    val x1 = (dayX + tempV.getXPoint()).toInt()
+                    val y1 = (dayY + tempV.getYPoint()).toInt()
+                    val x11 = (dayX1 + tempV1.getXPoint()).toInt()
+                    val y11 = (dayY1 + tempV1.getYPoint()).toInt()
                     canvas!!.drawLine(
-                        x1,
-                        y1,
-                        x11,
-                        y11,
+                        x1.toFloat(),
+                        y1.toFloat(),
+                        x11.toFloat(),
+                        y11.toFloat(),
                         mPaint
                     )
+                    invalidate()
                 }
             }
         }
@@ -109,11 +111,6 @@ class WeatherView :
         mLineWidth = lineWidth
         mPaint.strokeWidth = lineWidth
         invalidate()
-    }
-
-    fun setLineColor(color: Int) {
-        mLineColor = color
-        mPaint.setColor(mLineColor)
     }
 
     fun setOnWeatherItemClickListener(weatherItemClickListener: OnWeatherItemClickListener) {
@@ -138,20 +135,20 @@ class WeatherView :
         }
     }
 
-    private fun getMaxTemp(list: ArrayList<HourlyWeather>?): Double {
+    private fun getMaxTemp(list: ArrayList<HourlyWeather>?): Int {
         return (if (list != null) {
             Collections.max<HourlyWeather>(
                 list, TempComparator()
             ).temp
-        } else 0.0)
+        } else 0)
     }
 
-    private fun getMinTemp(list: ArrayList<HourlyWeather>?): Double {
+    private fun getMinTemp(list: ArrayList<HourlyWeather>?): Int {
         return (if (list != null) {
             Collections.min<HourlyWeather>(
                 list, TempComparator()
             ).temp
-        } else 0.0)
+        } else 0)
     }
 
     @Throws(Exception::class)

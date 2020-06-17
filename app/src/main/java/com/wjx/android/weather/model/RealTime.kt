@@ -6,7 +6,7 @@ package com.wjx.android.weather.model
  * @author: Wangjianxian
  * @CreateDate: 2020/6/9 11:15
  */
-data class RealTimeData(
+data class RealTime(
     val api_status: String,
     val api_version: String,
     val lang: String,

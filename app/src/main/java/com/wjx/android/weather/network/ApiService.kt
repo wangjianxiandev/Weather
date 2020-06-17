@@ -2,9 +2,8 @@ package com.wjx.android.weather.network
 
 import com.wjx.android.weather.common.Constant
 import com.wjx.android.weather.model.Daily
-import com.wjx.android.weather.model.GaoDeCode
 import com.wjx.android.weather.model.HourlyData
-import com.wjx.android.weather.model.RealTimeData
+import com.wjx.android.weather.model.RealTime
 import com.wjx.android.weather.module.searchplace.model.SearchPlaceResponse
 import retrofit2.http.GET
 import retrofit2.http.Path
@@ -24,7 +23,7 @@ interface ApiService {
     suspend fun loadRealtimeWeather(
         @Path("lng") lng: String?,
         @Path("lat") lat: String?
-    ): RealTimeData
+    ): RealTime
 
     @GET("v2.5/${Constant.CAIYUN_TOKEN}/{lng},{lat}/daily.json")
     suspend fun loadDailyWeather(@Path("lng") lng: String?, @Path("lat") lat: String?): Daily

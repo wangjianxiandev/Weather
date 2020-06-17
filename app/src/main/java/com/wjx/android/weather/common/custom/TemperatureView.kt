@@ -16,7 +16,7 @@ import kotlin.math.min
 class TemperatureView(context: Context, attributeSet: AttributeSet) : View(context, attributeSet) {
     private var mMaxTemp = 0
     private var mMinTemp = 0
-    private var mTemp = 0.0
+    private var mTemp = 0
     private lateinit var mPointPaint: Paint
     private lateinit var mTextPaint: Paint
     private var mPointColor = 0
@@ -64,7 +64,7 @@ class TemperatureView(context: Context, attributeSet: AttributeSet) : View(conte
         val height: Int = height
         val y =
             (height - height * (mTemp - mMinTemp) * 1.0f / (mMaxTemp - mMinTemp)) + mTextSize * 2
-        val dayTemp: String = mTemp.toString() + "°"
+        val dayTemp: String = mTemp.toString() + "°C"
         val widDay: Float = mTextPaint.measureText(dayTemp)
         val hei: Float = mTextPaint.descent() - mTextPaint.ascent()
         canvas?.let { it ->
@@ -89,7 +89,7 @@ class TemperatureView(context: Context, attributeSet: AttributeSet) : View(conte
 
     fun getYPoint() = mYPoint
 
-    fun setTemp(temp : Double) {
+    fun setTemp(temp : Int) {
         this.mTemp = temp
     }
     fun getTemp() = mTemp

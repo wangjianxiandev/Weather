@@ -15,10 +15,8 @@ import com.wjx.android.weather.module.home.adapter.HomeDetailAdapter
 import com.wjx.android.weather.module.home.viewmodel.HomeDetailViewModel
 import com.zhpan.indicator.enums.IndicatorSlideMode
 import com.zhpan.indicator.enums.IndicatorStyle
-import kotlinx.android.synthetic.main.home_detail_fragment.*
 import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.android.synthetic.main.home_fragment.view.*
-import kotlinx.android.synthetic.main.layout_toolbar.*
 
 class HomeFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragmentBinding>() {
     override fun getLayoutId(): Int = R.layout.home_fragment
@@ -54,7 +52,7 @@ class HomeFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragmentBind
     }
 
     override fun initData() {
-        super.initData()
+        showSuccess()
         appViewModel.queryAllPlace()
     }
 
@@ -88,20 +86,22 @@ class HomeFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragmentBind
         if (mPlaceNameList.isNotEmpty()) {
             home_bar.home_title.text = mPlaceNameList[0]
         }
+        home_viewpager.offscreenPageLimit = 3
         home_viewpager.adapter = HomeDetailAdapter(childFragmentManager, tabs, fragments)
         //设置监听
         home_viewpager.addOnPageChangeListener(TitlePageChangeListener())
 
         indicator_view
             .setSliderColor(
-                CommonUtil.getColor(requireContext(), R.color.dark),
-                CommonUtil.getColor(requireContext(), R.color.always_white_text)
+                CommonUtil.getColor(requireContext(), R.color.grey_10),
+                CommonUtil.getColor(requireContext(), R.color.material_blue)
             )
             .setSliderWidth(resources.getDimension(R.dimen.safe_padding))
             .setSliderHeight(resources.getDimension(R.dimen.safe_padding))
             .setSlideMode(IndicatorSlideMode.WORM)
             .setIndicatorStyle(IndicatorStyle.CIRCLE)
             .setupWithViewPager(home_viewpager)
+        indicator_view.visibility = View.GONE
     }
 
     private inner class TitlePageChangeListener : ViewPager.OnPageChangeListener {
@@ -117,6 +117,7 @@ class HomeFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragmentBind
 
         override fun onPageSelected(position: Int) {
             changeTitle(position)
+            indicator_view.visibility = View.VISIBLE
         }
     }
 

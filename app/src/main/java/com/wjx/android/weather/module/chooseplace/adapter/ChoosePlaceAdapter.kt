@@ -4,8 +4,6 @@ import com.chad.library.adapter.base.BaseQuickAdapter
 import com.chad.library.adapter.base.viewholder.BaseViewHolder
 import com.wjx.android.weather.R
 import com.wjx.android.weather.common.setAdapterAnimation
-import com.wjx.android.weather.common.util.getSky
-import com.wjx.android.weather.model.AddedPlace
 import com.wjx.android.weather.model.Place
 
 /**

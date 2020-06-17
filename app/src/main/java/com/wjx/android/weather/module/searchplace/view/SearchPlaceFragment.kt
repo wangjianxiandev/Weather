@@ -26,6 +26,7 @@ class SearchPlaceFragment :
 
     override fun initView() {
         super.initView()
+        showSuccess()
         initAdapter()
         initHeaderView()
     }

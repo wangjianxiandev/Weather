@@ -7,7 +7,7 @@ package com.wjx.android.weather.model
  * @CreateDate: 2020/6/15 10:08
  */
 data class HourlyWeather(
-    val temp: Double,
+    val temp: Int,
     val skycon : Skycon,
     val weather: String,
     val time: String,

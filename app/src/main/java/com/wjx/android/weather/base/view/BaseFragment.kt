@@ -24,6 +24,8 @@ import com.wjx.android.weather.common.util.CommonUtil
  * @CreateDate: 2020/6/3 22:47
  */
 abstract class BaseFragment<VM : BaseViewModel<*>, DB : ViewDataBinding> : Fragment() {
+    private var isFirst: Boolean = true
+
     protected lateinit var mViewModel: VM
 
     protected lateinit var mDataBinding: DB
@@ -38,12 +40,13 @@ abstract class BaseFragment<VM : BaseViewModel<*>, DB : ViewDataBinding> : Fragm
 
     abstract fun getLayoutId(): Int
 
+    open fun initDataObserver() {}
+
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        mViewModel = ViewModelProvider(this).get(CommonUtil.getClass(this))
         mDataBinding = DataBindingUtil.inflate(inflater, getLayoutId(), container, false)
         mDataBinding.lifecycleOwner = this
         loadService = LoadSir.getDefault().register(mDataBinding.root) { reLoad() }
@@ -51,8 +54,10 @@ abstract class BaseFragment<VM : BaseViewModel<*>, DB : ViewDataBinding> : Fragm
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        mViewModel = ViewModelProvider(this).get(CommonUtil.getClass(this))
         initView()
         initData()
+        initDataObserver()
         initStatusBarColor()
     }
 

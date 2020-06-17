@@ -1,6 +1,8 @@
 package com.wjx.android.weather.module.chooseplace.view
 
+import android.graphics.Color
 import android.view.View
+import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
@@ -9,21 +11,18 @@ import com.wjx.android.weather.base.view.BaseLifeCycleFragment
 import com.wjx.android.weather.common.Constant
 import com.wjx.android.weather.common.util.SPreference
 import com.wjx.android.weather.databinding.FragmentListBinding
-import com.wjx.android.weather.model.AddedPlace
 import com.wjx.android.weather.model.Place
 import com.wjx.android.weather.module.chooseplace.viewmodel.ChoosePlaceViewModel
 import com.wjx.android.weather.module.chooseplace.adapter.ChoosePlaceAdapter
 import kotlinx.android.synthetic.main.custom_bar.view.*
 import kotlinx.android.synthetic.main.fragment_list.*
-import kotlinx.android.synthetic.main.home_fragment.*
+import kotlinx.android.synthetic.main.home_detail_fragment.*
 
 class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, FragmentListBinding>() {
 
     private lateinit var mAdapter: ChoosePlaceAdapter
 
     private lateinit var mHeaderView: View
-
-    private val mPlaceList = arrayListOf<Place>()
 
     private var mPosition: Int by SPreference(Constant.POSITION, 0)
 
@@ -32,12 +31,29 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
 
     override fun initView() {
         super.initView()
+        showSuccess()
+        initRefresh()
         initAdapter()
         initHeaderView()
     }
 
+    private fun initRefresh() {
+        // 设置下拉刷新的loading颜色
+        mSrlRefresh.setProgressBackgroundColorSchemeColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.bluebackground
+            )
+        )
+        mSrlRefresh.setColorSchemeColors(Color.WHITE)
+        mSrlRefresh.setOnRefreshListener { initData() }
+    }
+
     override fun initData() {
         super.initData()
+        if (mSrlRefresh.isRefreshing) {
+            mSrlRefresh.isRefreshing = false
+        }
         mViewModel.queryAllPlace()
     }
 

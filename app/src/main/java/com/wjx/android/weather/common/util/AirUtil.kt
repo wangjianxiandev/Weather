@@ -8,7 +8,7 @@ package com.wjx.android.weather.common.util
  */
 class AirLevel(val airLevel: String)
 
-fun getAirLevel(airLevel: Int): AirLevel {
+fun getAirLevel(airLevel: Double): AirLevel {
     if (airLevel in 0.0..50.0) {
         return AirLevel("优")
     }

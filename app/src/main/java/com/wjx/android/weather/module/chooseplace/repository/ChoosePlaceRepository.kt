@@ -16,7 +16,4 @@ class ChoosePlaceRepository(var loadState: MutableLiveData<State>) : ApiReposito
     suspend fun queryAllPlace() = RoomHelper.queryAllPlace(loadState)
     suspend fun deletePlace(place: Place) = RoomHelper.deletePlace(place)
     suspend fun deleteAll() = RoomHelper.deleteAll()
-    suspend fun loadRealtimeWeather(lng: String?, lat: String?) =
-        apiService.loadRealtimeWeather(lng, lat)
-
 }

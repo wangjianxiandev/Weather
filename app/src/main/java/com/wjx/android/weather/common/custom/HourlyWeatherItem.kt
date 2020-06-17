@@ -46,11 +46,11 @@ class HourlyWeatherItem(context: Context) :
     }
 
     fun getTempX(): Float {
-        return if (mTemperatureView != null) mTemperatureView.x else 0F
+        return if (mTemperatureView != null) mTemperatureView.x else 0.0F
     }
 
     fun getTempY(): Float {
-        return if (mTemperatureView != null) mTemperatureView.y else 0F
+        return if (mTemperatureView != null) mTemperatureView.y else 0.0F
     }
 
     fun setWeather(weather: String?) {
@@ -69,7 +69,7 @@ class HourlyWeatherItem(context: Context) :
         mAirLevel?.text = airLevel
     }
 
-    fun setTemp(temp: Double) {
+    fun setTemp(temp: Int) {
         mTemperatureView?.setTemp(temp)
     }
 

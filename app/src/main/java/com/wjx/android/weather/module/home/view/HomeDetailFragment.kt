@@ -1,9 +1,11 @@
 package com.wjx.android.weather.module.home.view
 
 import android.annotation.SuppressLint
+import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
 import android.widget.Toast
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -19,9 +21,11 @@ import com.wjx.android.weather.common.util.getWindSpeed
 import com.wjx.android.weather.databinding.HomeFragmentBinding
 import com.wjx.android.weather.model.Daily
 import com.wjx.android.weather.model.HourlyWeather
-import com.wjx.android.weather.model.RealTimeData
+import com.wjx.android.weather.model.RealTime
 import com.wjx.android.weather.module.home.adapter.HomeDailyAdapter
 import com.wjx.android.weather.module.home.viewmodel.HomeDetailViewModel
+import kotlinx.android.synthetic.main.fragment_list.*
+import kotlinx.android.synthetic.main.home_detail_fragment.*
 import kotlinx.android.synthetic.main.layout_container.*
 import kotlinx.android.synthetic.main.layout_current_place_detail.*
 import kotlinx.android.synthetic.main.layout_flipper_detail.*
@@ -53,11 +57,29 @@ class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragme
 
     override fun initView() {
         super.initView()
+        initRefresh()
         setHasOptionsMenu(true)
         initAdapter()
     }
 
+    private fun initRefresh() {
+        // 设置下拉刷新的loading颜色
+        home_container.setProgressBackgroundColorSchemeColor(
+            ContextCompat.getColor(
+                requireContext(),
+                R.color.material_blue
+            )
+        )
+        home_container.setColorSchemeColors(Color.WHITE)
+        home_container.setOnRefreshListener { initData() }
+    }
+
     override fun initData() {
+        if (home_container.isRefreshing) {
+            home_container.isRefreshing = false
+            list.clear()
+        }
+        showSuccess()
         mViewModel.loadRealtimeWeather(mLng, mLat)
         mViewModel.loadDailyWeather(mLng, mLat)
         mViewModel.loadHourlyWeather(mLng, mLat)
@@ -65,7 +87,7 @@ class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragme
 
     override fun initDataObserver() {
         super.initDataObserver()
-        mViewModel.mRealTimeDataData.observe(this, Observer { response ->
+        mViewModel.mRealTimeData.observe(this, Observer { response ->
             response?.let {
                 initCurrentData(it.result.realtime)
             }
@@ -91,11 +113,10 @@ class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragme
 
         mViewModel.mHourlyData.observe(this, Observer { response ->
             response?.let {
-                Log.d("wjxHour2", it.toString())
                 for (i in 0 until it.result.hourly.temperature.size) {
                     list.add(
                         HourlyWeather(
-                            it.result.hourly.temperature[i].value,
+                            it.result.hourly.temperature[i].value.toInt(),
                             it.result.hourly.skycon[i],
                             getSky(it.result.hourly.skycon[i].value).info,
                             it.result.hourly.temperature[i].datetime.substring(11, 16),
@@ -106,7 +127,6 @@ class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragme
                         )
                     )
                 }
-                Log.d("WjxHour", list.toString())
                 initHourlyView(list)
             }
         })
@@ -120,7 +140,7 @@ class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragme
     }
 
     @SuppressLint("ResourceType")
-    private fun initCurrentData(realtime: RealTimeData.Realtime) {
+    private fun initCurrentData(realtime: RealTime.Realtime) {
         temp_text_view.text = "${realtime.temperature.toInt()} ℃"
         description_text_view.text = getSky(
             realtime.skycon
@@ -130,10 +150,10 @@ class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragme
                 realtime.skycon
             ).icon
         )
-        humidity_text_view.text = "湿度: ${realtime.humidity.toString()}"
-        wind_text_view.text = "风力: ${realtime.wind.speed.toString()}"
-        visible_text_view.text = "能见度: ${realtime.visibility.toString()}"
-        index_text_view.text = "空气指数: ${realtime.air_quality.aqi.chn.toInt()}"
+        humidity_text_view.text = "湿度: ${(realtime.humidity * 100).toInt()} %"
+        wind_text_view.text = "风力: ${getWindSpeed(realtime.wind.speed).speed}"
+        visible_text_view.text = "能见度: ${realtime.visibility} m"
+        index_text_view.text = "空气质量: ${getAirLevel(realtime.air_quality.aqi.chn).airLevel}"
     }
 
 

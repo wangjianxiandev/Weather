@@ -17,7 +17,6 @@ import java.net.UnknownHostException
  */
 object NetExceptionHandle {
     fun handleException(e: Throwable?, loadState: MutableLiveData<State>){
-        val ex = Exception()
         e?.let {
             when (it) {
                 is HttpException -> {

@@ -7,7 +7,7 @@
 
     <ProgressBar
         android:indeterminateTintMode="src_atop"
-        android:indeterminateTint="@color/colorAccent"
+        android:indeterminateTint="@color/material_blue"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 

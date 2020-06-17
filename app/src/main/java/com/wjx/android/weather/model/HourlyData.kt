@@ -62,7 +62,7 @@ data class Humidity(
 
 data class Precipitation(
     val datetime: String,
-    val value: Int
+    val value: Double
 )
 
 data class Pressure(
@@ -98,10 +98,10 @@ data class Aqi(
 
 data class Pm25(
     val datetime: String,
-    val value: Int
+    val value: Double
 )
 
 data class Value(
-    val chn: Int,
-    val usa: Int
+    val chn: Double,
+    val usa: Double
 )

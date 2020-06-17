@@ -105,7 +105,8 @@
                     android:layout_marginEnd="@dimen/spacing_mlarge"
                     app:cardBackgroundColor="@color/material_blue"
                     app:cardCornerRadius="30dp"
-                    app:cardElevation="@dimen/dp_10">
+                    app:cardElevation="@dimen/dp_10"
+                    android:layout_marginBottom="@dimen/safe_padding">
 
                     <include layout="@layout/life_index" />
 

@@ -1,7 +1,6 @@
 package com.wjx.android.weather.module.home.viewmodel
 
 import android.app.Application
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.wjx.android.weather.base.viewmodel.BaseViewModel
@@ -9,7 +8,7 @@ import com.wjx.android.weather.common.initiateRequest
 import com.wjx.android.weather.model.Daily
 import com.wjx.android.weather.model.HourlyData
 import com.wjx.android.weather.model.Place
-import com.wjx.android.weather.model.RealTimeData
+import com.wjx.android.weather.model.RealTime
 import com.wjx.android.weather.module.home.repository.HomeDetailRepository
 
 import kotlinx.coroutines.Dispatchers
@@ -21,7 +20,7 @@ class HomeDetailViewModel(application: Application) :
 
     val mFirstPlaceData: MutableLiveData<Place> = MutableLiveData()
     val mPlaceData: MutableLiveData<MutableList<Place>> = MutableLiveData()
-    val mRealTimeDataData: MutableLiveData<RealTimeData> = MutableLiveData()
+    val mRealTimeData: MutableLiveData<RealTime> = MutableLiveData()
     val mDailyData: MutableLiveData<Daily> = MutableLiveData()
     val mHourlyData: MutableLiveData<HourlyData> = MutableLiveData()
 
@@ -43,7 +42,7 @@ class HomeDetailViewModel(application: Application) :
 
     fun loadRealtimeWeather(lng: String?, lat: String?) {
         initiateRequest(
-            { mRealTimeDataData.value = mRepository.loadRealtimeWeather(lng, lat) },
+            { mRealTimeData.value = mRepository.loadRealtimeWeather(lng, lat) },
             loadState
         )
     }
