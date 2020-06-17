@@ -13,20 +13,22 @@
     app:cardElevation="@dimen/safe_padding">
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/todo_card"
+        android:id="@+id/location_card"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/bluebackground"
         android:padding="@dimen/marginstart">
 
         <ImageView
-            android:id="@+id/location_tag"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:src="@drawable/ic_location"
+            android:id="@+id/location_delete"
+            android:layout_width="38dp"
+            android:layout_height="38dp"
+            android:src="@drawable/ic_delete"
             android:visibility="gone"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"/>
 
         <TextView
             android:id="@+id/location_name"

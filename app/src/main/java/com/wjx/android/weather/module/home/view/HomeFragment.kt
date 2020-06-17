@@ -101,11 +101,12 @@ class HomeFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragmentBind
             .setSlideMode(IndicatorSlideMode.WORM)
             .setIndicatorStyle(IndicatorStyle.CIRCLE)
             .setupWithViewPager(home_viewpager)
-        indicator_view.visibility = View.GONE
+        indicator_view.visibility = View.INVISIBLE
     }
 
     private inner class TitlePageChangeListener : ViewPager.OnPageChangeListener {
         override fun onPageScrollStateChanged(state: Int) {
+            indicator_view.visibility = View.INVISIBLE
         }
 
         override fun onPageScrolled(

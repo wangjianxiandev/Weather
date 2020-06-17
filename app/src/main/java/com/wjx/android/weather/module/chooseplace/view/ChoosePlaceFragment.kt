@@ -6,6 +6,7 @@ import androidx.core.content.ContextCompat
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
+import com.afollestad.materialdialogs.MaterialDialog
 import com.wjx.android.weather.R
 import com.wjx.android.weather.base.view.BaseLifeCycleFragment
 import com.wjx.android.weather.common.Constant
@@ -50,7 +51,6 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
     }
 
     override fun initData() {
-        super.initData()
         if (mSrlRefresh.isRefreshing) {
             mSrlRefresh.isRefreshing = false
         }
@@ -88,16 +88,44 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
             StaggeredGridLayoutManager(2, StaggeredGridLayoutManager.VERTICAL)
         mRvArticle.adapter = mAdapter
         mAdapter.setOnItemLongClickListener { adapter, view, position ->
-            val place = mAdapter.getItem(position)
-            place?.let {
-                mViewModel.deletePlace(place)
-                mAdapter.notifyDataSetChanged()
+            mAdapter.getViewByPosition(position + 1, R.id.location_delete)?.visibility =
+                View.VISIBLE
+            mAdapter.getViewByPosition(position + 1, R.id.location_card)
+                ?.setBackgroundColor(ContextCompat.getColor(
+                    requireContext(),
+                    R.color.grey_80
+                ))
+            mAdapter.getViewByPosition(position + 1, R.id.location_delete)?.setOnClickListener {
+                val place = mAdapter.getItem(position)
+                place?.let {
+                    MaterialDialog(requireContext()).show {
+                        title(R.string.title)
+                        message(R.string.delete_city)
+                        cornerRadius(8.0f)
+                        negativeButton(R.string.cancel) {
+                            mAdapter.getViewByPosition(position + 1, R.id.location_delete)?.visibility =
+                                View.GONE
+                            mAdapter.getViewByPosition(position + 1, R.id.location_card)
+                                ?.setBackgroundColor(
+                                    ContextCompat.getColor(
+                                        requireContext(),
+                                        R.color.bluebackground
+                                    )
+                                )
+                        }
+                        positiveButton(R.string.delete) {
+                            mViewModel.deletePlace(place)
+                            mAdapter.notifyDataSetChanged()
+                        }
+                    }
+                }
+                true
             }
             true
         }
         mAdapter.setOnItemClickListener { adapter, view, position ->
 //            appViewModel.changeCurrentPlace(mAdapter.getItem(position).place)
-            mPosition = position
+//            mPosition = position
             Navigation.findNavController(view).navigateUp()
         }
     }

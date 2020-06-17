@@ -10,6 +10,10 @@
     <string name="next_5_days_daily">5天预报</string>
     <string name="city">管理城市</string>
     <string name="more">更多</string>
+    <string name="title">温馨提示</string>
+    <string name="delete_city">是否删除当前城市？</string>
+    <string name="cancel">取消</string>
+    <string name="delete">删除</string>
 
 
     <!--feed back-->

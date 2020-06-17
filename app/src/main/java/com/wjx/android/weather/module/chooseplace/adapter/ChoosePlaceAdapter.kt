@@ -41,5 +41,4 @@ class ChoosePlaceAdapter(layout: Int, listData: MutableList<Place>?) :
         super.onViewAttachedToWindow(holder)
         setAdapterAnimation(2)
     }
-
 }

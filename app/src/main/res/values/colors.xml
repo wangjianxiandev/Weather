@@ -1,12 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#ffffff</color>
+    <color name="colorPrimary">#D81B60</color>
     <color name="colorPrimaryDark">#dddddd</color>
     <color name="colorAccent">#D81B60</color>
     <color name="overlay_dark_50">#40000000</color>
     <color name="always_white_text">#FFFFFF</color>
     <color name="material_blue">#6452f0</color>
     <color name="grey_10">#e6e6e6</color>
+    <color name="grey_80">#333232</color>
     <color name="green_success">#155724</color>
     <color name="light_green">#FF08B32F</color>
     <color name="colorPrimaryNight">#263238</color>
