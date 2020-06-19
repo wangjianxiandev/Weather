@@ -41,7 +41,7 @@ class HourlyWeatherItem(context: Context) :
         mWeatherImage = mRootView.findViewById(R.id.hourly_weather_img)
         rootView.layoutParams = LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT
+            ViewGroup.LayoutParams.WRAP_CONTENT
         )
         addView(mRootView)
     }

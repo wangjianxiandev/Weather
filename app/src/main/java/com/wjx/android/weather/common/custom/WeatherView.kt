@@ -72,8 +72,8 @@ class WeatherView :
                 val temperatureView =
                     hourlyWeatherItem.findViewById<View>(R.id.hourly_temp) as TemperatureView
                 temperatureView.setRadius(10F)
-                val x = dX + temperatureView.getXPoint()
-                val y = dY + temperatureView.getYPoint()
+                val x = (dX + temperatureView.getXPoint()).toInt()
+                val y = (dY + temperatureView.getYPoint()).toInt()
                 mPath.reset()
                 mPath.moveTo(x.toFloat(), y.toFloat())
 
@@ -81,23 +81,23 @@ class WeatherView :
                 for (i in 0 until root.childCount - 1) {
                     val child: HourlyWeatherItem = root.getChildAt(i) as HourlyWeatherItem
                     val child1: HourlyWeatherItem = root.getChildAt(i + 1) as HourlyWeatherItem
-                    val dayX = (child.getTempX() + child.getWidth() * i).toInt()
+                    val dayX = child.getTempX().toInt() + child.width * i
                     val dayY = child.getTempY().toInt()
-                    val dayX1 = (child1.getTempX() + child1.getWidth() * (i + 1)).toInt()
+                    val dayX1 = child1.getTempX().toInt() + child1.width * (i + 1)
                     val dayY1 = child1.getTempY().toInt()
                     val tempV = child.findViewById<View>(R.id.hourly_temp) as TemperatureView
                     val tempV1 = child1.findViewById<View>(R.id.hourly_temp) as TemperatureView
                     tempV.setRadius(10F)
                     tempV1.setRadius(10F)
-                    val x1 = (dayX + tempV.getXPoint()).toInt()
-                    val y1 = (dayY + tempV.getYPoint()).toInt()
-                    val x11 = (dayX1 + tempV1.getXPoint()).toInt()
-                    val y11 = (dayY1 + tempV1.getYPoint()).toInt()
+                    val x1 = dayX + tempV.getXPoint()
+                    val y1 = dayY + tempV.getYPoint()
+                    val x11 = dayX1 + tempV1.getXPoint()
+                    val y11 = dayY1 + tempV1.getYPoint()
                     canvas!!.drawLine(
-                        x1.toFloat(),
-                        y1.toFloat(),
-                        x11.toFloat(),
-                        y11.toFloat(),
+                        x1,
+                        y1,
+                        x11,
+                        y11,
                         mPaint
                     )
                     invalidate()

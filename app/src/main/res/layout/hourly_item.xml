@@ -2,8 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="wrap_content"
     android:layout_height="match_parent"
-    android:orientation="horizontal"
-    android:padding="@dimen/safe_padding">
+    android:orientation="horizontal">
 
     <LinearLayout
         android:layout_width="wrap_content"
@@ -16,6 +15,7 @@
             android:layout_width="wrap_content"
             android:layout_height="60px"
             android:gravity="center"
+            android:layout_marginTop="@dimen/dp_10"
             android:text="12:07"
             android:textColor="#fff"
             android:textSize="38px" />
@@ -45,7 +45,7 @@
             android:id="@+id/hourly_wind_ori"
             android:layout_width="wrap_content"
             android:layout_height="80px"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="120px"
             android:gravity="center"
             android:singleLine="true"
             android:text="西南风"

@@ -5,7 +5,6 @@ import android.graphics.Canvas
 import android.graphics.Paint
 import android.util.AttributeSet
 import android.view.View
-import kotlin.math.min
 
 /**
  * Created with Android Studio.
@@ -22,9 +21,9 @@ class TemperatureView(context: Context, attributeSet: AttributeSet) : View(conte
     private var mPointColor = 0
     private var mTextColor = 0
     private var mRadius = 6F
-    private var mTextSize = 26
-    private var mXPoint = 0
-    private var mYPoint = 0
+    private var mTextSize = 26F
+    private var mXPoint = 0F
+    private var mYPoint = 0F
     private var mWidth = 0
 
     init {
@@ -32,13 +31,13 @@ class TemperatureView(context: Context, attributeSet: AttributeSet) : View(conte
     }
 
     private fun init() {
-        mTextColor = -0x1
-        mPointColor = -0x1
+        mTextColor = 0xffffffff.toInt()
+        mPointColor = 0xffffffff.toInt()
         mPointPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         mTextPaint = Paint(Paint.ANTI_ALIAS_FLAG)
         mPointPaint.color = mPointColor
         mTextPaint.color = mTextColor
-        mTextPaint.textSize = mTextSize.toFloat()
+        mTextPaint.textSize = mTextSize
     }
 
     override fun onDraw(canvas: Canvas?) {
@@ -51,24 +50,24 @@ class TemperatureView(context: Context, attributeSet: AttributeSet) : View(conte
         var height = height
         var x = width / 2
         var y =
-            ((height - height * (mTemp - mMinTemp) * 1.0F / (mMaxTemp - mMinTemp)) + mTextSize * 2).toInt()
-        mXPoint = x
+            (height - height * (mTemp - mMinTemp) * 1.0F / (mMaxTemp - mMinTemp)) + mTextSize * 2
+        mXPoint = x.toFloat()
         mYPoint = y
         mWidth = width
         canvas?.let { it ->
-            it.drawCircle(x.toFloat(), y.toFloat(), mRadius, mPointPaint)
+            it.drawCircle(mXPoint, mYPoint, mRadius, mPointPaint)
         }
     }
 
     private fun drawText(canvas: Canvas?) {
-        val height: Int = height
+        val height = height - mTextSize * 4
         val y =
             (height - height * (mTemp - mMinTemp) * 1.0f / (mMaxTemp - mMinTemp)) + mTextSize * 2
         val dayTemp: String = mTemp.toString() + "°C"
         val widDay: Float = mTextPaint.measureText(dayTemp)
         val hei: Float = mTextPaint.descent() - mTextPaint.ascent()
         canvas?.let { it ->
-            it.drawText(dayTemp, width / 2 - widDay / 2, (y - mRadius - hei / 2).toFloat(), mTextPaint)
+            it.drawText(dayTemp, width / 2 - widDay / 2, y - mRadius - hei / 2, mTextPaint)
         }
     }
 
