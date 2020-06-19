@@ -1,5 +1,8 @@
 package com.wjx.android.weather.common
 
+import androidx.fragment.app.Fragment
+import androidx.viewpager2.adapter.FragmentStateAdapter
+import androidx.viewpager2.widget.ViewPager2
 import com.chad.library.adapter.base.BaseQuickAdapter
 
 /**
@@ -17,4 +20,19 @@ fun BaseQuickAdapter<*, *>.setAdapterAnimation(mode: Int) {
         this.animationEnable = true
         this.setAnimationWithDefault(BaseQuickAdapter.AnimationType.values()[mode - 1])
     }
+}
+
+fun ViewPager2.init(
+    fragment: Fragment,
+    fragments: ArrayList<Fragment>,
+    isUserInputEnabled: Boolean = true
+): ViewPager2 {
+    //是否可滑动
+    this.isUserInputEnabled = isUserInputEnabled
+    //设置适配器
+    adapter = object : FragmentStateAdapter(fragment) {
+        override fun createFragment(position: Int) = fragments[position]
+        override fun getItemCount() = fragments.size
+    }
+    return this
 }

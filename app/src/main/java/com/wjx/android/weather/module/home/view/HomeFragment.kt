@@ -6,8 +6,10 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.navigation.Navigation
 import androidx.viewpager.widget.ViewPager
+import androidx.viewpager2.widget.ViewPager2
 import com.wjx.android.weather.R
 import com.wjx.android.weather.base.view.BaseLifeCycleFragment
+import com.wjx.android.weather.common.init
 import com.wjx.android.weather.common.util.CommonUtil
 import com.wjx.android.weather.databinding.HomeFragmentBinding
 import com.wjx.android.weather.model.Place
@@ -60,9 +62,10 @@ class HomeFragment : BaseLifeCycleFragment<HomeViewModel, HomeFragmentBinding>()
         super.initDataObserver()
         mViewModel.mPlaceData.observe(this, Observer { response ->
             response?.let {
-                if(response.size == 0) {
+                if (response.size == 0) {
                     CommonUtil.showToast(requireContext(), "请添加城市")
-                    Navigation.findNavController(home_normal_view).navigate(R.id.choosePlaceFragment)
+                    Navigation.findNavController(home_normal_view)
+                        .navigate(R.id.choosePlaceFragment)
                 }
                 initHomeDetailFragment(it)
             }
@@ -89,9 +92,9 @@ class HomeFragment : BaseLifeCycleFragment<HomeViewModel, HomeFragmentBinding>()
             home_bar.home_title.text = mPlaceNameList[0]
         }
         home_viewpager.offscreenPageLimit = 3
-        home_viewpager.adapter = HomeDetailAdapter(childFragmentManager, tabs, fragments)
+        home_viewpager.init(this, fragments)
         //设置监听
-        home_viewpager.addOnPageChangeListener(TitlePageChangeListener())
+        home_viewpager.registerOnPageChangeCallback(TitlePageChangeCallback())
 
         indicator_view
             .setSliderColor(
@@ -106,7 +109,7 @@ class HomeFragment : BaseLifeCycleFragment<HomeViewModel, HomeFragmentBinding>()
         indicator_view.visibility = View.INVISIBLE
     }
 
-    private inner class TitlePageChangeListener : ViewPager.OnPageChangeListener {
+    private inner class TitlePageChangeCallback : ViewPager2.OnPageChangeCallback() {
         override fun onPageScrollStateChanged(state: Int) {
             indicator_view.visibility = View.INVISIBLE
         }

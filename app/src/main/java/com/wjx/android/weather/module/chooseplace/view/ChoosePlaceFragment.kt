@@ -9,32 +9,18 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.wjx.android.weather.R
 import com.wjx.android.weather.base.view.BaseLifeCycleFragment
-import com.wjx.android.weather.common.Constant
-import com.wjx.android.weather.common.util.SPreference
 import com.wjx.android.weather.databinding.FragmentListBinding
 import com.wjx.android.weather.model.ChoosePlaceData
-import com.wjx.android.weather.model.Place
-import com.wjx.android.weather.model.RealTime
 import com.wjx.android.weather.module.chooseplace.viewmodel.ChoosePlaceViewModel
 import com.wjx.android.weather.module.chooseplace.adapter.ChoosePlaceAdapter
 import kotlinx.android.synthetic.main.custom_bar.view.*
 import kotlinx.android.synthetic.main.fragment_list.*
-import kotlinx.android.synthetic.main.home_detail_fragment.*
-import okhttp3.Response
 
 class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, FragmentListBinding>() {
 
     private lateinit var mAdapter: ChoosePlaceAdapter
 
     private lateinit var mHeaderView: View
-
-    private var mRealTimeDataList = arrayListOf<RealTime>()
-
-    private var mChoosePlaceList = arrayListOf<ChoosePlaceData>()
-
-    private var mPlaceList = arrayListOf<Place>()
-
-    private var mPlaceSize: Int = 0
 
     override fun getLayoutId() = R.layout.fragment_list
 
@@ -63,10 +49,6 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
         if (mSrlRefresh.isRefreshing) {
             mSrlRefresh.isRefreshing = false
         }
-//        mChoosePlaceList.clear()
-//        mRealTimeDataList.clear()
-//        mPlaceList.clear()
-//        mViewModel.queryAllPlace()
         mViewModel.queryAllChoosePlace()
     }
 
@@ -143,8 +125,6 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
             true
         }
         mAdapter.setOnItemClickListener { adapter, view, position ->
-//            appViewModel.changeCurrentPlace(mAdapter.getItem(position).place)
-//            mPosition = position
             Navigation.findNavController(view).navigateUp()
         }
     }

@@ -10,6 +10,7 @@ import androidx.core.graphics.ColorUtils
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.ViewModelProvider
 import com.kingja.loadsir.core.LoadService
 import com.kingja.loadsir.core.LoadSir
@@ -56,8 +57,7 @@ abstract class BaseFragment<VM : BaseViewModel<*>, DB : ViewDataBinding> : Fragm
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         mViewModel = ViewModelProvider(this).get(CommonUtil.getClass(this))
         initView()
-        initData()
-        initDataObserver()
+        onFirstVisible()
         initStatusBarColor()
     }
 
@@ -76,6 +76,19 @@ abstract class BaseFragment<VM : BaseViewModel<*>, DB : ViewDataBinding> : Fragm
             // 跟随系统
             requireActivity().window.decorView.systemUiVisibility =
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        onFirstVisible()
+    }
+
+    private fun onFirstVisible() {
+        if (lifecycle.currentState == Lifecycle.State.STARTED && isFirst) {
+            initData()
+            isFirst = false
+            initDataObserver()
         }
     }
 }
