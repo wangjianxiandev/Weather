@@ -27,4 +27,8 @@ object CommonUtil {
     fun getColor(context: Context, color: Int): Int {
         return ContextCompat.getColor(context, color)
     }
+
+    fun getNightString(skycon : String) : Boolean {
+        return skycon.contains("night", ignoreCase = true)
+    }
 }
