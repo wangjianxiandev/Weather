@@ -7,7 +7,6 @@ import com.wjx.android.weather.base.viewmodel.BaseViewModel
 import com.wjx.android.weather.common.initiateRequest
 import com.wjx.android.weather.model.*
 import com.wjx.android.weather.module.home.repository.HomeDetailRepository
-
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

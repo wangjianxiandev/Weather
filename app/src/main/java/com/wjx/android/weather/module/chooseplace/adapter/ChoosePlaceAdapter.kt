@@ -8,7 +8,6 @@ import com.wjx.android.weather.common.setAdapterAnimation
 import com.wjx.android.weather.common.util.CommonUtil
 import com.wjx.android.weather.common.util.getSky
 import com.wjx.android.weather.model.ChoosePlaceData
-import com.wjx.android.weather.model.Place
 import kotlinx.android.synthetic.main.place_item.view.*
 
 /**

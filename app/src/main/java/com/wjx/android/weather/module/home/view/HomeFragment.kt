@@ -1,6 +1,5 @@
 package com.wjx.android.weather.module.home.view
 
-import android.graphics.RectF
 import android.view.*
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment

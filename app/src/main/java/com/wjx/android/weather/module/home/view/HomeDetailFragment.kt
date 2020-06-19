@@ -21,15 +21,12 @@ import com.wjx.android.weather.common.util.getSky
 import com.wjx.android.weather.common.util.getWindOri
 import com.wjx.android.weather.common.util.getWindSpeed
 import com.wjx.android.weather.databinding.HomeFragmentBinding
-import com.wjx.android.weather.model.ChoosePlaceData
 import com.wjx.android.weather.model.Daily
 import com.wjx.android.weather.model.HourlyWeather
 import com.wjx.android.weather.model.RealTime
 import com.wjx.android.weather.module.home.adapter.HomeDailyAdapter
 import com.wjx.android.weather.module.home.viewmodel.HomeDetailViewModel
-import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.home_detail_fragment.*
-import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.android.synthetic.main.layout_container.*
 import kotlinx.android.synthetic.main.layout_current_place_detail.*
 import kotlinx.android.synthetic.main.layout_flipper_detail.*

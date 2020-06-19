@@ -2,8 +2,6 @@ package com.wjx.android.weather.module.chooseplace.model.dao
 
 import androidx.room.*
 import com.wjx.android.weather.model.ChoosePlaceData
-import com.wjx.android.weather.model.Skycon
-import com.wjx.android.weather.model.Temperature
 
 /**
  * Created with Android Studio.

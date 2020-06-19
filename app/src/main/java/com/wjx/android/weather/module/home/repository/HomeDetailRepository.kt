@@ -1,13 +1,9 @@
 package com.wjx.android.weather.module.home.repository
 
-import android.service.chooser.ChooserTargetService
 import androidx.lifecycle.MutableLiveData
 import com.wjx.android.weather.base.repository.ApiRepository
 import com.wjx.android.weather.common.RoomHelper
 import com.wjx.android.weather.common.state.State
-import com.wjx.android.weather.model.ChoosePlaceData
-import com.wjx.android.weather.model.Place
-import retrofit2.http.Path
 
 /**
  * Created with Android Studio.
