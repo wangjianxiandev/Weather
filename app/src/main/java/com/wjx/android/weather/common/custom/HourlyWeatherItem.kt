@@ -3,6 +3,7 @@ package com.wjx.android.weather.common.custom
 import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
@@ -38,6 +39,10 @@ class HourlyWeatherItem(context: Context) :
         mWIndLevel = mRootView.findViewById(R.id.hourly_wind_level)
         mAirLevel = mRootView.findViewById(R.id.hourly_air_level)
         mWeatherImage = mRootView.findViewById(R.id.hourly_weather_img)
+        rootView.layoutParams = LayoutParams(
+            ViewGroup.LayoutParams.MATCH_PARENT,
+            ViewGroup.LayoutParams.MATCH_PARENT
+        )
         addView(mRootView)
     }
 

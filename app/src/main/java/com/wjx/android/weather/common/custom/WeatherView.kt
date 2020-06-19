@@ -1,6 +1,5 @@
 package com.wjx.android.weather.common.custom
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.graphics.Canvas
 import android.graphics.Paint
@@ -210,5 +209,4 @@ class WeatherView :
             hourlyWeather: HourlyWeather?
         )
     }
-
 }

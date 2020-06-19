@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.graphics.Color
 import android.os.Bundle
 import android.util.Log
+import android.view.MotionEvent
+import android.view.View
 import android.widget.Toast
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
@@ -27,6 +29,7 @@ import com.wjx.android.weather.module.home.adapter.HomeDailyAdapter
 import com.wjx.android.weather.module.home.viewmodel.HomeDetailViewModel
 import kotlinx.android.synthetic.main.fragment_list.*
 import kotlinx.android.synthetic.main.home_detail_fragment.*
+import kotlinx.android.synthetic.main.home_fragment.*
 import kotlinx.android.synthetic.main.layout_container.*
 import kotlinx.android.synthetic.main.layout_current_place_detail.*
 import kotlinx.android.synthetic.main.layout_flipper_detail.*
@@ -198,5 +201,12 @@ class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragme
                     .show()
             }
         })
+        weather_view.setOnTouchListener(object : View.OnTouchListener {
+            override fun onTouch(v: View?, event: MotionEvent?): Boolean {
+                weather_view.requestDisallowInterceptTouchEvent(true)
+                return false
+            }
+        })
+
     }
 }

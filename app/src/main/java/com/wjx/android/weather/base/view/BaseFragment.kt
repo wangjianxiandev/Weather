@@ -57,7 +57,8 @@ abstract class BaseFragment<VM : BaseViewModel<*>, DB : ViewDataBinding> : Fragm
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         mViewModel = ViewModelProvider(this).get(CommonUtil.getClass(this))
         initView()
-        onFirstVisible()
+        initData()
+        initDataObserver()
         initStatusBarColor()
     }
 
@@ -79,16 +80,16 @@ abstract class BaseFragment<VM : BaseViewModel<*>, DB : ViewDataBinding> : Fragm
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-        onFirstVisible()
-    }
-
-    private fun onFirstVisible() {
-        if (lifecycle.currentState == Lifecycle.State.STARTED && isFirst) {
-            initData()
-            isFirst = false
-            initDataObserver()
-        }
-    }
+//    override fun onResume() {
+//        super.onResume()
+//        onFirstVisible()
+//    }
+//
+//    private fun onFirstVisible() {
+//        if (lifecycle.currentState == Lifecycle.State.STARTED && isFirst) {
+//            initData()
+//            isFirst = false
+//            initDataObserver()
+//        }
+//    }
 }
