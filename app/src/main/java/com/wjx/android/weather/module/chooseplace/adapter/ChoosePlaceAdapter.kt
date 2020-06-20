@@ -33,7 +33,7 @@ class ChoosePlaceAdapter(layout: Int, listData: MutableList<ChoosePlaceData>?) :
                         context,
                         R.color.colorPrimaryDarkNight
                     ) else ContextCompat.getColor(
-                        context, R.color.material_blue
+                        context, R.color.bluebackground
                     )
                 )
                 holder.setText(R.id.location_name, item.name)

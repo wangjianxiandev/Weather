@@ -39,7 +39,7 @@ object RoomHelper {
         return response
     }
 
-    suspend fun insertPlace(place: Place) {
+    suspend fun insertPlace(place: Place): Long? =
         placeDao?.let {
             it.queryPlaceByName(place.name)?.let {
                 var i = placeDao!!.deletePlace(it)
@@ -47,7 +47,7 @@ object RoomHelper {
             }
             it.insertPlace(place)
         }
-    }
+
 
     suspend fun deletePlace(place: Place?) {
         placeDao?.deletePlace(place!!)
@@ -73,7 +73,7 @@ object RoomHelper {
         return response
     }
 
-    suspend fun insertChoosePlace(choosePlaceData: ChoosePlaceData) {
+    suspend fun insertChoosePlace(choosePlaceData: ChoosePlaceData): Long? =
         choosePlaceDao?.let {
             it.queryChoosePlaceByName(choosePlaceData.name)?.let {
                 var i = choosePlaceDao!!.deleteChoosePlace(it)
@@ -81,7 +81,7 @@ object RoomHelper {
             }
             it.insertPlace(choosePlaceData)
         }
-    }
+
 
     suspend fun updateChoosePlace(temperature: Int, skycon: String, name: String) {
         choosePlaceDao?.let {

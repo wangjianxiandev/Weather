@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wjx.android.weather.R
 import com.wjx.android.weather.base.view.BaseLifeCycleFragment
+import com.wjx.android.weather.common.getActivityMessageViewModel
 import com.wjx.android.weather.common.util.KeyBoardUtil.hideKeyboard
 import com.wjx.android.weather.databinding.SearchPlaceFragmentBinding
 import com.wjx.android.weather.model.ChoosePlaceData
@@ -46,7 +47,6 @@ class SearchPlaceFragment :
                 mPlace = place
                 mViewModel.loadRealtimeWeather(place.location.lng, place.location.lat)
                 mViewModel.insertPlace(place)
-                hideKeyboard()
             }
         }
     }
@@ -98,6 +98,20 @@ class SearchPlaceFragment :
                         it.result.realtime.skycon
                     )
                 )
+
+            }
+        })
+
+        mViewModel.mPlaceInsertResult.observe(this, Observer {
+            it?.let {
+                getActivityMessageViewModel().addPlace.postValue(true)
+                hideKeyboard()
+            }
+        })
+
+        mViewModel.mChoosePlaceInsertResult.observe(this, Observer {
+            it?.let {
+                getActivityMessageViewModel().addChoosePlace.postValue(true)
                 Navigation.findNavController(search_place).navigateUp()
             }
         })

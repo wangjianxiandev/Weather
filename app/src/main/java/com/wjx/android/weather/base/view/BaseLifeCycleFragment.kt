@@ -1,6 +1,10 @@
 package com.wjx.android.weather.base.view
 
+import android.os.Bundle
 import android.text.TextUtils
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Lifecycle
@@ -24,13 +28,15 @@ import com.wjx.android.weather.module.main.AppViewModel
  */
 abstract class BaseLifeCycleFragment<VM : BaseViewModel<*>, DB : ViewDataBinding> :
     BaseFragment<VM, DB>() {
-
     val appViewModel: AppViewModel by lazy { getAppViewModel() }
 
     override fun initView() {
         showLoading()
         mViewModel.loadState.observe(this, observer)
+        initDataObserver()
     }
+
+    open fun initDataObserver() {}
 
     open fun showLoading() {
         loadService.showCallback(LoadingCallBack::class.java)

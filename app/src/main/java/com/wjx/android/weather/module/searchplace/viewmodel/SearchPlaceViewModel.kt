@@ -19,6 +19,8 @@ class SearchPlaceViewModel(application: Application) : BaseViewModel<SearchPlace
 ) {
     val mSearchPlacesData: MutableLiveData<SearchPlaceResponse> = MutableLiveData()
     val mRealTimeData: MutableLiveData<RealTime> = MutableLiveData()
+    val mPlaceInsertResult : MutableLiveData<Long?> = MutableLiveData()
+    val mChoosePlaceInsertResult : MutableLiveData<Long?> = MutableLiveData()
 
     fun searchPlaces(query: String) {
         initiateRequest({
@@ -28,7 +30,7 @@ class SearchPlaceViewModel(application: Application) : BaseViewModel<SearchPlace
 
     fun insertPlace(place: Place) {
         viewModelScope.launch {
-            withContext(Dispatchers.IO) {
+            mPlaceInsertResult.value = withContext(Dispatchers.IO) {
                 mRepository.insertPlaces(place)
             }
         }
@@ -44,7 +46,7 @@ class SearchPlaceViewModel(application: Application) : BaseViewModel<SearchPlace
 
     fun insertChoosePlace(choosePlaceData: ChoosePlaceData) {
         viewModelScope.launch {
-            withContext(Dispatchers.IO) {
+            mChoosePlaceInsertResult.value = withContext(Dispatchers.IO) {
                 mRepository.insertChoosePlaces(choosePlaceData)
             }
         }

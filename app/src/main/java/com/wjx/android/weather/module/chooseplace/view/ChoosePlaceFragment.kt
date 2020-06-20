@@ -9,6 +9,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.wjx.android.weather.R
 import com.wjx.android.weather.base.view.BaseLifeCycleFragment
+import com.wjx.android.weather.common.getActivityMessageViewModel
 import com.wjx.android.weather.databinding.FragmentListBinding
 import com.wjx.android.weather.model.ChoosePlaceData
 import com.wjx.android.weather.module.chooseplace.viewmodel.ChoosePlaceViewModel
@@ -27,7 +28,6 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
 
     override fun initView() {
         super.initView()
-        showSuccess()
         initRefresh()
         initAdapter()
         initHeaderView()
@@ -58,6 +58,13 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
                 setPlaceList(response)
             }
         })
+        getActivityMessageViewModel().addChoosePlace.observe(this, Observer {
+            it?.let {
+                mViewModel.queryAllChoosePlace()
+                mAdapter.notifyDataSetChanged()
+            }
+        })
+        showSuccess()
     }
 
     private fun initHeaderView() {

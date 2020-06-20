@@ -25,8 +25,6 @@ import com.wjx.android.weather.common.util.CommonUtil
  * @CreateDate: 2020/6/3 22:47
  */
 abstract class BaseFragment<VM : BaseViewModel<*>, DB : ViewDataBinding> : Fragment() {
-    private var isFirst: Boolean = true
-
     protected lateinit var mViewModel: VM
 
     protected lateinit var mDataBinding: DB
@@ -40,8 +38,6 @@ abstract class BaseFragment<VM : BaseViewModel<*>, DB : ViewDataBinding> : Fragm
     open fun reLoad() = initData()
 
     abstract fun getLayoutId(): Int
-
-    open fun initDataObserver() {}
 
     override fun onCreateView(
         inflater: LayoutInflater,
@@ -58,7 +54,6 @@ abstract class BaseFragment<VM : BaseViewModel<*>, DB : ViewDataBinding> : Fragm
         mViewModel = ViewModelProvider(this).get(CommonUtil.getClass(this))
         initView()
         initData()
-        initDataObserver()
         initStatusBarColor()
     }
 
@@ -79,17 +74,4 @@ abstract class BaseFragment<VM : BaseViewModel<*>, DB : ViewDataBinding> : Fragm
                 View.SYSTEM_UI_FLAG_LAYOUT_STABLE
         }
     }
-
-//    override fun onResume() {
-//        super.onResume()
-//        onFirstVisible()
-//    }
-//
-//    private fun onFirstVisible() {
-//        if (lifecycle.currentState == Lifecycle.State.STARTED && isFirst) {
-//            initData()
-//            isFirst = false
-//            initDataObserver()
-//        }
-//    }
 }

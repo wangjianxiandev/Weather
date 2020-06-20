@@ -22,8 +22,8 @@ class SearchPlaceRepository(var loadState: MutableLiveData<State>) : ApiReposito
     suspend fun loadRealtimeWeather(lng: String?, lat: String?) =
         apiService.loadRealtimeWeather(lng, lat)
 
-    suspend fun insertPlaces(place: Place) = RoomHelper.insertPlace(place)
+    suspend fun insertPlaces(place: Place): Long? = RoomHelper.insertPlace(place)
 
-    suspend fun insertChoosePlaces(choosePlaceData: ChoosePlaceData) =
+    suspend fun insertChoosePlaces(choosePlaceData: ChoosePlaceData): Long? =
         RoomHelper.insertChoosePlace(choosePlaceData)
 }

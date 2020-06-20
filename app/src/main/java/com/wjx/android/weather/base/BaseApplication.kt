@@ -7,6 +7,7 @@ import androidx.lifecycle.ViewModelStoreOwner
 import com.kingja.loadsir.core.LoadSir
 import com.wjx.android.wanandroidmvvm.common.callback.*
 import com.wjx.android.weather.common.util.SPreference
+import java.lang.reflect.ParameterizedType
 
 /**
  * Created with Android Studio.
@@ -55,5 +56,10 @@ open class BaseApplication  : Application(), ViewModelStoreOwner {
             mFactory = ViewModelProvider.AndroidViewModelFactory.getInstance(this)
         }
         return mFactory as ViewModelProvider.Factory
+    }
+
+    @Suppress("UNCHECKED_CAST")
+    fun <VM> getVmClazz(obj: Any): VM {
+        return (obj.javaClass.genericSuperclass as ParameterizedType).actualTypeArguments[0] as VM
     }
 }

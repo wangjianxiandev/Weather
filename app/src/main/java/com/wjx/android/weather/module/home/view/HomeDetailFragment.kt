@@ -85,7 +85,6 @@ class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragme
             home_container.isRefreshing = false
             list.clear()
         }
-        showSuccess()
         mViewModel.loadRealtimeWeather(mLng, mLat)
         mViewModel.loadDailyWeather(mLng, mLat)
         mViewModel.loadHourlyWeather(mLng, mLat)
@@ -142,6 +141,7 @@ class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragme
                 initHourlyView(list)
             }
         })
+        showSuccess()
     }
 
     private fun initAdapter() {
