@@ -15,6 +15,26 @@
     <string name="cancel">取消</string>
     <string name="delete">删除</string>
 
+    <!--setting-->
+    <string name="setting_about">关于</string>
+    <string name="setting_project">开源项目</string>
+    <string name="setting_version">检查更新</string>
+    <string name="no_version">已经是最新版本啦~</string>
+    <string name="new_version">有最新版本可更新：</string>
+    <string name="check_update_fail">检查新版本失败</string>
+    <string name="down_load_fail">下载安装包失败</string>
+    <string name="updating">正在更新</string>
+    <string name="done">确定</string>
+    <string name="copyright">版权声明</string>
+    <string name="copyright_tip"></string>
+    <string name="copyright_summary">仅作个人学习及非商业用途</string>
+    <string name="auther">作者</string>
+    <string name="auther_name">WjxBless</string>
+    <string name="project_address">项目源码</string>
+    <string name="csdn博客">个人博客</string>
+    <string name="github_url">https://github.com/wangjianxiandev/Weather</string>
+
+
 
     <!--feed back-->
     <string name="error_message">发生了一些错误</string>

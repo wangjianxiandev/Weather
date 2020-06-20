@@ -47,14 +47,13 @@ class HomeFragment : BaseLifeCycleFragment<HomeViewModel, HomeFragmentBinding>()
                     .navigate(R.id.action_homeFragment_to_choosePlaceFragment)
             }
             R.id.action_more -> {
-                CommonUtil.showToast(requireContext(), getString(R.string.more))
+                Navigation.findNavController(home_bar).navigate(R.id.action_homeFragment_to_aboutFragment)
             }
         }
         return super.onOptionsItemSelected(item)
     }
 
     override fun initData() {
-//        mViewModel.queryAllPlace()
         mViewModel.queryAllPlace()
     }
 

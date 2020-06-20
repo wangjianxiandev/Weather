@@ -1,8 +1,10 @@
 package com.wjx.android.weather.common.util
 
 import android.content.Context
+import android.content.Intent
 import android.widget.Toast
 import androidx.core.content.ContextCompat
+import androidx.core.content.ContextCompat.startActivity
 import com.wjx.android.weather.R
 import java.lang.reflect.ParameterizedType
 

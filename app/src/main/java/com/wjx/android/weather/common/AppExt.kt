@@ -1,12 +1,10 @@
 package com.wjx.android.weather.common
 
-import android.app.Application
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
-import androidx.lifecycle.ViewModelProvider
 import com.wjx.android.weather.base.BaseApplication
 import com.wjx.android.weather.module.main.AppViewModel
-import com.wjx.android.weather.module.main.MessageViewModel
+import com.wjx.android.weather.module.main.AppMessageViewModel
 
 /**
  * Created with Android Studio.
@@ -26,8 +24,8 @@ fun Fragment.getAppViewModel(): AppViewModel {
     }
 }
 
-fun Fragment.getActivityMessageViewModel(): MessageViewModel {
+fun Fragment.getActivityMessageViewModel(): AppMessageViewModel {
     BaseApplication.instance.let {
-        return it.getAppViewModelProvider().get(MessageViewModel::class.java)
+        return it.getAppViewModelProvider().get(AppMessageViewModel::class.java)
     }
 }

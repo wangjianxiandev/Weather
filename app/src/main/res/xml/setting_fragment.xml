@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.preference.PreferenceScreen xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <androidx.preference.PreferenceCategory
+        android:key="about"
+        android:title="@string/setting_about">
+
+        <Preference
+            android:key="version"
+            android:title="@string/setting_version"
+            android:summary="1.0.0"/>
+
+        <Preference
+            android:key="author"
+            android:summary="@string/auther_name"
+            android:title="@string/auther" />
+
+        <Preference
+            android:key="csdn"
+            android:summary="DLUT_WJX"
+            android:title="@string/csdn博客"/>
+
+        <Preference
+            android:key="project"
+            android:summary="@string/github_url"
+            android:title="@string/project_address" />
+
+        <Preference
+            android:key="copyRight"
+            android:summary="@string/copyright_summary"
+            android:title="@string/copyright" />
+    </androidx.preference.PreferenceCategory>
+</androidx.preference.PreferenceScreen >

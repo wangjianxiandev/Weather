@@ -1,6 +1,5 @@
 package com.wjx.android.weather.common.util
 
-import android.app.Activity
 import android.content.Context
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.Fragment

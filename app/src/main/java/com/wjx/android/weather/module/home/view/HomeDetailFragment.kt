@@ -43,7 +43,6 @@ class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragme
 
     private val mPlaceName: String by lazy { arguments?.getString(Constant.PLACE_NAME) ?: "" }
 
-    private val mPrimaryKey: Int by lazy { arguments?.getInt(Constant.PLACE_PRIMARY_KEY) ?: 0 }
     var list = ArrayList<HourlyWeather>()
 
     companion object {
@@ -95,7 +94,6 @@ class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragme
         mViewModel.mRealTimeData.observe(this, Observer { response ->
             response?.let {
                 initCurrentData(it.result.realtime)
-                Log.d("WJXKey", mPrimaryKey.toString())
                 mViewModel.updateChoosePlace(
                     it.result.realtime.temperature.toInt(),
                     it.result.realtime.skycon,

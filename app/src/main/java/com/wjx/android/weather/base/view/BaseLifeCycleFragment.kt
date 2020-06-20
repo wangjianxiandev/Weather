@@ -1,15 +1,9 @@
 package com.wjx.android.weather.base.view
 
-import android.os.Bundle
 import android.text.TextUtils
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.Toast
 import androidx.databinding.ViewDataBinding
-import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import com.kingja.loadsir.callback.SuccessCallback
 import com.wjx.android.wanandroidmvvm.common.callback.EmptyCallBack
 import com.wjx.android.wanandroidmvvm.common.callback.ErrorCallBack
@@ -75,6 +69,8 @@ abstract class BaseLifeCycleFragment<VM : BaseViewModel<*>, DB : ViewDataBinding
 
     override fun reLoad() {
         showLoading()
+        initData()
+        initDataObserver()
         super.reLoad()
     }
 }

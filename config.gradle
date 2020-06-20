@@ -6,7 +6,7 @@ ext {
             minSdkVersion    : 26,
             targetSdkVersion : 29,
             versionCode      : 1,
-            versionName      : "1.0",
+            versionName      : "1.0.1",
     ]
 
     appId = [
@@ -23,6 +23,9 @@ ext {
     adapter_helper_version = '3.0.4'
     room_version = '2.2.5'
     material_dialog_version = "3.1.1"
+    preference_version = "1.1.0-alpha04"
+    agentweb_version = '4.1.2'
+    pgyersdk_version = '3.0.10'
 
     dependencies = [
             "appcompat"                  : "androidx.appcompat:appcompat:1.1.0",
@@ -46,7 +49,10 @@ ext {
             "room_ktx"                   : "androidx.room:room-ktx:$room_version",
             "map"                        : "com.amap.api:location:latest.integration",
             "viewpager_indicator"        : "com.github.zhpanvip:viewpagerindicator:1.0.4",
-            "material_dialog"            : "com.afollestad.material-dialogs:core:$material_dialog_version"
+            "material_dialog"            : "com.afollestad.material-dialogs:core:$material_dialog_version",
+            "preference"                 : "androidx.preference:preference:$preference_version",
+            "agentweb"                   : "com.just.agentweb:agentweb:$agentweb_version",
+            "pgyer_sdk"                  : "com.pgyersdk:sdk:$pgyersdk_version",
     ]
 
     processor = [
