@@ -10,6 +10,7 @@ import com.afollestad.materialdialogs.MaterialDialog
 import com.wjx.android.weather.R
 import com.wjx.android.weather.base.view.BaseLifeCycleFragment
 import com.wjx.android.weather.common.getActivityMessageViewModel
+import com.wjx.android.weather.common.util.CommonUtil
 import com.wjx.android.weather.databinding.FragmentListBinding
 import com.wjx.android.weather.model.ChoosePlaceData
 import com.wjx.android.weather.module.chooseplace.viewmodel.ChoosePlaceViewModel
@@ -55,6 +56,14 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
     override fun initDataObserver() {
         mViewModel.mChoosePlaceData.observe(this, Observer { response ->
             response?.let {
+                if (response.size ==0) {
+                    CommonUtil.showToast(requireContext(), "请添加城市")
+                    mHeaderView.detail_start.setOnClickListener(null)
+                } else {
+                    mHeaderView.detail_start.setOnClickListener {
+                        Navigation.findNavController(it).navigateUp()
+                    }
+                }
                 setPlaceList(response)
             }
         })
@@ -123,6 +132,7 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
                         positiveButton(R.string.delete) {
                             mViewModel.deletePlace(place.name)
                             mViewModel.deleteChoosePlace(place)
+                            getActivityMessageViewModel().addPlace.postValue(true)
                             mAdapter.removeAt(position)
                         }
                     }

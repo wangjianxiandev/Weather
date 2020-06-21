@@ -62,7 +62,6 @@ class HomeFragment : BaseLifeCycleFragment<HomeViewModel, HomeFragmentBinding>()
         mViewModel.mPlaceData.observe(this, Observer { response ->
             response?.let {
                 if (response.size == 0) {
-                    CommonUtil.showToast(requireContext(), "请添加城市")
                     Navigation.findNavController(home_normal_view)
                         .navigate(R.id.choosePlaceFragment)
                 }
