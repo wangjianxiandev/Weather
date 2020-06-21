@@ -1,66 +1,86 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="0dp"
-    android:layout_height="match_parent"
-    android:layout_weight="1"
-    android:gravity="center"
-    android:orientation="vertical">
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
 
-    <ViewFlipper
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autoStart="true"
-        android:flipInterval="3000"
-        android:inAnimation="@anim/slide_in_bottom"
-        android:orientation="horizontal"
-        android:outAnimation="@anim/slide_out_top"
-        android:paddingBottom="@dimen/spacing_large">
+    <data>
 
-        <TextView
-            android:id="@+id/humidity_text_view"
-            android:layout_width="wrap_content"
+        <import type="com.wjx.android.weather.module.home.viewmodel.HomeDetailViewModel" />
+
+        <variable
+            name="homeDetailViewModel"
+            type="HomeDetailViewModel" />
+    </data>
+
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:orientation="vertical">
+
+        <ViewFlipper
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="@string/humidity_label"
-            android:textColor="@color/always_white_text"
-            android:textSize="20dp" />
+            android:autoStart="true"
+            android:flipInterval="3000"
+            android:inAnimation="@anim/slide_in_bottom"
+            android:orientation="horizontal"
+            android:outAnimation="@anim/slide_out_top"
+            android:paddingBottom="@dimen/spacing_large">
 
-        <TextView
-            android:id="@+id/visible_text_view"
-            android:layout_width="wrap_content"
+<!--            <TextView-->
+<!--                android:id="@+id/humidity_text_view"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_gravity="start"-->
+<!--                android:text="@{@string/humidity_label + String.valueOf(homeDetailViewModel.MRealTimeData.result.realtime.humidity * 100) + @string/percent}"-->
+<!--                android:textColor="@color/always_white_text"-->
+<!--                android:textSize="20dp" />-->
+            <TextView
+                android:id="@+id/humidity_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="@string/humidity_label"
+                android:textColor="@color/always_white_text"
+                android:textSize="20dp" />
+
+            <TextView
+                android:id="@+id/visible_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="@string/humidity_label"
+                android:textColor="@color/always_white_text"
+                android:textSize="20dp" />
+        </ViewFlipper>
+
+        <ViewFlipper
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="@string/humidity_label"
-            android:textColor="@color/always_white_text"
-            android:textSize="20dp" />
-    </ViewFlipper>
+            android:autoStart="true"
+            android:flipInterval="3000"
+            android:inAnimation="@anim/slide_in_bottom"
+            android:orientation="horizontal"
+            android:outAnimation="@anim/slide_out_top"
+            android:paddingTop="@dimen/spacing_large">
 
-    <ViewFlipper
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:autoStart="true"
-        android:flipInterval="3000"
-        android:inAnimation="@anim/slide_in_bottom"
-        android:orientation="horizontal"
-        android:outAnimation="@anim/slide_out_top"
-        android:paddingTop="@dimen/spacing_large">
+            <TextView
+                android:id="@+id/wind_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="@string/wind_label"
+                android:textColor="@color/always_white_text"
+                android:textSize="20dp" />
 
-        <TextView
-            android:id="@+id/wind_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="@string/wind_label"
-            android:textColor="@color/always_white_text"
-            android:textSize="20dp" />
-
-        <TextView
-            android:id="@+id/index_text_view"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:text="@string/wind_label"
-            android:textColor="@color/always_white_text"
-            android:textSize="20dp" />
-    </ViewFlipper>
-</LinearLayout>
+            <TextView
+                android:id="@+id/index_text_view"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:text="@string/wind_label"
+                android:textColor="@color/always_white_text"
+                android:textSize="20dp" />
+        </ViewFlipper>
+    </LinearLayout>
+</layout>

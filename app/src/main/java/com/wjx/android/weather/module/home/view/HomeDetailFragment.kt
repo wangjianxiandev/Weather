@@ -20,7 +20,7 @@ import com.wjx.android.weather.common.util.getAirLevel
 import com.wjx.android.weather.common.util.getSky
 import com.wjx.android.weather.common.util.getWindOri
 import com.wjx.android.weather.common.util.getWindSpeed
-import com.wjx.android.weather.databinding.HomeFragmentBinding
+import com.wjx.android.weather.databinding.HomeDetailFragmentBinding
 import com.wjx.android.weather.model.Daily
 import com.wjx.android.weather.model.HourlyWeather
 import com.wjx.android.weather.model.RealTime
@@ -33,7 +33,7 @@ import kotlinx.android.synthetic.main.layout_flipper_detail.*
 import kotlinx.android.synthetic.main.life_index.*
 
 
-class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragmentBinding>() {
+class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeDetailFragmentBinding>() {
 
     private lateinit var mAdapterHome: HomeDailyAdapter
 
@@ -75,6 +75,7 @@ class HomeDetailFragment : BaseLifeCycleFragment<HomeDetailViewModel, HomeFragme
                 R.color.material_blue
             )
         )
+        mDataBinding.homeDetailViewModel = mViewModel
         home_container.setColorSchemeColors(Color.WHITE)
         home_container.setOnRefreshListener { initData() }
     }

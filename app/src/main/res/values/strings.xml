@@ -5,7 +5,7 @@
     <!--主页-->
     <string name="next_15_days_label">15日天气</string>
     <string name="current_weather">当日天气</string>
-    <string name="humidity_label">湿度</string>
+    <string name="humidity_label">湿度: </string>
     <string name="wind_label">风力</string>
     <string name="next_5_days_daily">5天预报</string>
     <string name="city">管理城市</string>
@@ -14,6 +14,8 @@
     <string name="delete_city">是否删除当前城市？</string>
     <string name="cancel">取消</string>
     <string name="delete">删除</string>
+    <string name="temp">℃</string>
+    <string name="percent">%</string>
 
     <!--setting-->
     <string name="setting_about">关于</string>

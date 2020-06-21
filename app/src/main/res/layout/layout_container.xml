@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:bind="http://schemas.android.com/tools">
 
     <data>
+        <import type="com.wjx.android.weather.module.home.viewmodel.HomeDetailViewModel"/>
+        <variable
+            name="homeDetailViewModel"
+            type="HomeDetailViewModel" />
 
     </data>
 
@@ -34,7 +39,8 @@
                     app:cardCornerRadius="30dp"
                     app:cardElevation="@dimen/dp_10">
 
-                    <include layout="@layout/layout_current_place_detail" />
+                    <include layout="@layout/layout_current_place_detail"
+                        bind:homeDetailViewModel = "@{homeDetailViewModel}"/>
                 </androidx.cardview.widget.CardView>
 
                 <View
