@@ -56,9 +56,11 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
     override fun initDataObserver() {
         mViewModel.mChoosePlaceData.observe(this, Observer { response ->
             response?.let {
-                if (response.size ==0) {
+                if (response.size == 0) {
                     CommonUtil.showToast(requireContext(), "请添加城市")
-                    mHeaderView.detail_start.setOnClickListener(null)
+                    mHeaderView.detail_start.setOnClickListener {
+                        CommonUtil.showToast(requireContext(), "请添加城市")
+                    }
                 } else {
                     mHeaderView.detail_start.setOnClickListener {
                         Navigation.findNavController(it).navigateUp()
@@ -133,7 +135,9 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
                             mViewModel.deletePlace(place.name)
                             mViewModel.deleteChoosePlace(place)
                             getActivityMessageViewModel().addPlace.postValue(true)
-                            mAdapter.removeAt(position)
+                            mAdapter.getViewByPosition(position + 1, R.id.location_delete)?.visibility =
+                                View.GONE
+                            mAdapter.notifyDataSetChanged()
                         }
                     }
                 }
