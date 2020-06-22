@@ -1,76 +1,71 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="wrap_content"
+    android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="horizontal">
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
 
-    <LinearLayout
+
+    <TextView
+        android:id="@+id/hourly_time"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:gravity="center_horizontal"
-        android:orientation="vertical">
+        android:layout_height="60px"
+        android:layout_marginTop="@dimen/dp_10"
+        android:gravity="center"
+        android:text="12:07"
+        android:textColor="#fff"
+        android:textSize="38px" />
 
-        <TextView
-            android:id="@+id/hourly_time"
-            android:layout_width="wrap_content"
-            android:layout_height="60px"
-            android:gravity="center"
-            android:layout_marginTop="@dimen/dp_10"
-            android:text="12:07"
-            android:textColor="#fff"
-            android:textSize="38px" />
+    <TextView
+        android:id="@+id/hourly_weather"
+        android:layout_width="wrap_content"
+        android:layout_height="60px"
+        android:gravity="center"
+        android:text="晴"
+        android:textColor="#fff"
+        android:textSize="38px" />
 
-        <TextView
-            android:id="@+id/hourly_weather"
-            android:layout_width="wrap_content"
-            android:layout_height="60px"
-            android:gravity="center"
-            android:text="晴"
-            android:textColor="#fff"
-            android:textSize="38px" />
+    <ImageView
+        android:id="@+id/hourly_weather_img"
+        android:layout_width="80px"
+        android:layout_height="80px"
+        android:layout_marginTop="10px"
+        android:src="@drawable/big_level_shape" />
 
-        <ImageView
-            android:id="@+id/hourly_weather_img"
-            android:layout_width="80px"
-            android:layout_height="80px"
-            android:layout_marginTop="10px"
-            android:src="@drawable/big_level_shape" />
+    <com.wjx.android.weather.common.custom.TemperatureView
+        android:id="@+id/hourly_temp"
+        android:layout_width="match_parent"
+        android:layout_height="300px" />
 
-        <com.wjx.android.weather.common.custom.TemperatureView
-            android:id="@+id/hourly_temp"
-            android:layout_width="match_parent"
-            android:layout_height="300px"/>
+    <TextView
+        android:id="@+id/hourly_wind_ori"
+        android:layout_width="wrap_content"
+        android:layout_height="80px"
+        android:layout_marginTop="120px"
+        android:gravity="center"
+        android:singleLine="true"
+        android:text="西南风"
+        android:textColor="#fff"
+        android:textSize="38px" />
 
-        <TextView
-            android:id="@+id/hourly_wind_ori"
-            android:layout_width="wrap_content"
-            android:layout_height="80px"
-            android:layout_marginTop="120px"
-            android:gravity="center"
-            android:singleLine="true"
-            android:text="西南风"
-            android:textColor="#fff"
-            android:textSize="38px" />
+    <TextView
+        android:id="@+id/hourly_wind_level"
+        android:layout_width="match_parent"
+        android:layout_height="60px"
+        android:layout_marginBottom="@dimen/safe_padding"
+        android:gravity="center"
+        android:text="3级"
+        android:textColor="#fff"
+        android:textSize="38px" />
 
-        <TextView
-            android:id="@+id/hourly_wind_level"
-            android:layout_width="match_parent"
-            android:layout_height="60px"
-            android:layout_marginBottom="@dimen/safe_padding"
-            android:gravity="center"
-            android:text="3级"
-            android:textColor="#fff"
-            android:textSize="38px" />
-
-        <TextView
-            android:id="@+id/hourly_air_level"
-            android:layout_width="60px"
-            android:layout_height="38px"
-            android:layout_marginBottom="@dimen/safe_padding"
-            android:background="@drawable/good_level_shape"
-            android:gravity="center"
-            android:text="良"
-            android:textColor="#fff"
-            android:textSize="24px" />
-    </LinearLayout>
+    <TextView
+        android:id="@+id/hourly_air_level"
+        android:layout_width="60px"
+        android:layout_height="38px"
+        android:layout_marginBottom="@dimen/safe_padding"
+        android:background="@drawable/good_level_shape"
+        android:gravity="center"
+        android:text="良"
+        android:textColor="#fff"
+        android:textSize="24px" />
 </LinearLayout>

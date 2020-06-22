@@ -1,14 +1,9 @@
 <resources>
     <dimen name="safe_padding">8dp</dimen>
     <dimen name="card_radius">12dp</dimen>
-    <dimen name="marginstart">20dp</dimen>
     <dimen name="card_view_height">300dp</dimen>
-    <dimen name="spacing_medium">5dp</dimen>
-    <dimen name="spacing_middle">10dp</dimen>
-    <dimen name="spacing_large">15dp</dimen>
-    <dimen name="spacing_mlarge">20dp</dimen>
-    <dimen name="spacing_xlarge">35dp</dimen>
-    <dimen name="spacing_xxlarge">50dp</dimen>
-    <dimen name="spacing_xxxlarge">60dp</dimen>
-    <dimen name="drag_dismiss_distance">112dp</dimen> <!-- 2 * ?android:actionBarSize -->
+    <dimen name="dp_5">5dp</dimen>
+    <dimen name="dp_10">10dp</dimen>
+    <dimen name="dp_15">15dp</dimen>
+    <dimen name="dp_20">20dp</dimen>
 </resources>

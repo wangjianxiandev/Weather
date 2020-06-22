@@ -32,9 +32,9 @@
                     style="@style/Widget.MaterialComponents.CardView"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/card_view_height"
-                    android:layout_marginStart="@dimen/spacing_mlarge"
+                    android:layout_marginStart="@dimen/dp_20"
                     android:layout_marginTop="@dimen/dp_10"
-                    android:layout_marginEnd="@dimen/spacing_mlarge"
+                    android:layout_marginEnd="@dimen/dp_20"
                     app:cardBackgroundColor="@color/material_blue"
                     app:cardCornerRadius="30dp"
                     app:cardElevation="@dimen/dp_10">
@@ -45,16 +45,16 @@
 
                 <View
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/spacing_large" />
+                    android:layout_height="@dimen/dp_15" />
 
                 <androidx.cardview.widget.CardView
                     android:id="@+id/hourly"
                     style="@style/Widget.MaterialComponents.CardView"
                     android:layout_width="match_parent"
                     android:layout_height="300dp"
-                    android:layout_marginStart="@dimen/spacing_mlarge"
+                    android:layout_marginStart="@dimen/dp_20"
                     android:layout_marginTop="@dimen/dp_10"
-                    android:layout_marginEnd="@dimen/spacing_mlarge"
+                    android:layout_marginEnd="@dimen/dp_20"
                     android:layout_gravity="center"
                     app:cardBackgroundColor="@color/material_blue"
                     app:cardCornerRadius="30dp"
@@ -63,7 +63,7 @@
                     <com.wjx.android.weather.common.custom.WeatherView
                         android:id="@+id/weather_view"
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
+                        android:layout_height="300dp"
                         android:scrollbarSize="4dp"
                         android:scrollbarThumbHorizontal="@drawable/scroll_bar_thumb"
                         android:scrollbarTrackHorizontal="@drawable/scroll_bar_thumb" />
@@ -71,12 +71,11 @@
 
                 <View
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/spacing_large" />
+                    android:layout_height="@dimen/dp_15" />
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/spacing_mlarge"
                     android:orientation="vertical">
 
                     <TextView
@@ -88,10 +87,11 @@
 
                     <View
                         android:layout_width="0dp"
-                        android:layout_height="@dimen/spacing_medium" />
+                        android:layout_height="@dimen/dp_5" />
 
                     <androidx.recyclerview.widget.RecyclerView
                         android:id="@+id/home_recycler"
+                        android:layout_marginStart="@dimen/dp_20"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:orientation="horizontal" />
@@ -99,16 +99,16 @@
 
                 <View
                     android:layout_width="0dp"
-                    android:layout_height="@dimen/spacing_medium" />
+                    android:layout_height="@dimen/dp_15" />
 
                 <androidx.cardview.widget.CardView
-                    android:id="@+id/lifeindex"
+                    android:id="@+id/life_index"
                     style="@style/Widget.MaterialComponents.CardView"
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/card_view_height"
-                    android:layout_marginStart="@dimen/spacing_mlarge"
+                    android:layout_marginStart="@dimen/dp_20"
                     android:layout_marginTop="@dimen/dp_10"
-                    android:layout_marginEnd="@dimen/spacing_mlarge"
+                    android:layout_marginEnd="@dimen/dp_20"
                     app:cardBackgroundColor="@color/material_blue"
                     app:cardCornerRadius="30dp"
                     app:cardElevation="@dimen/dp_10"

@@ -39,7 +39,7 @@ class WeatherView :
 
     constructor(mContext: Context) : super(mContext, null)
 
-    constructor(mContext: Context, attrs: AttributeSet) : super(mContext, attrs, 0) {
+    constructor(mContext: Context, attrs: AttributeSet) : super(mContext, attrs) {
         init(mContext, attrs)
     }
 
@@ -169,7 +169,7 @@ class WeatherView :
         val llRoot = LinearLayout(context)
         llRoot.layoutParams = ViewGroup.LayoutParams(
             ViewGroup.LayoutParams.MATCH_PARENT,
-            ViewGroup.LayoutParams.MATCH_PARENT
+            ViewGroup.LayoutParams.WRAP_CONTENT
         )
         llRoot.orientation = LinearLayout.HORIZONTAL
         for (i in 0 until list.size) {
@@ -184,12 +184,12 @@ class WeatherView :
             itemView.setWindOri(model.windOri)
             itemView.setWindLevel(model.windLevel)
             itemView.setAirLevel(model.airLevel)
-            itemView.setLayoutParams(
+            itemView.layoutParams =
                 LinearLayout.LayoutParams(
                     screenWidth / mColumnNumber,
-                    ViewGroup.LayoutParams.MATCH_PARENT
+                    ViewGroup.LayoutParams.WRAP_CONTENT
                 )
-            )
+
             itemView.setClickable(true)
             itemView.setOnClickListener(OnClickListener {
                 if (onWeatherItemClickListener != null) {
