@@ -63,7 +63,7 @@ class HomeFragment : BaseLifeCycleFragment<HomeViewModel, HomeFragmentBinding>()
             response?.let {
                 if (response.size == 0) {
                     Navigation.findNavController(home_normal_view)
-                        .navigate(R.id.choosePlaceFragment)
+                        .navigate(R.id.action_homeFragment_to_choosePlaceFragment)
                 }
                 initHomeDetailFragment(it)
                 showSuccess()
@@ -73,6 +73,12 @@ class HomeFragment : BaseLifeCycleFragment<HomeViewModel, HomeFragmentBinding>()
         getActivityMessageViewModel().addPlace.observe(this, Observer {
             it?.let {
                 mViewModel.queryAllPlace()
+            }
+        })
+
+        getActivityMessageViewModel().changeCurrentPlace.observe(this, Observer {
+            it?.let {
+                home_viewpager.setCurrentItem(appViewModel.currentPlace.value!!, true)
             }
         })
     }

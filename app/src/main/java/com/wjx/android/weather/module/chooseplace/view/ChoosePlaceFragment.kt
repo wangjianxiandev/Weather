@@ -75,6 +75,11 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
                 mAdapter.notifyDataSetChanged()
             }
         })
+        appViewModel.currentPlace.observe(this, Observer {
+            it?.let {
+                getActivityMessageViewModel().changeCurrentPlace.postValue(true)
+            }
+        })
         showSuccess()
     }
 
@@ -86,7 +91,7 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
             detail_end.visibility = View.VISIBLE
             detail_end.setOnClickListener {
                 Navigation.findNavController(it)
-                    .navigate(R.id.searchPlaceFragment)
+                    .navigate(R.id.action_choosePlaceFragment_to_searchPlaceFragment)
             }
             detail_start.setOnClickListener {
                 Navigation.findNavController(it).navigateUp()
@@ -146,6 +151,7 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
             true
         }
         mAdapter.setOnItemClickListener { adapter, view, position ->
+            appViewModel.changeCurrentPlace(position)
             Navigation.findNavController(view).navigateUp()
         }
     }

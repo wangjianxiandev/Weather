@@ -13,11 +13,11 @@ import com.wjx.android.weather.model.Place
  * @CreateDate: 2020/6/4 12:25
  */
 class AppViewModel(application: Application) : BaseViewModel<AppRepository>(application) {
-    var currentPlace = MutableLiveData<Place>()
+    var currentPlace = MutableLiveData<Int>()
 
     val mChoosePlaceData : MutableLiveData<MutableList<ChoosePlaceData>> = MutableLiveData()
 
-    fun changeCurrentPlace(place: Place) {
-        currentPlace.value = place
+    fun changeCurrentPlace(position : Int) {
+        currentPlace.value = position
     }
 }
