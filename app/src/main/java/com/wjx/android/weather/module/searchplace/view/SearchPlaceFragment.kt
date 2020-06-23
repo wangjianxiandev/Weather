@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.wjx.android.weather.R
 import com.wjx.android.weather.base.view.BaseLifeCycleFragment
-import com.wjx.android.weather.common.getActivityMessageViewModel
+import com.wjx.android.weather.common.getEventViewModel
 import com.wjx.android.weather.common.util.KeyBoardUtil.hideKeyboard
 import com.wjx.android.weather.databinding.SearchPlaceFragmentBinding
 import com.wjx.android.weather.model.ChoosePlaceData
@@ -104,14 +104,14 @@ class SearchPlaceFragment :
 
         mViewModel.mPlaceInsertResult.observe(this, Observer {
             it?.let {
-                getActivityMessageViewModel().addPlace.postValue(true)
+                getEventViewModel().addPlace.postValue(true)
                 hideKeyboard()
             }
         })
 
         mViewModel.mChoosePlaceInsertResult.observe(this, Observer {
             it?.let {
-                getActivityMessageViewModel().addChoosePlace.postValue(true)
+                getEventViewModel().addChoosePlace.postValue(true)
                 Navigation.findNavController(search_place).navigateUp()
             }
         })

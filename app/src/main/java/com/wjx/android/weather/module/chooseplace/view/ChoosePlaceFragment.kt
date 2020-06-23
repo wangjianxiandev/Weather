@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.afollestad.materialdialogs.MaterialDialog
 import com.wjx.android.weather.R
 import com.wjx.android.weather.base.view.BaseLifeCycleFragment
-import com.wjx.android.weather.common.getActivityMessageViewModel
+import com.wjx.android.weather.common.getEventViewModel
 import com.wjx.android.weather.common.util.CommonUtil
 import com.wjx.android.weather.databinding.FragmentListBinding
 import com.wjx.android.weather.model.ChoosePlaceData
@@ -69,7 +69,7 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
                 setPlaceList(response)
             }
         })
-        getActivityMessageViewModel().addChoosePlace.observe(this, Observer {
+        getEventViewModel().addChoosePlace.observe(this, Observer {
             it?.let {
                 mViewModel.queryAllChoosePlace()
                 mAdapter.notifyDataSetChanged()
@@ -77,7 +77,7 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
         })
         appViewModel.currentPlace.observe(this, Observer {
             it?.let {
-                getActivityMessageViewModel().changeCurrentPlace.postValue(true)
+                getEventViewModel().changeCurrentPlace.postValue(true)
             }
         })
         showSuccess()
@@ -139,7 +139,7 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
                         positiveButton(R.string.delete) {
                             mViewModel.deletePlace(place.name)
                             mViewModel.deleteChoosePlace(place)
-                            getActivityMessageViewModel().addPlace.postValue(true)
+                            getEventViewModel().addPlace.postValue(true)
                             mAdapter.getViewByPosition(position + 1, R.id.location_delete)?.visibility =
                                 View.GONE
                             mAdapter.notifyDataSetChanged()

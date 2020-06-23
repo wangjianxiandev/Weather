@@ -8,7 +8,7 @@ import androidx.navigation.Navigation
 import androidx.viewpager.widget.ViewPager
 import com.wjx.android.weather.R
 import com.wjx.android.weather.base.view.BaseLifeCycleFragment
-import com.wjx.android.weather.common.getActivityMessageViewModel
+import com.wjx.android.weather.common.getEventViewModel
 import com.wjx.android.weather.common.init
 import com.wjx.android.weather.common.util.CommonUtil
 import com.wjx.android.weather.databinding.HomeFragmentBinding
@@ -70,13 +70,13 @@ class HomeFragment : BaseLifeCycleFragment<HomeViewModel, HomeFragmentBinding>()
             }
         })
 
-        getActivityMessageViewModel().addPlace.observe(this, Observer {
+        getEventViewModel().addPlace.observe(this, Observer {
             it?.let {
                 mViewModel.queryAllPlace()
             }
         })
 
-        getActivityMessageViewModel().changeCurrentPlace.observe(this, Observer {
+        getEventViewModel().changeCurrentPlace.observe(this, Observer {
             it?.let {
                 home_viewpager.setCurrentItem(appViewModel.currentPlace.value!!, true)
             }

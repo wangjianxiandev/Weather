@@ -1,10 +1,8 @@
 package com.wjx.android.weather.module.main
 
 import android.app.Application
-import androidx.lifecycle.MutableLiveData
+import com.wjx.android.weather.base.callback.UnPeekLiveData
 import com.wjx.android.weather.base.viewmodel.BaseViewModel
-import com.wjx.android.weather.model.ChoosePlaceData
-import com.wjx.android.weather.model.Place
 
 /**
  * Created with Android Studio.
@@ -13,9 +11,7 @@ import com.wjx.android.weather.model.Place
  * @CreateDate: 2020/6/4 12:25
  */
 class AppViewModel(application: Application) : BaseViewModel<AppRepository>(application) {
-    var currentPlace = MutableLiveData<Int>()
-
-    val mChoosePlaceData : MutableLiveData<MutableList<ChoosePlaceData>> = MutableLiveData()
+    var currentPlace = UnPeekLiveData<Int>()
 
     fun changeCurrentPlace(position : Int) {
         currentPlace.value = position

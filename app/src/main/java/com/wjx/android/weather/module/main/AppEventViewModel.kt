@@ -10,7 +10,7 @@ import androidx.lifecycle.MutableLiveData
  * @author: Wangjianxian
  * @CreateDate: 2020/6/20 17:05
  */
-class AppMessageViewModel(application: Application) : AndroidViewModel(application) {
+class AppEventViewModel(application: Application) : AndroidViewModel(application) {
     var addChoosePlace = MutableLiveData<Boolean>()
     var addPlace = MutableLiveData<Boolean>()
     var changeCurrentPlace = MutableLiveData<Boolean>()

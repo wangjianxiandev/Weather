@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import com.wjx.android.weather.base.BaseApplication
 import com.wjx.android.weather.module.main.AppViewModel
-import com.wjx.android.weather.module.main.AppMessageViewModel
+import com.wjx.android.weather.module.main.AppEventViewModel
 
 /**
  * Created with Android Studio.
@@ -24,8 +24,8 @@ fun Fragment.getAppViewModel(): AppViewModel {
     }
 }
 
-fun Fragment.getActivityMessageViewModel(): AppMessageViewModel {
+fun Fragment.getEventViewModel(): AppEventViewModel {
     BaseApplication.instance.let {
-        return it.getAppViewModelProvider().get(AppMessageViewModel::class.java)
+        return it.getAppViewModelProvider().get(AppEventViewModel::class.java)
     }
 }
