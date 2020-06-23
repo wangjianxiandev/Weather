@@ -14,6 +14,7 @@
     <uses-permission
         android:name="android.permission.READ_LOGS"
         tools:ignore="ProtectedPermissions" />
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
 
     <application
         android:name=".base.BaseApplication"
@@ -23,12 +24,13 @@
         android:networkSecurityConfig="@xml/network_security_config"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+
         <meta-data
             android:name="com.amap.api.v2.apikey"
-            android:value="bf072228a8e9866eae18d59589ad5238"></meta-data>
+            android:value="bf072228a8e9866eae18d59589ad5238" />
         <meta-data
             android:name="PGYER_APPID"
-            android:value="325abfe947e51704c9eecbfe57b7f0b8"></meta-data>
+            android:value="325abfe947e51704c9eecbfe57b7f0b8" />
 
         <activity
             android:name=".module.main.MainActivity"
@@ -40,7 +42,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <service android:name="com.amap.api.location.APSService"></service>
+
+        <service android:name="com.amap.api.location.APSService" />
+        <receiver android:name=".common.widget.WeatherWidget">
+            <intent-filter>
+                <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
+            </intent-filter>
+            <meta-data
+                android:name="android.appwidget.provider"
+                android:resource="@xml/weather_widget_info" />
+        </receiver>
     </application>
 
 </manifest>

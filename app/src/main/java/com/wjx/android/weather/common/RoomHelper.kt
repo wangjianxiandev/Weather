@@ -73,6 +73,10 @@ object RoomHelper {
         return response
     }
 
+    suspend fun queryFirstChoosePlace(): ChoosePlaceData {
+        return choosePlaceDao!!.queryAllPlace().toList().get(0)
+    }
+
     suspend fun insertChoosePlace(choosePlaceData: ChoosePlaceData): Long? =
         choosePlaceDao?.let {
             it.queryChoosePlaceByName(choosePlaceData.name)?.let {

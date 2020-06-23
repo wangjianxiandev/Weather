@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/location_card"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@color/bluebackground"
+    android:padding="@dimen/dp_20">
+
+    <TextView
+        android:id="@+id/location_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:maxLength="4"
+        android:text="金州"
+        android:textColor="@color/always_white_text"
+        android:textSize="18dp" />
+
+    <TextView
+        android:id="@+id/location_temperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/location_name"
+        android:layout_alignParentStart="true"
+
+        android:layout_marginTop="15dp"
+        android:text="20 ℃"
+        android:textColor="@color/always_white_text"
+        android:textSize="20sp" />
+
+    <ImageView
+        android:id="@+id/location_img"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentEnd="true"
+        android:layout_marginStart="@dimen/dp_20"
+        android:layout_toRightOf="@id/location_name"
+        android:src="@drawable/vector_drawable_ic_clear_day" />
+</RelativeLayout>

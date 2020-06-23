@@ -78,7 +78,7 @@ class HomeFragment : BaseLifeCycleFragment<HomeViewModel, HomeFragmentBinding>()
 
         getEventViewModel().changeCurrentPlace.observe(this, Observer {
             it?.let {
-                home_viewpager.setCurrentItem(appViewModel.currentPlace.value!!, true)
+                home_viewpager.setCurrentItem(appViewModel.mCurrentPlace.value!!, true)
             }
         })
     }

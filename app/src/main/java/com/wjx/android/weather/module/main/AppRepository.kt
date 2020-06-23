@@ -13,4 +13,5 @@ import com.wjx.android.weather.common.state.State
  */
 
 class AppRepository(var loadState: MutableLiveData<State>) : ApiRepository() {
+    suspend fun queryAllChoosePlace() = RoomHelper.queryAllChoosePlace(loadState)
 }

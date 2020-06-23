@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<appwidget-provider xmlns:android="http://schemas.android.com/apk/res/android"
+    android:initialLayout="@layout/weather_widget"
+    android:minHeight="@dimen/dp_80"
+    android:minWidth="@dimen/dp_80"
+    android:previewImage="@mipmap/ic_launcher"
+    android:updatePeriodMillis="864000"
+    android:widgetCategory="home_screen|keyguard">
+</appwidget-provider>

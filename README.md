@@ -21,6 +21,11 @@
 
 
 ## 项目展示
+<table>
+    <tr>
+        <td><center><img src="https://img-blog.csdnimg.cn/20200623173724341.gif"></center></td>
+    </tr>
+</table>
 
 <table>
     <tr>

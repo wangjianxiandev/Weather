@@ -37,8 +37,9 @@
     <string name="github_url">https://github.com/wangjianxiandev/Weather</string>
 
 
-
     <!--feed back-->
     <string name="error_message">发生了一些错误</string>
     <string name="empty_message">没有数据哎~</string>
+    <string name="appwidget_text">EXAMPLE</string>
+    <string name="add_widget">Add widget</string>
 </resources>
