@@ -1,6 +1,5 @@
 package com.wjx.android.weather.module.searchplace.viewmodel
 
-import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.wjx.android.weather.base.viewmodel.BaseViewModel
@@ -14,13 +13,11 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class SearchPlaceViewModel(application: Application) : BaseViewModel<SearchPlaceRepository>(
-    application
-) {
+class SearchPlaceViewModel : BaseViewModel<SearchPlaceRepository>() {
     val mSearchPlacesData: MutableLiveData<SearchPlaceResponse> = MutableLiveData()
     val mRealTimeData: MutableLiveData<RealTime> = MutableLiveData()
-    val mPlaceInsertResult : MutableLiveData<Long?> = MutableLiveData()
-    val mChoosePlaceInsertResult : MutableLiveData<Long?> = MutableLiveData()
+    val mPlaceInsertResult: MutableLiveData<Long?> = MutableLiveData()
+    val mChoosePlaceInsertResult: MutableLiveData<Long?> = MutableLiveData()
 
     fun searchPlaces(query: String) {
         initiateRequest({

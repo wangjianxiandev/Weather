@@ -1,6 +1,5 @@
 package com.wjx.android.weather.module.home.viewmodel
 
-import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.wjx.android.weather.base.viewmodel.BaseViewModel
@@ -11,8 +10,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class HomeDetailViewModel(application: Application) :
-    BaseViewModel<HomeDetailRepository>(application) {
+class HomeDetailViewModel :
+    BaseViewModel<HomeDetailRepository>() {
     val mRealTimeData: MutableLiveData<RealTime> = MutableLiveData()
     val mDailyData: MutableLiveData<Daily> = MutableLiveData()
     val mHourlyData: MutableLiveData<HourlyData> = MutableLiveData()

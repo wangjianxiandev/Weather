@@ -1,6 +1,5 @@
 package com.wjx.android.weather.module.home.viewmodel
 
-import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.wjx.android.weather.base.viewmodel.BaseViewModel
@@ -16,8 +15,8 @@ import kotlinx.coroutines.withContext
  * @author: Wangjianxian
  * @CreateDate: 2020/6/17 20:41
  */
-class HomeViewModel(application: Application) :
-    BaseViewModel<HomeRepository>(application) {
+class HomeViewModel :
+    BaseViewModel<HomeRepository>() {
     val mPlaceData: MutableLiveData<MutableList<Place>> = MutableLiveData()
 
     fun queryAllPlace() {

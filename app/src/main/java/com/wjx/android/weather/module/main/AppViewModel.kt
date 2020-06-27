@@ -1,7 +1,5 @@
 package com.wjx.android.weather.module.main
 
-import android.app.Application
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.wjx.android.weather.base.callback.UnPeekLiveData
 import com.wjx.android.weather.base.viewmodel.BaseViewModel
@@ -16,7 +14,7 @@ import kotlinx.coroutines.withContext
  * @author: Wangjianxian
  * @CreateDate: 2020/6/4 12:25
  */
-class AppViewModel(application: Application) : BaseViewModel<AppRepository>(application) {
+class AppViewModel : BaseViewModel<AppRepository>() {
     var mCurrentPlace = UnPeekLiveData<Int>()
     val mChoosePlaceData: UnPeekLiveData<MutableList<ChoosePlaceData>> = UnPeekLiveData()
 

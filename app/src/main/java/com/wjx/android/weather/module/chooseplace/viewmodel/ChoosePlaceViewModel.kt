@@ -1,6 +1,5 @@
 package com.wjx.android.weather.module.chooseplace.viewmodel
 
-import android.app.Application
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.wjx.android.weather.base.viewmodel.BaseViewModel
@@ -14,8 +13,8 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 
-class ChoosePlaceViewModel(application: Application) :
-    BaseViewModel<ChoosePlaceRepository>(application) {
+class ChoosePlaceViewModel :
+    BaseViewModel<ChoosePlaceRepository>() {
 
     val mPlaceData: MutableLiveData<MutableList<Place>> = MutableLiveData()
     val mRealTimeData: MutableLiveData<RealTime> = MutableLiveData()
