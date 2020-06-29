@@ -64,6 +64,7 @@ class HomeFragment : BaseLifeCycleFragment<HomeViewModel, HomeFragmentBinding>()
                 if (response.size == 0) {
                     Navigation.findNavController(home_normal_view)
                         .navigate(R.id.choosePlaceFragment)
+                    home_bar.home_title.text = ""
                 }
                 initHomeDetailFragment(it)
                 showSuccess()

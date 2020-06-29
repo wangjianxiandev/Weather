@@ -54,7 +54,7 @@ ext {
             "preference"                 : "androidx.preference:preference:$preference_version",
             "agentweb"                   : "com.just.agentweb:agentweb:$agentweb_version",
             "pgyer_sdk"                  : "com.pgyersdk:sdk:$pgyersdk_version",
-            "wwrok_manager"              : "androidx.work:work-runtime-ktx:$work_version"
+            "wrok_manager"              : "androidx.work:work-runtime-ktx:$work_version"
     ]
 
     processor = [
