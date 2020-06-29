@@ -1,7 +1,9 @@
 package com.wjx.android.weather.common
 
+import android.app.Activity
 import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.FragmentActivity
 import com.wjx.android.weather.base.BaseApplication
 import com.wjx.android.weather.module.main.AppViewModel
 import com.wjx.android.weather.module.main.AppEventViewModel
@@ -24,7 +26,7 @@ fun Fragment.getAppViewModel(): AppViewModel {
     }
 }
 
-fun Fragment.getEventViewModel(): AppEventViewModel {
+fun Activity.getEventViewModel(): AppEventViewModel {
     BaseApplication.instance.let {
         return it.getAppViewModelProvider().get(AppEventViewModel::class.java)
     }

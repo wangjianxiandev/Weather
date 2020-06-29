@@ -94,7 +94,7 @@ class SearchPlaceFragment :
             it?.let {
                 mViewModel.insertChoosePlace(
                     ChoosePlaceData(
-                        0, mPlace.name, it.result.realtime.temperature.toInt(),
+                        0, false, mPlace.name, it.result.realtime.temperature.toInt(),
                         it.result.realtime.skycon
                     )
                 )
@@ -104,14 +104,14 @@ class SearchPlaceFragment :
 
         mViewModel.mPlaceInsertResult.observe(this, Observer {
             it?.let {
-                getEventViewModel().addPlace.postValue(true)
+                requireActivity().getEventViewModel().addPlace.postValue(true)
                 hideKeyboard()
             }
         })
 
         mViewModel.mChoosePlaceInsertResult.observe(this, Observer {
             it?.let {
-                getEventViewModel().addChoosePlace.postValue(true)
+                requireActivity().getEventViewModel().addChoosePlace.postValue(true)
                 Navigation.findNavController(search_place).navigateUp()
             }
         })
@@ -120,6 +120,4 @@ class SearchPlaceFragment :
     private fun setPlaceList(placeList: MutableList<Place>) {
         mAdapter.setNewInstance(placeList)
     }
-
-
 }

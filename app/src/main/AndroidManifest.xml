@@ -15,6 +15,10 @@
         android:name="android.permission.READ_LOGS"
         tools:ignore="ProtectedPermissions" />
     <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"></uses-permission>
+    <uses-permission android:name="android.permission.CHANGE_WIFI_STATE"></uses-permission>
+    <uses-permission android:name="android.permission.ACCESS_LOCATION_EXTRA_COMMANDS"></uses-permission>
 
     <application
         android:name=".base.BaseApplication"
@@ -44,6 +48,7 @@
         </activity>
 
         <service android:name="com.amap.api.location.APSService" />
+
         <receiver android:name=".common.widget.WeatherWidget">
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />

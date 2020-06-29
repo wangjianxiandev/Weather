@@ -13,8 +13,8 @@ import com.wjx.android.weather.common.getEventViewModel
 import com.wjx.android.weather.common.util.CommonUtil
 import com.wjx.android.weather.databinding.FragmentListBinding
 import com.wjx.android.weather.model.ChoosePlaceData
-import com.wjx.android.weather.module.chooseplace.viewmodel.ChoosePlaceViewModel
 import com.wjx.android.weather.module.chooseplace.adapter.ChoosePlaceAdapter
+import com.wjx.android.weather.module.chooseplace.viewmodel.ChoosePlaceViewModel
 import kotlinx.android.synthetic.main.custom_bar.view.*
 import kotlinx.android.synthetic.main.fragment_list.*
 
@@ -46,6 +46,23 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
         mSrlRefresh.setOnRefreshListener { initData() }
     }
 
+    private fun initHeaderView() {
+        mHeaderView = View.inflate(requireActivity(), R.layout.custom_bar, null)
+        mHeaderView.apply {
+            detail_title.text = "添加的城市"
+            detail_start.visibility = View.VISIBLE
+            detail_end.visibility = View.VISIBLE
+            detail_end.setOnClickListener {
+                Navigation.findNavController(it)
+                    .navigate(R.id.action_choosePlaceFragment_to_searchPlaceFragment)
+            }
+            detail_start.setOnClickListener {
+                Navigation.findNavController(it).navigateUp()
+            }
+        }
+        mAdapter.addHeaderView(mHeaderView)
+    }
+
     override fun initData() {
         if (mSrlRefresh.isRefreshing) {
             mSrlRefresh.isRefreshing = false
@@ -69,7 +86,7 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
                 setPlaceList(response)
             }
         })
-        getEventViewModel().addChoosePlace.observe(this, Observer {
+        requireActivity().getEventViewModel().addChoosePlace.observe(this, Observer {
             it?.let {
                 mViewModel.queryAllChoosePlace()
                 mAdapter.notifyDataSetChanged()
@@ -77,27 +94,10 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
         })
         appViewModel.mCurrentPlace.observe(this, Observer {
             it?.let {
-                getEventViewModel().changeCurrentPlace.postValue(true)
+                requireActivity().getEventViewModel().changeCurrentPlace.postValue(true)
             }
         })
         showSuccess()
-    }
-
-    private fun initHeaderView() {
-        mHeaderView = View.inflate(requireActivity(), R.layout.custom_bar, null)
-        mHeaderView.apply {
-            detail_title.text = "添加的城市"
-            detail_start.visibility = View.VISIBLE
-            detail_end.visibility = View.VISIBLE
-            detail_end.setOnClickListener {
-                Navigation.findNavController(it)
-                    .navigate(R.id.action_choosePlaceFragment_to_searchPlaceFragment)
-            }
-            detail_start.setOnClickListener {
-                Navigation.findNavController(it).navigateUp()
-            }
-        }
-        mAdapter.addHeaderView(mHeaderView)
     }
 
     private fun initAdapter() {
@@ -139,7 +139,7 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
                         positiveButton(R.string.delete) {
                             mViewModel.deletePlace(place.name)
                             mViewModel.deleteChoosePlace(place)
-                            getEventViewModel().addPlace.postValue(true)
+                            requireActivity().getEventViewModel().addPlace.postValue(true)
                             mAdapter.getViewByPosition(position + 1, R.id.location_delete)?.visibility =
                                 View.GONE
                             mAdapter.notifyDataSetChanged()

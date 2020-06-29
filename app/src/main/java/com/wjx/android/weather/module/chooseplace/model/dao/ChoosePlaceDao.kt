@@ -16,7 +16,7 @@ interface ChoosePlaceDao {
     suspend fun insertPlace(choosePlaceData: ChoosePlaceData) : Long
 
     @Transaction
-    @Query("SELECT * FROM chooseplacedata")
+    @Query("SELECT * FROM chooseplacedata ORDER BY primaryKey asc")
     suspend fun queryAllPlace() : MutableList<ChoosePlaceData>
 
     @Transaction

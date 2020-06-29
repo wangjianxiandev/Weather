@@ -21,6 +21,12 @@ android {
     dataBinding {
         enabled = true
     }
+    defaultConfig {
+        ndk {
+            //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86","x86_64"
+        }
+    }
 }
 
 kapt {
@@ -38,6 +44,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-viewmodel-ktx:2.2.0'
     implementation 'androidx.navigation:navigation-fragment-ktx:2.2.2'
     implementation 'androidx.navigation:navigation-ui-ktx:2.2.2'
+    //搜索功能
+    implementation 'com.amap.api:search:latest.integration'
     debugImplementation 'com.amitshekhar.android:debug-db:1.0.6'
     kapt "com.android.databinding:compiler:4.0.0"
     kapt "androidx.room:room-compiler:2.2.5"

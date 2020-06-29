@@ -26,7 +26,6 @@ ext {
     preference_version = "1.1.0-alpha04"
     agentweb_version = '4.1.2'
     pgyersdk_version = '3.0.10'
-    easypermissions_version = '3.0.0'
     work_version = '2.3.4'
 
     dependencies = [
@@ -55,7 +54,6 @@ ext {
             "preference"                 : "androidx.preference:preference:$preference_version",
             "agentweb"                   : "com.just.agentweb:agentweb:$agentweb_version",
             "pgyer_sdk"                  : "com.pgyersdk:sdk:$pgyersdk_version",
-            "easypermissions"            : "pub.devrel:easypermissions:$easypermissions_version",
             "wwrok_manager"              : "androidx.work:work-runtime-ktx:$work_version"
     ]
 

@@ -20,25 +20,36 @@
         android:padding="@dimen/dp_20">
 
         <ImageView
+            android:id="@+id/location_tag"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:src="@drawable/ic_location"
+            android:layout_marginEnd="@dimen/dp_20"
+            android:visibility="visible"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@id/location_name"
+            app:layout_constraintBottom_toBottomOf="@id/location_name"/>
+
+        <ImageView
             android:id="@+id/location_delete"
             android:layout_width="38dp"
             android:layout_height="38dp"
             android:src="@drawable/ic_delete"
             android:visibility="gone"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"/>
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/location_name"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="金州"
             android:maxLength="4"
+            android:text="金州"
             android:textColor="@color/always_white_text"
             android:textSize="18dp"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toEndOf="@id/location_tag"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
