@@ -11,7 +11,7 @@ import com.wjx.android.weather.base.viewmodel.BaseViewModel
 import com.wjx.android.weather.common.getAppViewModel
 import com.wjx.android.weather.common.state.State
 import com.wjx.android.weather.common.state.StateType
-import com.wjx.android.weather.module.main.AppViewModel
+import com.wjx.android.weather.module.app.AppViewModel
 
 /**
  * Created with Android Studio.

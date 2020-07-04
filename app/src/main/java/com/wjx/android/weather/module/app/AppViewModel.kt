@@ -1,9 +1,10 @@
-package com.wjx.android.weather.module.main
+package com.wjx.android.weather.module.app
 
 import androidx.lifecycle.viewModelScope
 import com.wjx.android.weather.base.callback.UnPeekLiveData
 import com.wjx.android.weather.base.viewmodel.BaseViewModel
 import com.wjx.android.weather.model.ChoosePlaceData
+import com.wjx.android.weather.module.app.AppRepository
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext

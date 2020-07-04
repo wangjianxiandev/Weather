@@ -1,4 +1,4 @@
-package com.wjx.android.weather.module.main
+package com.wjx.android.weather.module.main.view
 
 import android.Manifest
 import android.content.Intent
@@ -30,6 +30,7 @@ import com.wjx.android.weather.common.util.CommonUtil
 import com.wjx.android.weather.databinding.ActivityMainBinding
 import com.wjx.android.weather.model.ChoosePlaceData
 import com.wjx.android.weather.model.Place
+import com.wjx.android.weather.module.main.viewModel.MainViewModel
 
 
 class MainActivity : BaseLifeCycleActivity<MainViewModel, ActivityMainBinding>(),
@@ -207,7 +208,6 @@ class MainActivity : BaseLifeCycleActivity<MainViewModel, ActivityMainBinding>()
         mViewModel.mPlaceInsertResult.observe(this, Observer {
             it?.let {
                 getEventViewModel().addPlace.postValue(true)
-//                appViewModel.changeCurrentPlace(position)
             }
         })
 

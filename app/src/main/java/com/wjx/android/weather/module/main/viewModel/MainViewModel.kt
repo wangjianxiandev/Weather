@@ -1,13 +1,13 @@
-package com.wjx.android.weather.module.main
+package com.wjx.android.weather.module.main.viewModel
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
-import com.wjx.android.weather.base.callback.UnPeekLiveData
 import com.wjx.android.weather.base.viewmodel.BaseViewModel
 import com.wjx.android.weather.common.initiateRequest
 import com.wjx.android.weather.model.ChoosePlaceData
 import com.wjx.android.weather.model.Place
 import com.wjx.android.weather.model.RealTime
+import com.wjx.android.weather.module.main.repository.MainRepository
 import com.wjx.android.weather.module.searchplace.model.SearchPlaceResponse
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch

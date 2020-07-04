@@ -1,4 +1,4 @@
-package com.wjx.android.weather.module.main
+package com.wjx.android.weather.module.app
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel

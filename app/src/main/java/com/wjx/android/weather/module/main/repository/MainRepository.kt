@@ -1,4 +1,4 @@
-package com.wjx.android.weather.module.main
+package com.wjx.android.weather.module.main.repository
 
 import androidx.lifecycle.MutableLiveData
 import com.wjx.android.weather.base.repository.ApiRepository

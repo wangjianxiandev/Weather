@@ -1,6 +1,5 @@
 package com.wjx.android.weather.module.web
 
-import android.os.Bundle
 import android.view.View
 import android.widget.LinearLayout
 import androidx.activity.OnBackPressedCallback
@@ -10,7 +9,7 @@ import com.wjx.android.weather.R
 import com.wjx.android.weather.base.view.BaseLifeCycleFragment
 import com.wjx.android.weather.common.navigation.NavHostFragment
 import com.wjx.android.weather.databinding.WebFragmentBinding
-import com.wjx.android.weather.module.main.AppViewModel
+import com.wjx.android.weather.module.app.AppViewModel
 import kotlinx.android.synthetic.main.custom_bar.view.*
 import kotlinx.android.synthetic.main.web_fragment.*
 

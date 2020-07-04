@@ -1,23 +1,18 @@
 package com.wjx.android.weather.module.about
 
 import android.content.SharedPreferences
-import android.content.res.Configuration
 
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.FrameLayout
 import android.widget.LinearLayout
-import androidx.appcompat.app.AppCompatDelegate
-import androidx.core.content.ContextCompat
 import androidx.navigation.Navigation
 import androidx.preference.Preference
-import com.afollestad.materialdialogs.MaterialDialog
 import com.wjx.android.weather.R
 import androidx.preference.PreferenceFragmentCompat
 import com.wjx.android.weather.common.checkUpdate
-import com.wjx.android.weather.common.util.CommonUtil
-import com.wjx.android.weather.module.main.MainActivity
+import com.wjx.android.weather.module.main.view.MainActivity
 import kotlinx.android.synthetic.main.custom_bar.view.*
 
 class AboutFragment : PreferenceFragmentCompat(),

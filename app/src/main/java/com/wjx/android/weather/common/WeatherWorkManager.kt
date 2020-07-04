@@ -1,11 +1,10 @@
 package com.wjx.android.weather.common
 
 import android.content.Context
-import androidx.work.WorkManager
 import androidx.work.Worker
 import androidx.work.WorkerParameters
 import com.wjx.android.weather.base.BaseApplication
-import com.wjx.android.weather.module.main.AppViewModel
+import com.wjx.android.weather.module.app.AppViewModel
 
 /**
  * Created with Android Studio.
