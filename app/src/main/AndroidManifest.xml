@@ -57,6 +57,19 @@
                 android:name="android.appwidget.provider"
                 android:resource="@xml/weather_widget_info" />
         </receiver>
+
+        <provider
+            android:name="androidx.startup.InitializationProvider"
+            android:authorities="${applicationId}.androidx-startup"
+            android:exported="false"
+            tools:node="merge">
+
+            <!-- 手动初始化 -->
+            <meta-data
+                android:name="com.wjx.android.weather.common.startup.WeatherStartUp"
+                android:value="androidx.startup"
+                tools:node="remove"/>
+        </provider>
     </application>
 
 </manifest>

@@ -27,6 +27,7 @@ ext {
     agentweb_version = '4.1.2'
     pgyersdk_version = '3.0.10'
     work_version = '2.3.4'
+    app_startup_version ='1.0.0-alpha01'
 
     dependencies = [
             "appcompat"                  : "androidx.appcompat:appcompat:1.1.0",
@@ -54,7 +55,8 @@ ext {
             "preference"                 : "androidx.preference:preference:$preference_version",
             "agentweb"                   : "com.just.agentweb:agentweb:$agentweb_version",
             "pgyer_sdk"                  : "com.pgyersdk:sdk:$pgyersdk_version",
-            "wrok_manager"              : "androidx.work:work-runtime-ktx:$work_version"
+            "wrok_manager"              : "androidx.work:work-runtime-ktx:$work_version",
+            "app_startup"               : "androidx.startup:startup-runtime:1.0.0-alpha01"
     ]
 
     processor = [

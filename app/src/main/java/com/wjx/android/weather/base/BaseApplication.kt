@@ -4,8 +4,10 @@ import android.app.Application
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.ViewModelStore
 import androidx.lifecycle.ViewModelStoreOwner
+import androidx.startup.AppInitializer
 import com.kingja.loadsir.core.LoadSir
 import com.wjx.android.wanandroidmvvm.common.callback.*
+import com.wjx.android.weather.common.startup.WeatherStartUp
 import com.wjx.android.weather.common.util.SPreference
 import java.lang.reflect.ParameterizedType
 
@@ -34,6 +36,7 @@ open class BaseApplication  : Application(), ViewModelStoreOwner {
         SPreference.setContext(this)
         initLoadSir()
         mAppViewModelStore = ViewModelStore()
+        AppInitializer.getInstance(instance).initializeComponent(WeatherStartUp::class.java)
     }
 
     private fun initLoadSir() {
