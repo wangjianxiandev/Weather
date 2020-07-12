@@ -18,9 +18,10 @@
 - 部分场景在xml中使用databinding（主要是字符串拼接使用起来不太理想，所以xml中使用场景较少）
 - 扩展函数
 - 集成蒲公英检测更新
+- 使用高德地图api进行定位并加载定位地点的天气状况
 
 
-## 项目展示
+##
 <table>
     <tr>
         <td><center><img src="https://img-blog.csdnimg.cn/20200623173724341.gif"></center></td>
