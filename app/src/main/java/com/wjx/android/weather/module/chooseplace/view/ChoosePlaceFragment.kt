@@ -89,7 +89,7 @@ class ChoosePlaceFragment : BaseLifeCycleFragment<ChoosePlaceViewModel, Fragment
         requireActivity().getEventViewModel().addChoosePlace.observe(this, Observer {
             it?.let {
                 mViewModel.queryAllChoosePlace()
-                mAdapter.notifyDataSetChanged()
+//                mAdapter.notifyDataSetChanged()
             }
         })
         appViewModel.mCurrentPlace.observe(this, Observer {

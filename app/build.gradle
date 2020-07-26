@@ -18,14 +18,21 @@ android {
         versionName rootAndroidId.versionName
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
-    buildFeatures{
+    buildFeatures {
         dataBinding = true
     }
     defaultConfig {
         ndk {
             //设置支持的SO库架构（开发者可以根据需要，选择一个或多个平台的so）
-            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86","x86_64"
+            abiFilters "armeabi", "armeabi-v7a", "arm64-v8a", "x86", "x86_64"
         }
+    }
+
+    lintOptions {
+        checkReleaseBuilds false
+        // Or, if you prefer, you can continue to checkforerrorsinrelease builds,
+        // but continue the build even whenerrorsarefound:
+        abortOnError false
     }
 }
 
