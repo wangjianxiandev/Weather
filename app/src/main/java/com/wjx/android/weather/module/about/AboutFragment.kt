@@ -72,22 +72,26 @@ class AboutFragment : PreferenceFragmentCompat(),
 
         findPreference<Preference>("csdn")?.setOnPreferenceClickListener {
             view?.let {
-                Navigation.findNavController(it)
-                    .navigate(R.id.action_aboutFragment_to_webFragment, Bundle().apply {
-                        putString("title", "DLUT_WJX")
-                        putString("url", "https://blog.csdn.net/qq_39424143")
-                    })
+                if (Navigation.findNavController(it).currentDestination?.id == R.id.aboutFragment) {
+                    Navigation.findNavController(it)
+                        .navigate(R.id.action_aboutFragment_to_webFragment, Bundle().apply {
+                            putString("title", "DLUT_WJX")
+                            putString("url", "https://blog.csdn.net/qq_39424143")
+                        })
+                }
             }
             false
         }
 
         findPreference<Preference>("project")?.setOnPreferenceClickListener {
             view?.let {
-                Navigation.findNavController(it)
-                    .navigate(R.id.action_aboutFragment_to_webFragment, Bundle().apply {
-                        putString("title", "Weather")
-                        putString("url", "https://github.com/wangjianxiandev/Weather")
-                    })
+                if (Navigation.findNavController(it).currentDestination?.id == R.id.aboutFragment) {
+                    Navigation.findNavController(it)
+                        .navigate(R.id.action_aboutFragment_to_webFragment, Bundle().apply {
+                            putString("title", "Weather")
+                            putString("url", "https://github.com/wangjianxiandev/Weather")
+                        })
+                }
             }
             false
         }
